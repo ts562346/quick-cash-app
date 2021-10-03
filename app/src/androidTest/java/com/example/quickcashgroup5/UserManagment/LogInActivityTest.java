@@ -3,6 +3,7 @@ package com.example.quickcashgroup5.UserManagment;
 
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
@@ -37,12 +38,12 @@ public class LogInActivityTest extends TestCase {
 
     @Test
     public void emailFieldIsClickable() {
-        onView(withId(R.id.logButton).check(matches(isClickable()));
+        onView(withId(R.id.logButton).check(matches(isClickable())));
     }
 
     @Test
     public void testUserInputEmail(){
-        onView(withId(R.id.textToEnter).perform(typeText("sample@gmail.com");
+        onView(withId(R.id.textToEnter).perform(typeText("sample@gmail.com")));
         closeSoftKeyboard();
     }
 
@@ -64,7 +65,7 @@ public class LogInActivityTest extends TestCase {
 
     @Test
     public void testUserInputPassword(){
-        onView(withId(R.id.textToEnter).perform(typeText("SamplePassword123");
+        onView(withId(R.id.textToEnter).perform(typeText("SamplePassword123")));
         closeSoftKeyboard();
     }
 
