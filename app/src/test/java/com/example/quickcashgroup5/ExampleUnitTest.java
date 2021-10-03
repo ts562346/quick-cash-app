@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.quickcashgroup5;
 
 import org.junit.Test;
 

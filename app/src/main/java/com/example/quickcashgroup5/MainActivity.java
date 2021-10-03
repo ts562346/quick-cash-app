@@ -1,4 +1,4 @@
- package com.example.myapplication;
+ package com.example.quickcashgroup5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
