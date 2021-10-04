@@ -24,7 +24,7 @@ public class SignUpActivityTest extends TestCase {
 
 //For Screen 2 Login Page
 
-    //For name input
+    //For user name input
     @Test
     public void nameFieldIsDisplayed() {
         onView(withId(R.id.name)).check(matches(isDisplayed()));
