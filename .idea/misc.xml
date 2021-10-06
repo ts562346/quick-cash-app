@@ -10,6 +10,16 @@
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_recoveryaccount.xml" value="0.2695035460992908" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_resetpassword.xml" value="0.2695035460992908" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.2695035460992908" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.146875" />
+        <entry key="app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.146875" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.146875" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.146875" />
+        <entry key="app/src/main/res/drawable/ic_outline_lock_24.xml" value="0.146875" />
+        <entry key="app/src/main/res/layout/activity_employeehome.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_employerhome.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_resetpassword.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1" />
       </map>
     </option>
   </component>
