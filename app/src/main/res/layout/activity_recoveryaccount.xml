@@ -60,7 +60,7 @@
                 android:autofillHints="" />
 
             <Button
-                android:id="@+id/registeredUserLabel"
+                android:id="@+id/backToLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -71,7 +71,7 @@
                 style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
-                android:id="@+id/registerButton"
+                android:id="@+id/sendButton"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
