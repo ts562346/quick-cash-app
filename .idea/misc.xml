@@ -3,27 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.2695035460992908" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_employerhome.xml" value="0.2695035460992908" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.2695035460992908" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.2695035460992908" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_recoveryaccount.xml" value="0.2695035460992908" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_resetpassword.xml" value="0.2695035460992908" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.2695035460992908" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.146875" />
-        <entry key="app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.146875" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.146875" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.146875" />
-        <entry key="app/src/main/res/drawable/ic_outline_lock_24.xml" value="0.146875" />
-        <entry key="app/src/main/res/layout/activity_employeehome.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_employerhome.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_resetpassword.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.1" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/app/src/main/res/layout/activity_recoveryaccount.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/app/src/main/res/layout/activity_resetpassword.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/app/src/main/res/layout/activity_signup.xml" value="0.2" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

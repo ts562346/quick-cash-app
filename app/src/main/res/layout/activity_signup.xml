@@ -1,6 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp">
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:contentDescription="Quick Cash Icon"-->
+<!--                app:srcCompat="@drawable/quick_cash_icon" />-->
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textSize="34sp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create your account"
+                android:textSize="20sp"
+                android:layout_marginBottom="15dp"/>
+
+            <TextView
+                android:id="@+id/nameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Name"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_baseline_person_outline_24"
+                android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Full Name"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/emailLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Email"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_baseline_mail_outline_24"
+                android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/passwordLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_outline_lock_24"
+                android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Enter your password"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/confirmPasswordLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/confirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_outline_lock_24"
+                android:drawablePadding="5dp"
+                android:ems="10"
+                android:hint="Confirm your password"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/roleSelectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select your role"
+                android:textSize="16sp"/>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/employeeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Employee" />
+
+            <Button
+                android:id="@+id/employerButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Employer"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/registeredUserLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="I have an account"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="Register"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
