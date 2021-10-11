@@ -15,38 +15,36 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    protected String getEmail() {
-        EditText email = findViewById(R.id.editTextTextEmailAddress);
-        return email.getText().toString().trim();
-    }
-
-    protected String getPassword() {
-        EditText password = findViewById(R.id.editTextTextPassword);
-        return password.getText().toString().trim();
-    }
-
     protected String sanitize(String value) {
         return value.trim().replaceAll("\b", "");
     }
 
+    protected String getEmail() {
+        EditText email = findViewById(R.id.editTextTextEmailAddress);
+        return sanitize(email.getText().toString());
+    }
+
+    protected String getPassword() {
+        EditText password = findViewById(R.id.editTextTextPassword);
+        return sanitize(password.getText().toString());
+    }
+
     protected boolean emailVerification(String email) {
-        String sanitized = sanitize(email);
-        if (!sanitized.isEmpty()){
+        if (!email.isEmpty()){
             //The first part of the email can only contain letters, digits, and periods
             //The second and third part can only contain letters
             //The third part can only be between 2 - 3 characters long
-            return sanitized.matches("^[a-zA-Z\\d\\.]+@[a-zA-Z]+\\.[a-zA-Z]{2,3}$");
+            return email.matches("^[a-zA-Z\\d\\.]+@[a-zA-Z]+\\.[a-zA-Z]{2,3}$");
         } else {
             return false;
         }
     }
 
     protected boolean passwordVerification(String password) {
-        String sanitized = sanitize(password);
-        if (!sanitized.isEmpty()){
+        if (!password.isEmpty()){
             //Password should have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character
             //The password should be at least 8 characters long
-            return sanitized.matches("^(?=.*?\\d+)(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\\W).{8,}$");
+            return password.matches("^(?=.*?\\d+)(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\\W).{8,}$");
         } else {
             return false;
         }
