@@ -27,7 +27,7 @@ import org.junit.Test;
 public class LogInActivityTest{
 
     @Rule
-public ActivityScenarioRule<LogInActivity> activityTestRule = new ActivityScenarioRule<>(LogInActivity.class);
+    public ActivityScenarioRule<LogInActivity> activityTestRule = new ActivityScenarioRule<>(LogInActivity.class);
 
     private String emailText = "sampletest@gmail.com";
     private String passwordText = "Sample@123";
