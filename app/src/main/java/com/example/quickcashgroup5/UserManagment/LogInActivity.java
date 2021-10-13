@@ -9,6 +9,6 @@ import com.example.quickcashgroup5.R;
 
 public class LogInActivity extends AppCompatActivity {
 
-    
+
 
 }
