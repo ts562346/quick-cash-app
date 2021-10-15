@@ -19,12 +19,12 @@
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/imageView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:contentDescription="Quick Cash Icon"-->
-<!--                app:srcCompat="@drawable/quick_cash_icon" />-->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="Quick Cash Icon"
+                app:srcCompat="@drawable/quick_cash_icon" />
 
             <TextView
                 android:id="@+id/title"
