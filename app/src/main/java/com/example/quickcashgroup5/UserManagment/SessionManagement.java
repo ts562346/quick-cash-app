@@ -25,7 +25,7 @@ public class SessionManagement {
     }
 
     public void setEmail(String email){
-        editor.putString("email", email);
+        editor.putString("Email", email);
         editor.apply();
     }
 
