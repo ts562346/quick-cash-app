@@ -1,9 +1,12 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     email,
     password,
     confirmPassword;
-//    EditText mEdit;
+    RadioButton employee, employer;
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
     DatabaseReference users = database.getReference(User.class.getSimpleName());
 
@@ -40,6 +43,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         email = (EditText)findViewById(R.id.editTextTextEmailAddress);
         password = (EditText)findViewById(R.id.editTextTextPassword);
         confirmPassword = (EditText)findViewById(R.id.editTextTextConfirmPassword);
+        employee = (RadioButton)findViewById(R.id.employee);
+        employer = (RadioButton)findViewById(R.id.employer);
         registerButton.setOnClickListener(this);
 
         initializeDatabase();
@@ -53,7 +58,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return m.matches();
     }
 
-    private boolean registerUser(User user){
+    private boolean registerUser(User user) throws Exception {
+        AESCrypt aes= new AESCrypt();
         if(!name.getText().toString().isEmpty()){
             user.setName(name.getText().toString());
         }else{
@@ -69,12 +75,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         if(password.getText().toString().equals(confirmPassword.getText().toString())){
-            user.setPassword(password.getText().toString());
+            user.setPassword(aes.encrypt(password.getText().toString()));
         }else{
             Toast.makeText(getApplicationContext(),"Password do not match",Toast.LENGTH_SHORT).show();
             return false;
         }
-        user.setIsEmployee("y");
+        if(employee.isChecked()){
+            user.setIsEmployee("yes");
+            employee.setBackgroundColor(Color.GREEN);
+        }else if(employer.isChecked()){
+            user.setIsEmployee("no");
+            employee.setBackgroundColor(Color.GREEN);
+        }else{
+            Toast.makeText(getApplicationContext(),"Please select a User Type",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
     protected void initializeDatabase() {
@@ -90,12 +105,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         User user= new User();
-        if(registerUser(user)){
-            this.add(user).addOnSuccessListener(suc ->{
-                Toast.makeText(this, "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
-            }).addOnFailureListener(fal -> {
-                Toast.makeText(this, "Data Insertion failed", Toast.LENGTH_SHORT).show();
-            });
+        try {
+            if(registerUser(user)){
+                this.add(user).addOnSuccessListener(suc ->{
+                    Toast.makeText(this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, SignUpActivity.class);
+                    startActivity(intent);
+                }).addOnFailureListener(fal -> {
+                    Toast.makeText(this, "Data Insertion failed", Toast.LENGTH_SHORT).show();
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
