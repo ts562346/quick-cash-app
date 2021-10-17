@@ -7,8 +7,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="403dp"
-        android:layout_height="725dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
@@ -72,7 +72,7 @@
                 android:drawableStart="@drawable/ic_baseline_person_outline_24"
                 android:padding="15dp"
                 android:ems="10"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -192,38 +192,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spin"
                 android:layout_margin="15dp"
-                android:entries="@array/role">
-
-                android:layout_width="wrap_content"
-
-
-            </Spinner>
-
-
-
-
-            <!--            <LinearLayout-->
-<!--                android:id="@+id/buttonHolder"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/employeeRegisterButton"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="5dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Employee" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/employerRegisterButton"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="5dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Employer" />-->
-<!--            </LinearLayout>-->
+                android:entries="@array/role"/>
 
             <Button
                 android:id="@+id/registeredUserLabel"
