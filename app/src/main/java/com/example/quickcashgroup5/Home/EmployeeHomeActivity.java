@@ -12,7 +12,7 @@ import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 
 public class EmployeeHomeActivity extends AppCompatActivity implements View.OnClickListener {
-    SessionManagement session  = new SessionManagement(this);
+    SessionManagement sessionManagement;
     Button logout;
 
     @Override
@@ -20,13 +20,13 @@ public class EmployeeHomeActivity extends AppCompatActivity implements View.OnCl
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employeehome);
+        sessionManagement = new SessionManagement(this);
         logout = (Button)findViewById(R.id.logout);
         logout.setOnClickListener(this);
 
     }
 
-
     public void onClick(View view) {
-        session.logout();
+        sessionManagement.logout();
     }
 }

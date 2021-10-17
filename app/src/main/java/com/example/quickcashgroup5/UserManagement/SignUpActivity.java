@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_signup);
 
         registerButton = (Button)findViewById(R.id.registerButton);

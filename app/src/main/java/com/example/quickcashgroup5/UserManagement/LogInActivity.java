@@ -41,7 +41,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         sessionManagement = new SessionManagement(this);
         email = (EditText) findViewById(R.id.editTextTextEmailAddress);
         password = (EditText) findViewById(R.id.editTextTextPassword);
-        loginButton = (Button) findViewById(R.id.registerButton);
+        loginButton = (Button) findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(this);
 
@@ -55,8 +55,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void authenticateUser (){
-//        sessionManagement.logout();
-
         AESCrypt aes= new AESCrypt();
         users.child("User").addValueEventListener(new ValueEventListener() {
             @Override
@@ -72,11 +70,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employer");
                                 }
                             }else{
+                                //Unsuccessful Login
                                 System.out.println("bad");
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        //Unsuccessful Login
+                        System.out.println("bad");
                     }
                 }
             }
@@ -93,6 +95,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         if(!email.getText().toString().isEmpty()) {
             authenticateUser();
+            sessionManagement.accessControl();
         }else{
             Toast.makeText(getApplicationContext(),"Email field is empty",Toast.LENGTH_SHORT).show();
         }

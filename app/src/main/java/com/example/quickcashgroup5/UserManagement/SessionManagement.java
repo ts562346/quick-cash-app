@@ -63,27 +63,27 @@ public class SessionManagement {
     }
 
     public void accessControl(){
+        Intent i;
         if (isLoggedIn()){
             System.out.println("good");
             if(getRole().equals("Employee")) {
                 System.out.println("Employee");
-                Intent i = new Intent(context, EmployeeHomeActivity.class);
-                context.startActivity(i);
+                i = new Intent(context, EmployeeHomeActivity.class);
             } else {
                 System.out.println("Employer");
-                Intent i = new Intent(context, EmployerHomeActivity.class);
-                context.startActivity(i);
+                i = new Intent(context, EmployerHomeActivity.class);
             }
         } else {
-            Intent i = new Intent(context, LogInActivity.class);
-            context.startActivity(i);
+            System.out.println("bad");
+            i = new Intent(context, LogInActivity.class);
         }
+        context.startActivity(i);
     }
 
     public void logout(){
         this.editor.clear();
         this.editor.apply();
-        Intent intent = new Intent(context, LogInActivity.class);
-        context.startActivity(intent);
+//        Intent intent = new Intent(context, LogInActivity.class);
+//        context.startActivity(intent);
     }
 }
