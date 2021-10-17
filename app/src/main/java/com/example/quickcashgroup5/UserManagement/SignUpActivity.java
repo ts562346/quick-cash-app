@@ -25,11 +25,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
     DatabaseReference users = database.getReference(User.class.getSimpleName());
     Spinner dropDown;
-
+    SessionManagement sessionManagement;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
+        sessionManagement = new SessionManagement(this);
+        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_signup);

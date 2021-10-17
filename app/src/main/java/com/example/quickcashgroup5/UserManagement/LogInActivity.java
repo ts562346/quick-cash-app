@@ -13,21 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
-import com.example.quickcashgroup5.Home.EmployerHomeActivity;
-import com.example.quickcashgroup5.MainActivity;
 import com.example.quickcashgroup5.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     Button  loginButton;
-    EditText email,
-            password;
+    EditText emailET,
+            passwordET;
     FirebaseDatabase database;
     DatabaseReference users;
     SessionManagement sessionManagement;
@@ -35,17 +31,30 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sessionManagement = new SessionManagement(this);
+        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
-        sessionManagement = new SessionManagement(this);
-        email = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        password = (EditText) findViewById(R.id.editTextTextPassword);
+        emailET = (EditText)findViewById(R.id.editTextTextEmailAddress);
+        passwordET = (EditText)findViewById(R.id.editTextTextPassword);
         loginButton = (Button) findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(this);
 
         initializeDatabase();
+    }
+
+    protected String sanitize(String value) {
+        return value.trim().replaceAll("\b", "");
+    }
+
+    protected boolean emailValidation(String email) {
+        return !email.isEmpty();
+    }
+
+    protected boolean passwordValidation(String password) {
+        return !password.isEmpty();
     }
 
     protected void initializeDatabase() {
@@ -54,16 +63,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         users = database.getReference();
     }
 
-    public void authenticateUser (){
+    public void authenticateUser (String email, String password){
         AESCrypt aes= new AESCrypt();
         users.child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot: dataSnapshot.getChildren()) {
                     User u = adSnapshot.getValue(User.class);
-                    if(u.getEmail().equals(email.getText().toString())){
+                    if(u.getEmail().equals(email)){
                         try {
-                            if(u.getPassword().equals(aes.encrypt(password.getText().toString()))){
+                            if(u.getPassword().equals(aes.encrypt(password))){
                                 if (u.getIsEmployee().equals("yes")) {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
                                 } else {
@@ -71,14 +80,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                 }
                             }else{
                                 //Unsuccessful Login
-                                System.out.println("bad");
+                                Toast.makeText(getApplicationContext(),"Unsuccessful Login",Toast.LENGTH_SHORT).show();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     } else {
                         //Unsuccessful Login
-                        System.out.println("bad");
+//                        Toast.makeText(getApplicationContext(),"Unsuccessful Login",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -92,10 +101,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-
-        if(!email.getText().toString().isEmpty()) {
-            authenticateUser();
-            sessionManagement.accessControl();
+        String email = sanitize(emailET.getText().toString());
+        String password = sanitize(passwordET.getText().toString());
+        if(emailValidation(email)) {
+            if(passwordValidation(password)) {
+                authenticateUser(email, password);
+                sessionManagement.accessControl();
+            } else{
+                Toast.makeText(getApplicationContext(),"Password field is empty",Toast.LENGTH_SHORT).show();
+            }
         }else{
             Toast.makeText(getApplicationContext(),"Email field is empty",Toast.LENGTH_SHORT).show();
         }

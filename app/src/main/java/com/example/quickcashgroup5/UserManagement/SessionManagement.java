@@ -2,6 +2,7 @@
 
 package com.example.quickcashgroup5.UserManagement;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -73,17 +74,18 @@ public class SessionManagement {
                 System.out.println("Employer");
                 i = new Intent(context, EmployerHomeActivity.class);
             }
+            context.startActivity(i);
+            ((Activity)context).finish();
         } else {
             System.out.println("bad");
-            i = new Intent(context, LogInActivity.class);
         }
-        context.startActivity(i);
     }
 
     public void logout(){
         this.editor.clear();
         this.editor.apply();
-//        Intent intent = new Intent(context, LogInActivity.class);
-//        context.startActivity(intent);
+        Intent intent = new Intent(context, LogInActivity.class);
+        context.startActivity(intent);
+        ((Activity)context).finish();
     }
 }
