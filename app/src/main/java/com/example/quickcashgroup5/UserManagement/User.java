@@ -1,13 +1,13 @@
-package com.example.quickcashgroup5.UserManagment;
+package com.example.quickcashgroup5.UserManagement;
 
 public class User {
     private String name;
     private String email;
     private String password;
     private String confirmPassword;
-    private char isEmployee; //if its y then yes(employee), otherwise no(employer)
+    private String isEmployee; //if its y then yes(employee), otherwise no(employer)
 
-    public User(String name, String email, String password, String confirmPassword, char isEmployee) {
+    public User(String name, String email, String password, String confirmPassword, String isEmployee) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -16,6 +16,7 @@ public class User {
     }
 
     public User() {
+
     }
 
     public String getName() {
@@ -50,11 +51,11 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
-    public char getIsEmployee() {
+    public String getIsEmployee() {
         return isEmployee;
     }
 
-    public void setIsEmployee(char isEmployee) {
+    public void setIsEmployee(String isEmployee) {
         this.isEmployee = isEmployee;
     }
 }
