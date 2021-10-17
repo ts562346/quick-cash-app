@@ -1,5 +1,6 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
-    Button  registerButton;
+    Button  registerButton,
+            registeredUserLabel;
     EditText nameET,
             emailET,
             passwordET,
@@ -35,13 +37,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().hide();
         setContentView(R.layout.activity_signup);
 
+        registeredUserLabel = (Button)findViewById(R.id.registeredUserLabel);
         registerButton = (Button)findViewById(R.id.registerButton);
         nameET = (EditText)findViewById(R.id.editTextUsername);
         emailET = (EditText)findViewById(R.id.editTextTextEmailAddress);
         passwordET = (EditText)findViewById(R.id.editTextTextPassword);
         confirmPasswordET = (EditText)findViewById(R.id.editTextTextConfirmPassword);
-        registerButton.setOnClickListener(this);
         dropDown = (Spinner)findViewById(R.id.spin);
+
+        registeredUserLabel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+                ((Activity)SignUpActivity.this).finish();
+            }
+        });
+        registerButton.setOnClickListener(this);
 
         initializeDatabase();
 

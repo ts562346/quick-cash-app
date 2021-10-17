@@ -2,6 +2,7 @@ package com.example.quickcashgroup5.UserManagement;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.MainActivity;
 import com.example.quickcashgroup5.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
-    Button  loginButton;
+    Button  loginButton,
+            notRegisteredUserLabel;
     EditText emailET,
             passwordET;
     FirebaseDatabase database;
@@ -38,7 +41,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         emailET = (EditText)findViewById(R.id.editTextTextEmailAddress);
         passwordET = (EditText)findViewById(R.id.editTextTextPassword);
+        notRegisteredUserLabel = (Button) findViewById(R.id.notRegisteredUserLabel);
         loginButton = (Button) findViewById(R.id.loginButton);
+
+        notRegisteredUserLabel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LogInActivity.this, SignUpActivity.class));
+                ((Activity)LogInActivity.this).finish();
+            }
+        });
 
         loginButton.setOnClickListener(this);
 
@@ -85,10 +96,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    } else {
-                        //Unsuccessful Login
-//                        Toast.makeText(getApplicationContext(),"Unsuccessful Login",Toast.LENGTH_SHORT).show();
                     }
+                }
+                if(!sessionManagement.isLoggedIn()){
+                    //Unsuccessful Login
+                    Toast.makeText(getApplicationContext(),"Unsuccessful Login",Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
