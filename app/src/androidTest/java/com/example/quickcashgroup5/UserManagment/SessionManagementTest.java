@@ -1,4 +1,4 @@
-package com.example.quickcashgroup5.UserManagement;
+package com.example.quickcashgroup5.UserManagment;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.example.quickcashgroup5.MainActivity;
+import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.UserManagement.SignUpActivity;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
