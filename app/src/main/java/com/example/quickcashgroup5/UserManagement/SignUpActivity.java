@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     RadioButton employee, employer;
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
     DatabaseReference users = database.getReference(User.class.getSimpleName());
+    Spinner dropDown;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -43,9 +45,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         email = (EditText)findViewById(R.id.editTextTextEmailAddress);
         password = (EditText)findViewById(R.id.editTextTextPassword);
         confirmPassword = (EditText)findViewById(R.id.editTextTextConfirmPassword);
-        employee = (RadioButton)findViewById(R.id.employee);
-        employer = (RadioButton)findViewById(R.id.employer);
         registerButton.setOnClickListener(this);
+        dropDown = (Spinner)findViewById(R.id.spin);
 
         initializeDatabase();
 
@@ -80,15 +81,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(getApplicationContext(),"Password do not match",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(employee.isChecked()){
-            user.setIsEmployee("yes");
-            employee.setBackgroundColor(Color.GREEN);
-        }else if(employer.isChecked()){
+        String itemText = (String) dropDown.getSelectedItem();
+        if(itemText.equals("Employer")){
             user.setIsEmployee("no");
-            employee.setBackgroundColor(Color.GREEN);
         }else{
-            Toast.makeText(getApplicationContext(),"Please select a User Type",Toast.LENGTH_SHORT).show();
-            return false;
+            user.setIsEmployee("yes");
         }
         return true;
     }

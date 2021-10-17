@@ -67,7 +67,10 @@
                 android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_baseline_mail_outline_24"
+                android:background="@drawable/custom_text"
+                android:drawablePadding="15dp"
+                android:drawableStart="@drawable/ic_baseline_person_outline_24"
+                android:padding="15dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,7 +96,10 @@
                 android:id="@+id/editTextTextEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/custom_text"
+                android:drawablePadding="15dp"
                 android:drawableStart="@drawable/ic_baseline_mail_outline_24"
+                android:padding="15dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -111,19 +117,32 @@
                 android:text="Password"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/editTextTextConfirmPassword"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_outline_lock_24"
-                android:ems="10"
-                android:inputType="textPassword"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                tools:ignore="MissingConstraints"
+                app:passwordToggleEnabled="true"
+                app:boxStrokeWidth="0dp">
+
+                <EditText
+                    android:id="@+id/editTextTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_text"
+                    android:drawableStart="@drawable/ic_outline_lock_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/confirmPasswordLabel"
@@ -133,19 +152,31 @@
                 android:text="Confirm Password"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/editTextTextPassword"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_outline_lock_24"
-                android:ems="10"
-                android:inputType="textPassword"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:passwordToggleEnabled="true"
+                app:boxStrokeWidth="0dp">
+
+                <EditText
+                    android:id="@+id/editTextTextConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_text"
+                    android:drawableStart="@drawable/ic_outline_lock_24"
+                    android:drawablePadding="15dp"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:padding="15dp"
+                    android:singleLine="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/role"
@@ -155,40 +186,44 @@
                 android:text="Select your role"
                 android:textSize="16sp" />
 
-            <RadioGroup
+
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                >
+                android:id="@+id/spin"
+                android:layout_margin="15dp"
+                android:entries="@array/role">
 
-                <!-- Our custom radios here. One for male one for female -->
-
-                <com.example.quickcashgroup5.DesignElements.MyRadioButton
-                    android:id="@+id/employee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:minWidth="70dp"
-                    style="@style/MyCustomRadioButton"
-
-                    android:layout_marginEnd="12dp"
-                    android:text="Employee"
-                    />
-
-                <com.example.quickcashgroup5.DesignElements.MyRadioButton
-                    android:id="@+id/employer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:minWidth="70dp"
-                    style="@style/MyCustomRadioButton"
-
-                    android:layout_marginEnd="12dp"
-                    android:text="Employer"
-                    />
-
-            </RadioGroup>
+                android:layout_width="wrap_content"
 
 
+            </Spinner>
+
+
+
+
+            <!--            <LinearLayout-->
+<!--                android:id="@+id/buttonHolder"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/employeeRegisterButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Employee" />-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/employerRegisterButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Employer" />-->
+<!--            </LinearLayout>-->
 
             <Button
                 android:id="@+id/registeredUserLabel"
@@ -205,7 +240,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-Sig
             <Button
                 android:id="@+id/registerButton"
                 android:layout_width="match_parent"
