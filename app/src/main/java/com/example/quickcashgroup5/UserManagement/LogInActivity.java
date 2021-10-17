@@ -17,7 +17,6 @@ import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.MainActivity;
 import com.example.quickcashgroup5.R;
-import com.example.quickcashgroup5.UserManagment.SessionManagement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
