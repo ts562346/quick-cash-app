@@ -1,5 +1,3 @@
-//Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
-
 package com.example.quickcashgroup5.UserManagement;
 
 import android.app.Activity;
@@ -12,50 +10,102 @@ import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 
+/**
+ * Class used to manage sessions
+ */
+
+//Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
 public class SessionManagement {
     private static final String preferencesName = "Session";
     private SharedPreferences sharedPreferences;
     private Context context;
     SharedPreferences.Editor editor;
 
+    /**
+     * SessionManagement constructor
+     *
+     * @param context
+     */
     public SessionManagement(Context context) {
         this.context = context;
         this.sharedPreferences = this.context.getSharedPreferences(preferencesName, this.context.MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
     }
 
-    public void setName(String name){
+    /**
+     * Sets the name value in a Session
+     *
+     * @param name
+     */
+    public void setName(String name) {
         editor.putString("Name", name);
         editor.apply();
     }
 
-    public void setEmail(String email){
+    /**
+     * Sets the email value in a Session
+     *
+     * @param email
+     */
+    public void setEmail(String email) {
         editor.putString("Email", email);
         editor.apply();
     }
 
-    public void setRole(String role){
+    /**
+     * Sets the role value in a Session
+     *
+     * @param role
+     */
+    public void setRole(String role) {
         editor.putString("Role", role);
         editor.apply();
     }
 
-    public String getName(){
+    /**
+     * Gets the name value from a Session
+     *
+     * @return
+     */
+    public String getName() {
         return sharedPreferences.getString("Name", null);
     }
 
-    public String getEmail(){
+    /**
+     * Gets the email value from a Session
+     *
+     * @return
+     */
+    public String getEmail() {
         return sharedPreferences.getString("Email", null);
     }
 
-    public String getRole(){
+    /**
+     * Gets the role value from a Session
+     *
+     * @return
+     */
+    public String getRole() {
         return sharedPreferences.getString("Role", null);
     }
 
-    public boolean isLoggedIn(){
+    /**
+     * Returns whether the user is logged in based on the session
+     *
+     * @return
+     */
+    public boolean isLoggedIn() {
         return sharedPreferences.getBoolean("LoggedIn", false);
     }
 
-    public void createSession(String name, String email, String role){
+    /**
+     * Creates a session
+     *
+     * @param name
+     * @param email
+     * @param role
+     */
+    public void createSession(String name, String email, String role) {
         editor.putBoolean("LoggedIn", true);
         editor.putString("Name", name);
         editor.putString("Email", email);
@@ -63,11 +113,14 @@ public class SessionManagement {
         editor.apply();
     }
 
-    public void accessControl(){
+    /**
+     * If user is logged in then redirects to appropriate page
+     */
+    public void accessControl() {
         Intent i;
-        if (isLoggedIn()){
+        if (isLoggedIn()) {
             System.out.println("good");
-            if(getRole().equals("Employee")) {
+            if (getRole().equals("Employee")) {
                 System.out.println("Employee");
                 i = new Intent(context, EmployeeHomeActivity.class);
             } else {
@@ -75,15 +128,18 @@ public class SessionManagement {
                 i = new Intent(context, EmployerHomeActivity.class);
             }
             context.startActivity(i);
-            ((Activity)context).finish();
+            ((Activity) context).finish();
         }
     }
 
-    public void logout(){
+    /**
+     * Logs out the user from the app
+     */
+    public void logout() {
         this.editor.clear();
         this.editor.apply();
         Intent intent = new Intent(context, LogInActivity.class);
         context.startActivity(intent);
-        ((Activity)context).finish();
+        ((Activity) context).finish();
     }
 }

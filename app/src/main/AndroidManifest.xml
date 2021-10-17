@@ -21,15 +21,6 @@
         <activity android:name=".UserManagement.LogInActivity">
 
         </activity>
-        <activity android:name=".UserManagement.PasswordResetCodeActivity">
-
-        </activity>
-        <activity android:name=".UserManagement.RecoveryAccountActivity">
-
-        </activity>
-        <activity android:name=".UserManagement.ResetPasswordActivity">
-
-        </activity>
         <activity android:name=".UserManagement.SignUpActivity">
 
         </activity>

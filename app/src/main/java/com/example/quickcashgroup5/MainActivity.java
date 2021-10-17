@@ -11,9 +11,18 @@ import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 import com.example.quickcashgroup5.UserManagement.SignUpActivity;
 
+/**
+ * The starting page from where the user can select whether to login or sign up
+ */
+
 public class MainActivity extends AppCompatActivity {
     SessionManagement sessionManagement;
 
+    /**
+     * Method that runs when activity is created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
