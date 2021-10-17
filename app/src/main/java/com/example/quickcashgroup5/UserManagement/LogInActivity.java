@@ -96,6 +96,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        break;
                     }
                 }
                 if(!sessionManagement.isLoggedIn()){

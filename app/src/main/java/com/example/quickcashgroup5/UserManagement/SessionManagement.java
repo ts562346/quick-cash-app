@@ -76,8 +76,6 @@ public class SessionManagement {
             }
             context.startActivity(i);
             ((Activity)context).finish();
-        } else {
-            System.out.println("bad");
         }
     }
 

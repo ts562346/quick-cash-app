@@ -6,16 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
     Button  registerButton,
@@ -28,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     DatabaseReference users = database.getReference(User.class.getSimpleName());
     Spinner dropDown;
     SessionManagement sessionManagement;
+    boolean userExists;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         passwordET = (EditText)findViewById(R.id.editTextTextPassword);
         confirmPasswordET = (EditText)findViewById(R.id.editTextTextConfirmPassword);
         dropDown = (Spinner)findViewById(R.id.spin);
+        userExists = false;
 
         registeredUserLabel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -107,6 +112,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         String confirmPassword = sanitize(confirmPasswordET.getText().toString());
 
         AESCrypt aes = new AESCrypt();
+
+        //Check if email is already used
+        if(isPreviousUser(email)) {
+            Toast.makeText(getApplicationContext(),"Email has already been registered.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         //Validate username
         if(usernameValidation(username)){
             user.setName(username);
@@ -129,7 +141,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             if(passwordValidation(password)){
                 user.setPassword(aes.encrypt(password));
             }else{
-                Toast.makeText(getApplicationContext(),"Password should have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.",Toast.LENGTH_SHORT).show();
                 return false;
             }
         }else{
@@ -147,6 +159,28 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return true;
     }
 
+    public boolean isPreviousUser (String email){
+        users.child("User").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot adSnapshot: dataSnapshot.getChildren()) {
+                    User u = adSnapshot.getValue(User.class);
+                    if(u.getEmail().equals(email)){
+                        System.out.println("Old User");
+                        userExists = true;
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("New User");
+            }
+        });
+        return userExists;
+    }
+
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
@@ -162,12 +196,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         User user= new User();
         try {
             if(registerUser(user)){
-                this.add(user).addOnSuccessListener(suc ->{
-                    Toast.makeText(this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, SignUpActivity.class);
+                this.add(user).addOnSuccessListener(suc -> {
+                    Toast.makeText(this, "Successful SignUp", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, LogInActivity.class);
                     startActivity(intent);
                 }).addOnFailureListener(fal -> {
-                    Toast.makeText(this, "Data Insertion failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Unsuccessful SignUp", Toast.LENGTH_SHORT).show();
                 });
             }
         } catch (Exception e) {
