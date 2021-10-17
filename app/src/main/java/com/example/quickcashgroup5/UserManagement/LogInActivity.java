@@ -1,6 +1,5 @@
-package com.example.quickcashgroup5.UserManagment;
+package com.example.quickcashgroup5.UserManagement;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.EditText;
 

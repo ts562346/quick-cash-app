@@ -18,12 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserManagment.LogInActivity"></activity>
-        <activity android:name=".UserManagment.LogOutActivity"></activity>
-        <activity android:name=".UserManagment.PasswordResetCodeActivity"></activity>
-        <activity android:name=".UserManagment.RecoveryAccountActivity"></activity>
-        <activity android:name=".UserManagment.ResetPasswordActivity"></activity>
-        <activity android:name=".UserManagment.SignUpActivity"></activity>
+        <activity android:name=".UserManagement.LogInActivity"></activity>
+        <activity android:name=".UserManagement.LogOutActivity"></activity>
+        <activity android:name=".UserManagement.PasswordResetCodeActivity"></activity>
+        <activity android:name=".UserManagement.RecoveryAccountActivity"></activity>
+        <activity android:name=".UserManagement.ResetPasswordActivity"></activity>
+        <activity android:name=".UserManagement.SignUpActivity"></activity>
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.quickcashgroup5.UserManagment;
+package com.example.quickcashgroup5.UserManagement;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

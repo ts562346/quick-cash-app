@@ -1,4 +1,4 @@
-package com.example.quickcashgroup5.UserManagment;
+package com.example.quickcashgroup5.UserManagement;
 
 public class User {
     private String name;

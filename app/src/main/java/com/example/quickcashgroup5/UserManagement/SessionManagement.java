@@ -1,11 +1,15 @@
 //Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
 
-package com.example.quickcashgroup5.UserManagment;
+package com.example.quickcashgroup5.UserManagement;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
+
+import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
+import com.example.quickcashgroup5.Home.EmployerHomeActivity;
+import com.example.quickcashgroup5.UserManagement.LogInActivity;
 
 public class SessionManagement {
     private static final String preferencesName = "Session";
@@ -59,7 +63,18 @@ public class SessionManagement {
     }
 
     public void accessControl(){
-        if (!this.isLoggedIn()){
+        if (isLoggedIn()){
+            System.out.println("good");
+            if(getRole().equals("Employee")) {
+                System.out.println("Employee");
+                Intent i = new Intent(context, EmployeeHomeActivity.class);
+                context.startActivity(i);
+            } else {
+                System.out.println("Employer");
+                Intent i = new Intent(context, EmployerHomeActivity.class);
+                context.startActivity(i);
+            }
+        } else {
             Intent i = new Intent(context, LogInActivity.class);
             context.startActivity(i);
         }
