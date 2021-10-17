@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SignUpActivity;
+
+import com.example.quickcashgroup5.UserManagement.LogInActivity;
+//import com.example.quickcashgroup5.UserManagement.SignUpActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        setTheme(R.style.Theme_AppCompat_Light);
         setContentView(R.layout.activity_main);
 
         Button signupButton = findViewById(R.id.signup);
