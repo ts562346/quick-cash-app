@@ -1,7 +1,6 @@
 package com.example.quickcashgroup5.UserManagement;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,17 +9,12 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickcashgroup5.MainActivity;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
@@ -29,9 +23,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     email,
     password,
     confirmPassword;
-    RadioButton employee, employer;
-    FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
-    DatabaseReference users = database.getReference(User.class.getSimpleName());
+    FirebaseDatabase database;
+    DatabaseReference users;
     Spinner dropDown;
 
     @Override

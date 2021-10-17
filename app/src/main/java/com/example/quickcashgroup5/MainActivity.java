@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SignUpActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        alertBuilder.setPositiveButton("OK", null);
 //        alertBuilder.create();
 //        alertBuilder.show();
-        Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
+        Intent i = new Intent(getApplicationContext(), LogInActivity.class);
         startActivity(i);
 
 
