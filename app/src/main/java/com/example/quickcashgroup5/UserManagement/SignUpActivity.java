@@ -85,7 +85,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @param name
      * @return
      */
-    protected boolean usernameValidation(String name) {
+    public static boolean usernameValidation(String name) {
         if (!name.isEmpty()) {
             //Username can only contain letters and whitespace
             return name.matches("^[A-Za-z\\s]+$");
@@ -100,7 +100,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @param email
      * @return
      */
-    protected boolean emailValidation(String email) {
+    public static boolean emailValidation(String email) {
         if (!email.isEmpty()) {
             //The first part of the email can only contain letters, digits, and periods
             //The second and third part can only contain letters
@@ -117,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @param password
      * @return
      */
-    protected boolean passwordValidation(String password) {
+    public static boolean passwordValidation(String password) {
         if (!password.isEmpty()) {
             //Password should have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character
             //The password should be at least 8 characters long
@@ -134,7 +134,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @param confirmPassword
      * @return
      */
-    protected boolean confirmPasswordValidation(String password, String confirmPassword) {
+    public static boolean confirmPasswordValidation(String password, String confirmPassword) {
         if (!password.isEmpty() && !confirmPassword.isEmpty()) {
             //Password should be equal to confirmPassword
             return password.equals(confirmPassword);

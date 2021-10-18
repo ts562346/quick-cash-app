@@ -11,7 +11,7 @@ public class LogInActivityUnitTest {
 
     @Test
     public void checkIfPasswordisEmpty() {
-        assertTrue(LogInActivity.emailValidation(""));
+        assertTrue(LogInActivity.passwordValidation(""));
     }
     @Test
     public void checkIfEmailIsValid() {

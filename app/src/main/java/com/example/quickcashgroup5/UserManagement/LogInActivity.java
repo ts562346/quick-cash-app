@@ -78,7 +78,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      * @param email
      * @return
      */
-    protected boolean emailValidation(String email) {
+    public static boolean emailValidation(String email) {
         return !email.isEmpty();
     }
 
@@ -88,7 +88,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      * @param password
      * @return
      */
-    protected boolean passwordValidation(String password) {
+    public static boolean passwordValidation(String password) {
         return !password.isEmpty();
     }
 
