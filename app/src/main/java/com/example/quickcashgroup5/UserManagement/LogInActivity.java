@@ -68,7 +68,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      * @param value
      * @return
      */
-    protected String sanitize(String value) {
+    public String sanitize(String value) {
         return value.trim().replaceAll("\b", "");
     }
 
@@ -78,7 +78,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      * @param email
      * @return
      */
-    public static boolean emailValidation(String email) {
+    public boolean emailValidation(String email) {
         return !email.isEmpty();
     }
 
