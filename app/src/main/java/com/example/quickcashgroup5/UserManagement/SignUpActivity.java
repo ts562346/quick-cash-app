@@ -201,6 +201,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             user.setIsEmployee("yes");
         }
 
+        user.set
         return true;
     }
 
@@ -236,7 +237,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * Initializes the firebase database
      */
     protected void initializeDatabase() {
-        //initialize the database and the two references related to banner ID and email address.
+        //initialize the database and the
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         users = database.getReference(User.class.getSimpleName());
     }

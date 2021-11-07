@@ -24,6 +24,10 @@
         <activity android:name=".UserManagement.SignUpActivity">
 
         </activity>
+        <activity android:name=".UserManagement.PreferenceActivity">
+
+        </activity>
+
         <activity android:name=".Home.EmployerHomeActivity">
 
         </activity>

@@ -11,6 +11,10 @@ public class User {
     private String password;
     private String confirmPassword;
     private String isEmployee; //if its y then yes(employee), otherwise no(employer)
+    private String preferredLocation;
+    private String preferredCategory;
+    private String preferredPayment;
+    private String preferredHours;
 
     /**
      * Constructor for the user class
@@ -124,4 +128,7 @@ public class User {
     public void setIsEmployee(String isEmployee) {
         this.isEmployee = isEmployee;
     }
+
+
+
 }
