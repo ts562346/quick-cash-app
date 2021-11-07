@@ -24,23 +24,20 @@
             android:layout_marginRight="20dp"
             android:orientation="vertical">
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/Button"
-                    android:layout_width="42dp"
-
-                    android:layout_height="53dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:text="<"
-                    android:textSize="20dp" />
+<!--                <Button-->
+<!--                    android:id="@+id/Button"-->
+<!--                    android:layout_width="42dp"-->
+<!--                    android:layout_height="53dp"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="<"-->
+<!--                    android:textSize="20dp" />-->
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -146,6 +143,15 @@
                 android:layout_weight="1"
                 />
 
+            <Button
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:id="@+id/logout"
+                android:text="Logout"
+                android:layout_margin="5dp"
+                android:radius="30dp"
+                android:layout_weight="1"
+                />
 
         </LinearLayout>
     </ScrollView>
