@@ -33,6 +33,8 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
         int resetCode = sessionManagement.getOTP();
         if(inputCode == resetCode){
             startActivity(new Intent(PasswordResetCodeActivity.this, ResetPasswordActivity.class));
+
+
         } else{
             Toast.makeText(this,"The OTP you have entered is not valid",Toast.LENGTH_LONG).show();
         }
