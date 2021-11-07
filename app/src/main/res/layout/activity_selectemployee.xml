@@ -27,6 +27,20 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/Button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_button" />
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="127dp"
@@ -35,6 +49,9 @@
                 android:baselineAligned="false"
                 android:gravity="right"
                 app:srcCompat="@drawable/quick_cash_icon" />
+
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_height="wrap_content"
