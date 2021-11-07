@@ -19,13 +19,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.example.quickcashgroup5.MainActivity">
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:name="com.example.quickcashgroup5.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".UserManagement.LogInActivity">
 
@@ -39,13 +39,8 @@
         <activity android:name=".Home.EmployeeHomeActivity">
 
         </activity>
-        <activity android:name=".UserManagement.JobSearchActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".UserManagement.JobSearchActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
