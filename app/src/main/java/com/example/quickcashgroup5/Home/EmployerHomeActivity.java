@@ -26,7 +26,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements View.OnCl
         sessionManagement = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_employeehome);
+        setContentView(R.layout.activity_employerhome);
         logout = (Button)findViewById(R.id.logout);
         logout.setOnClickListener(this);
 
