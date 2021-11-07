@@ -17,7 +17,8 @@
         <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employerdashboard.xml" value="0.1" />
         <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employerhome.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_jobpreference.xml" value="0.33" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_resetpassword.xml" value="0.25" />
@@ -41,7 +42,6 @@
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.17300724637681159" />
-        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.33" />
       </map>
     </option>
   </component>
