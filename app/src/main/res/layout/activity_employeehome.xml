@@ -24,8 +24,6 @@
             android:layout_marginRight="20dp"
             android:orientation="vertical">
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -144,6 +142,15 @@
                 android:layout_weight="1"
                 />
 
+            <Button
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:id="@+id/logout"
+                android:text="Logout"
+                android:layout_margin="5dp"
+                android:radius="30dp"
+                android:layout_weight="1"
+                />
 
         </LinearLayout>
     </ScrollView>
