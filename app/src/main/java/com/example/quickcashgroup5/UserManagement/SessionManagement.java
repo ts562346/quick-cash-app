@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
-import com.example.quickcashgroup5.UserManagement.LogInActivity;
 
 /**
  * Class used to manage sessions
@@ -63,6 +61,16 @@ public class SessionManagement {
     }
 
     /**
+     * Sets the email value in a Session
+     *
+     * @param location
+     */
+    public void setLocation(String location) {
+        editor.putString("Location", location);
+        editor.apply();
+    }
+
+    /**
      * Gets the name value from a Session
      *
      * @return
@@ -87,6 +95,15 @@ public class SessionManagement {
      */
     public String getRole() {
         return sharedPreferences.getString("Role", null);
+    }
+
+    /**
+     * Gets the role value from a Session
+     *
+     * @return
+     */
+    public String getLocation() {
+        return sharedPreferences.getString("Location", null);
     }
 
     /**
