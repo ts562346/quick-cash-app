@@ -97,7 +97,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      */
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
+        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         users = database.getReference();
     }
 

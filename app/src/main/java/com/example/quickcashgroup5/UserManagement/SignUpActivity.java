@@ -237,7 +237,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      */
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
+        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         users = database.getReference(User.class.getSimpleName());
     }
 

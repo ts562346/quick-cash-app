@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1092927575947",
-    "project_id": "quick-cash-group-project",
-    "storage_bucket": "quick-cash-group-project.appspot.com"
+    "project_number": "675513927051",
+    "project_id": "quickcashgroupproject",
+    "storage_bucket": "quickcashgroupproject.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1092927575947:android:1d5cb0098c9eb8a051418e",
+        "mobilesdk_app_id": "1:675513927051:android:40e00f4a567c5fdaef1b8e",
         "android_client_info": {
           "package_name": "com.example.quickcashgroup5"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1092927575947-nr5pp7nfel6kq156c1vo9jhu3idgeibh.apps.googleusercontent.com",
+          "client_id": "675513927051-glq9aauktcsq8km6aaj75d0fnv3665e6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDgxeEaOGObCBIk-koGZr545hq_1HEIvoc"
+          "current_key": "AIzaSyBBP_MPd0Ab6vb4nrdaOyPFajYIY1Y8RVE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1092927575947-nr5pp7nfel6kq156c1vo9jhu3idgeibh.apps.googleusercontent.com",
+              "client_id": "675513927051-glq9aauktcsq8km6aaj75d0fnv3665e6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

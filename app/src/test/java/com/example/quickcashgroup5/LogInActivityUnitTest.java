@@ -8,18 +8,19 @@ import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import org.junit.Test;
 
 public class LogInActivityUnitTest {
+    static LogInActivity activityA;
 
     @Test
     public void checkIfPasswordisEmpty() {
-        assertTrue(LogInActivity.emailValidation(""));
+        assertTrue(activityA.(""));
     }
     @Test
     public void checkIfEmailIsValid() {
-        assertTrue(LogInActivity.emailValidation("abc123@dal.ca"));
+        assertTrue(activityA.emailValidation("abc123@dal.ca"));
     }
     @Test
     public void checkIfEmailIsInvalid() {
-        assertFalse(LogInActivity.emailValidation("abc.123dal.ca"));
+        assertFalse(activityA.emailValidation("abc.123dal.ca"));
     }
 
 }
