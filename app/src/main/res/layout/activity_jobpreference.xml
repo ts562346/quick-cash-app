@@ -71,7 +71,7 @@
                 android:textSize="16sp"
                 android:textColor="#788190"
                 android:text="Enter Job Description"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="20dp"/>
 
             <TextView
                 android:id="@+id/username"
