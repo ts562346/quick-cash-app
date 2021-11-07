@@ -15,11 +15,16 @@
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.33" />
         <entry key="..\:/Users/aksch/Desktop/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/drawable/selectable_text_bg_color_checked_state.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_createjob.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_employerdashboard.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_employerhome.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_jobpreference.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_jobsearch.xml" value="0.1" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
-        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.1" />
+        <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_resetpassword.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.17300724637681159" />
       </map>
     </option>

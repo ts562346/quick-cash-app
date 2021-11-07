@@ -26,7 +26,7 @@ public class RecoveryAccountActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recoveryaccount);
         getSupportActionBar().hide();
-        editTextEmail = (EditText) findViewById(R.id.email);
+        editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         buttonSend = (Button) findViewById(R.id.sendButton);
         buttonSend.setOnClickListener(this);
     }
