@@ -119,8 +119,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             if (u.getPassword().equals(aes.encrypt(password))) {
                                 if (u.getIsEmployee().equals("yes")) {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
+                                    System.out.println("Why");
                                 } else {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employer");
+                                    System.out.println("What");
                                 }
                             } else {
                                 //Unsuccessful Login
