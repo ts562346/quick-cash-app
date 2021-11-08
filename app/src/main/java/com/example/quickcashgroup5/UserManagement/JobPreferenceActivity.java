@@ -34,18 +34,17 @@ public class JobPreferenceActivity extends AppCompatActivity {
     Spinner category;
     EditText location, minPayment, minHours;
     Button submit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         sessionManagement = new SessionManagement(this);
-        if(sessionManagement.getRole().equals("Employer")){
-            startActivity(new Intent(getApplicationContext(),LogInActivity.class));
+        if (sessionManagement.getRole().equals("Employer")) {
+            startActivity(new Intent(getApplicationContext(), LogInActivity.class));
         }
 
         super.onCreate(savedInstanceState);
-        // getSupportActionBar().hide();
         setContentView(R.layout.activity_jobpreference);
-        Log.i("JobPreferneceActivity", "Reached here");
         category = findViewById(R.id.jobCategory);
         location = findViewById(R.id.editTextLocation);
         minPayment = findViewById(R.id.editTextMinPay);
@@ -55,8 +54,9 @@ public class JobPreferenceActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updatePreference();
-               // startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
+                updatePreference(); // calls method to update DB with required fields
+                // once submit button is clicked, redirect to EmployeeHomeActivity
+                startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
             }
         });
 
@@ -72,7 +72,7 @@ public class JobPreferenceActivity extends AppCompatActivity {
         }
     }
 
-    public void updatePreference () {
+    public void updatePreference() {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         DatabaseReference users = database.getReference();
         users.child("User").addValueEventListener(new ValueEventListener() {
@@ -87,19 +87,21 @@ public class JobPreferenceActivity extends AppCompatActivity {
                         try {
                             System.out.print(u.getEmail());
 
+                            /**
+                             * Added location, minPayment and minHours to
+                             * the database of user.
+                             */
+
                             Map<String, Object> updates = new HashMap<String, Object>();
-                            System.out.println(location);
                             updates.put("preferredLocation", location);
                             adSnapshot.getRef().updateChildren(updates);
 
                             updates = new HashMap<String, Object>();
-                            System.out.println(location);
-                            updates.put("preferredLocation", location);
+                            updates.put("preferredLocation", minPayment);
                             adSnapshot.getRef().updateChildren(updates);
 
                             updates = new HashMap<String, Object>();
-                            System.out.println(location);
-                            updates.put("preferredLocation", location);
+=                            updates.put("preferredLocation", minHours);
                             adSnapshot.getRef().updateChildren(updates);
 
                         } catch (Exception e) {
