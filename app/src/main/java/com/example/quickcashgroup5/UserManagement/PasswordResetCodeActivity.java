@@ -22,7 +22,7 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passwordresetcode);
 //        getSupportActionBar().hide();
-        editTextCode = (EditText) findViewById(R.id.code);
+       // editTextCode = (EditText) findViewById(R.id.code);
         buttonSend = (Button) findViewById(R.id.sendButton);
         buttonSend.setOnClickListener(this);
     }
