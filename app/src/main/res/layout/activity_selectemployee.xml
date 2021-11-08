@@ -27,31 +27,14 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/Button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/back_button" />
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="127dp"
                 android:layout_height="126dp"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="240dp"
                 android:baselineAligned="false"
                 android:gravity="right"
                 app:srcCompat="@drawable/quick_cash_icon" />
-
-            </RelativeLayout>
-
 
             <TextView
                 android:layout_height="wrap_content"
@@ -122,13 +105,14 @@
                     android:layout_toEndOf="@id/textview3">
 
                     <Button
-                        android:layout_width="70dp"
+                        android:layout_width="47dp"
                         android:layout_height="match_parent"
-                        android:text="\u2713"/>
+                        android:text="\u2713" />
+
                     <Button
-                        android:layout_width="70dp"
+                        android:layout_width="47dp"
                         android:layout_height="match_parent"
-                        android:text="\u2717"/>
+                        android:text="\u2717" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -152,13 +136,14 @@
                     android:layout_toEndOf="@id/textview4">
 
                     <Button
-                        android:layout_width="70dp"
+                        android:layout_width="47dp"
                         android:layout_height="match_parent"
                         android:text="\u2713"/>
+
                     <Button
-                        android:layout_width="70dp"
+                        android:layout_width="47dp"
                         android:layout_height="match_parent"
-                        android:text="\u2717"/>
+                        android:text="\u2717" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -180,11 +165,26 @@
             <Button
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/submit"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
+                android:text="I don't have an account"
+                android:insetTop="100dp"
+                android:layout_margin="10dp"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
                 android:id="@+id/loginButton"
-                android:text="Submit"
+                android:layout_width="359dp"
+                android:layout_height="60dp"
                 android:layout_margin="5dp"
+                android:layout_weight="1"
                 android:radius="30dp"
-                android:layout_weight="1"/>
+                android:text="Submit" />
 
         </LinearLayout>
 

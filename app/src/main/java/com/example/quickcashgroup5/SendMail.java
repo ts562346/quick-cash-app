@@ -44,7 +44,9 @@ public class SendMail extends AsyncTask<Void,Void,Void>{
         super.onPostExecute(aVoid);
         progressDialog.dismiss();
         Toast.makeText(context,"OTP Sent",Toast.LENGTH_LONG).show();
-        context.startActivity(new Intent(context, PasswordResetCodeActivity.class));
+        Intent intent = new Intent(context, PasswordResetCodeActivity.class);
+        intent.putExtra("email", email);
+        context.startActivity(intent);
     }
     @Override
     protected Void doInBackground(Void... params) {
