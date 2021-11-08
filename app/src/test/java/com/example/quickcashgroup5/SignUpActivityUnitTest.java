@@ -20,7 +20,7 @@ public class SignUpActivityUnitTest {
         assertFalse(SignUpActivity.usernameValidation(""));
     }
     @Test
-    public void checkIfPasswordisEmpty(){
+    public void checkIfPasswordIsEmpty(){
         assertTrue(SignUpActivity.passwordValidation("Test@1234"));
         assertFalse(SignUpActivity.passwordValidation(""));
     }

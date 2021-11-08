@@ -86,7 +86,7 @@
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spin"
+                android:id="@+id/jobCategory"
                 android:layout_margin="15dp"
                 android:entries="@array/category"/>
 
@@ -103,7 +103,7 @@
 
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
@@ -128,7 +128,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextMinimumPayment"
+                android:id="@+id/editTextMinPay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
@@ -153,7 +153,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextMinimumHours"
+                android:id="@+id/editTextMinHours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"

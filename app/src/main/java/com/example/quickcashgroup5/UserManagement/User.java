@@ -11,6 +11,10 @@ public class User {
     private String password;
     private String confirmPassword;
     private String isEmployee; //if its y then yes(employee), otherwise no(employer)
+    private String preferredLocation;
+    private String preferredCategory;
+    private String preferredPayment;
+    private String preferredHours;
 
     /**
      * Constructor for the user class
@@ -29,10 +33,12 @@ public class User {
         this.isEmployee = isEmployee;
     }
 
+
     /**
      * Empty constructor
      */
     public User() {
+
     }
 
     /**
@@ -124,4 +130,38 @@ public class User {
     public void setIsEmployee(String isEmployee) {
         this.isEmployee = isEmployee;
     }
+
+
+    public String getPreferredLocation() {
+        return preferredLocation;
+    }
+
+    public void setPreferredLocation(String preferredLocation) {
+        this.preferredLocation = preferredLocation;
+    }
+
+    public String getPreferredCategory() {
+        return preferredCategory;
+    }
+
+    public void setPreferredCategory(String preferredCategory) {
+        this.preferredCategory = preferredCategory;
+    }
+
+    public String getPreferredPayment() {
+        return preferredPayment;
+    }
+
+    public void setPreferredPayment(String preferredPayment) {
+        this.preferredPayment = preferredPayment;
+    }
+
+    public String getPreferredHours() {
+        return preferredHours;
+    }
+
+    public void setPreferredHours(String preferredHours) {
+        this.preferredHours = preferredHours;
+    }
+
 }
