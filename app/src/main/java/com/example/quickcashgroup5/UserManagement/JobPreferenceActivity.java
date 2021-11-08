@@ -86,25 +86,22 @@ public class JobPreferenceActivity extends AppCompatActivity {
                         System.out.print(u.getEmail());
                         try {
                             System.out.print(u.getEmail());
-//                            users.child("User").child(adSnapshot.getKey()).child("/preferredLocation").setValue(location);
-//                            users.child("User").child(adSnapshot.getKey()).child("/preferredCategory").setValue(category);
-//                            users.child("User").child(adSnapshot.getKey()).child("/preferredHours").setValue(minHours);
-//                            users.child("User").child(adSnapshot.getKey()).child("/preferredPayment").setValue(minPayment);
-                            //dataSnapshot.child(u.getPreferredCategory()).child("preferredLocation").u(location);
-//                                if(locationValidation(location)) {
-                            Context context = getApplicationContext();
 
-                            Toast toast = Toast.makeText(context, (CharSequence) location, Toast. LENGTH_LONG);
-                            toast.show();
+                            Map<String, Object> updates = new HashMap<String, Object>();
+                            System.out.println(location);
+                            updates.put("preferredLocation", location);
+                            adSnapshot.getRef().updateChildren(updates);
 
-                            Toast toast2 = Toast.makeText(context, "hello", Toast. LENGTH_LONG);
-                            toast2.show();
-                            toast.show();
-                                    Map<String, Object> updates = new HashMap<String, Object>();
-                                    System.out.println(location);
-                                    updates.put("preferredLocation", location);
-                                    adSnapshot.getRef().updateChildren(updates);
-                                //}
+                            updates = new HashMap<String, Object>();
+                            System.out.println(location);
+                            updates.put("preferredLocation", location);
+                            adSnapshot.getRef().updateChildren(updates);
+
+                            updates = new HashMap<String, Object>();
+                            System.out.println(location);
+                            updates.put("preferredLocation", location);
+                            adSnapshot.getRef().updateChildren(updates);
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
