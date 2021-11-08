@@ -33,9 +33,9 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
 //        getSupportActionBar().hide();
-        editTextPassword = (EditText) findViewById(R.id.password);
-        editTextConfirmPassword = (EditText) findViewById(R.id.confirmPassword);
-        buttonReset = (Button) findViewById(R.id.resetButton);
+//        editTextPassword = (EditText) findViewById(R.id.password);
+//        editTextConfirmPassword = (EditText) findViewById(R.id.confirmPassword);
+//        buttonReset = (Button) findViewById(R.id.resetButton);
         buttonReset.setOnClickListener(this);
         Bundle bundle = getIntent().getExtras();
         email = bundle.getString("email");
