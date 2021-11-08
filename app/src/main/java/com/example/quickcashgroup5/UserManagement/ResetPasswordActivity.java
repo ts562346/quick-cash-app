@@ -16,11 +16,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ResetPasswordActivity extends Activity implements View.OnClickListener {
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
     private Button buttonReset;
     SessionManagement sessionManagement;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,8 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         editTextConfirmPassword = (EditText) findViewById(R.id.confirmPassword);
         buttonReset = (Button) findViewById(R.id.resetButton);
         buttonReset.setOnClickListener(this);
+        Bundle bundle = getIntent().getExtras();
+        email = bundle.getString("email");
     }
 
     @Override
@@ -52,7 +58,6 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         DatabaseReference users = database.getReference();
         AESCrypt aes = new AESCrypt();
-        String email = sessionManagement.getEmail();
         users.child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -60,8 +65,9 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
                     User u = adSnapshot.getValue(User.class);
                     if (u.getEmail().equals(email)) {
                         try {
-                            u.setPassword(aes.encrypt(newPassword));
-//                            adSnapshot.getRef().child("password").setValue(aes.encrypt(newPassword));
+                            Map<String, Object> updates = new HashMap<String,Object>();
+                            updates.put("password", aes.encrypt(newPassword));
+                            adSnapshot.getRef().updateChildren(updates);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
