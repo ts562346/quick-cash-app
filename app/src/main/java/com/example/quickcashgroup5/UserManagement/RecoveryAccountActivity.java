@@ -22,7 +22,6 @@ public class RecoveryAccountActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
-        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recoveryaccount);
         getSupportActionBar().hide();
