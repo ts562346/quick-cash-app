@@ -46,7 +46,7 @@ public class JobPreferenceActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobpreference);
-        category = findViewById(R.id.jobCategory);
+        category = (Spinner) findViewById(R.id.jobCategory);
         location = findViewById(R.id.editTextLocation);
         minPayment = findViewById(R.id.editTextMinPay);
         minHours = findViewById(R.id.editTextMinHours);
@@ -85,10 +85,6 @@ public class JobPreferenceActivity extends AppCompatActivity {
                     String userEmail = u.getEmail();
                     String sessionEmail = sessionManagement.getEmail();
 
-                    System.out.println("User" + userEmail);
-                    System.out.println(" Session" + sessionEmail);
-                    System.out.println(userEmail.equals(sessionEmail));
-
 
                     if (userEmail.equals(sessionEmail)) {
                         System.out.println("entered if statement");
@@ -101,56 +97,24 @@ public class JobPreferenceActivity extends AppCompatActivity {
                              */
 
                             Map<String, Object> updates = new HashMap<String, Object>();
+                            updates.put("preferredCategory", (String) category.getSelectedItem());
                             updates.put("preferredLocation", location.getText().toString());
+                            updates.put("preferredPayment", minPayment.getText().toString());
+                            updates.put("preferredHours", minHours.getText().toString());
                             adSnapshot.getRef().updateChildren(updates);
-
-                            updates = new HashMap<String, Object>();
-                            updates.put("preferredPayment", minPayment.toString());
-                            adSnapshot.getRef().updateChildren(updates);
-
-                            updates = new HashMap<String, Object>();
-                            updates.put("preferredHours", minHours.toString());
-                            adSnapshot.getRef().child("preferredLocation").setValue(updates);
-
-//                            users.child("preferredLocation").setValue(location.getText().toString());
-
-
+                            break;
                         } catch (Exception e) {
                             e.printStackTrace();
+                            break;
                         }
-
-                    }break;
-
-
+                    }
                 }
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 System.out.println("HELLO");
             }
-
-
         });
     }
 }
 
-//    public void updatePreference() {
-//        FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-//        DatabaseReference users = database.getReference();
-//
-//        String userEmail = sessionManagement.getEmail();
-//
-//        User user = new User();
-//        user.setEmail("test@gmail,com");
-//        user.setPreferredLocation(location.getText().toString());
-//        user.setEmail("test@gmail,com");
-//
-//
-//        users.child("test@gmail,com").updateChildren(postValues);
-//
-//        users.child("User").child("preferredLocation").setValue(location.getText().toString());
-//
-//    }
-//}
