@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.stream.Collectors.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,12 +81,19 @@ public class JobPreferenceActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
                     User u = adSnapshot.getValue(User.class);
-                    System.out.print("User" + u.getEmail());
-                    System.out.println("Session" + sessionManagement.getEmail() + "hello");
-                    if (u.getEmail().equals(sessionManagement.getEmail())) {
-                        System.out.print(u.getEmail());
+
+                    String userEmail = u.getEmail();
+                    String sessionEmail = sessionManagement.getEmail();
+
+                    System.out.println("User" + userEmail);
+                    System.out.println(" Session" + sessionEmail);
+                    System.out.println(userEmail.equals(sessionEmail));
+
+
+                    if (userEmail.equals(sessionEmail)) {
+                        System.out.println("entered if statement");
                         try {
-                            System.out.print(u.getEmail());
+                            System.out.print("entered try clause");
 
                             /**
                              * Added location, minPayment and minHours to
@@ -93,22 +101,26 @@ public class JobPreferenceActivity extends AppCompatActivity {
                              */
 
                             Map<String, Object> updates = new HashMap<String, Object>();
-                            updates.put("preferredLocation", location);
+                            updates.put("preferredLocation", location.getText().toString());
                             adSnapshot.getRef().updateChildren(updates);
 
                             updates = new HashMap<String, Object>();
-                            updates.put("preferredLocation", minPayment);
+                            updates.put("preferredPayment", minPayment.toString());
                             adSnapshot.getRef().updateChildren(updates);
 
                             updates = new HashMap<String, Object>();
-=                            updates.put("preferredLocation", minHours);
-                            adSnapshot.getRef().updateChildren(updates);
+                            updates.put("preferredHours", minHours.toString());
+                            adSnapshot.getRef().child("preferredLocation").setValue(updates);
+
+//                            users.child("preferredLocation").setValue(location.getText().toString());
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        break;
-                    }
+
+                    }break;
+
 
                 }
             }
@@ -124,5 +136,21 @@ public class JobPreferenceActivity extends AppCompatActivity {
     }
 }
 
-
-
+//    public void updatePreference() {
+//        FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
+//        DatabaseReference users = database.getReference();
+//
+//        String userEmail = sessionManagement.getEmail();
+//
+//        User user = new User();
+//        user.setEmail("test@gmail,com");
+//        user.setPreferredLocation(location.getText().toString());
+//        user.setEmail("test@gmail,com");
+//
+//
+//        users.child("test@gmail,com").updateChildren(postValues);
+//
+//        users.child("User").child("preferredLocation").setValue(location.getText().toString());
+//
+//    }
+//}

@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/drawable/dollar.xml" value="0.40208333333333335" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_createjob.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.3229166666666667" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employerhome.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_jobpreference.xml" value="0.5" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.1648148148148148" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_recoveryaccount.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_selectemployee.xml" value="0.37592592592592594" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.3859375" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/drawable/custom_text.xml" value="0.32685185185185184" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.1574074074074074" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1574074074074074" />

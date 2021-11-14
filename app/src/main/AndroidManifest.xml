@@ -18,7 +18,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity android:name=".UserManagement.LogInActivity">
 
         </activity>
@@ -42,8 +44,8 @@
         </activity>
 
 
-        <activity android:name=".UserManagement.JobPreferenceActivity">
-
+        <activity android:name=".UserManagement.JobPreferenceActivity"
+>
         </activity>
 
 
