@@ -5,28 +5,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="159dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="187dp"
-        android:layout_marginEnd="146dp"
-        android:text="Employee Home"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logout" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="65dp"
-        android:text="Logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="127dp"
+                    android:layout_height="126dp"
+                    android:layout_marginLeft="260dp"
+                    android:baselineAligned="false"
+                    android:gravity="right"
+                    app:srcCompat="@drawable/quick_cash_icon" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/title2"
+                tools:layout_editor_absoluteY="130dp"
+                android:textSize="16sp"
+                android:textColor="#788190"
+                android:text="Welcome Back,"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/title"
+                tools:layout_editor_absoluteY="130dp"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#000000"
+                android:text="Employee Name"
+                android:layout_marginBottom="30dp"
+                />
+
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_text"
+                android:drawableStart="@drawable/search"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:hint="Search"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TableLayout
+                :tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".MainActivity"
+                android:stretchColumns="1,2"
+                android:layout_margin="8dp"
+                >
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="172dp"
+                        android:layout_column="1"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="Job Title"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:background="@drawable/rectangle_background"/>
+
+                    <TextView
+                        android:text="Location"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        android:gravity="left"
+                        android:layout_column="2"
+                        android:background="@drawable/rectangle_background" />
+
+                </TableRow>
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recycler_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rectangle_underlined"/>-->
+            </TableLayout>
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/logout"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
+                android:text="logout"
+                android:insetTop="100dp"
+                android:layout_margin="10dp"
+                style="?android:attr/buttonBarButtonStyle"/>
+
+            <Button
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:id="@+id/jobPreference"
+                android:text="Job Preference"
+                android:layout_margin="5dp"
+                android:radius="30dp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:id="@+id/logout"
+                android:text="Logout"
+                android:layout_margin="5dp"
+                android:radius="30dp"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

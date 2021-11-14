@@ -33,10 +33,12 @@ public class User {
         this.isEmployee = isEmployee;
     }
 
+
     /**
      * Empty constructor
      */
     public User() {
+
     }
 
     /**
@@ -130,5 +132,36 @@ public class User {
     }
 
 
+    public String getPreferredLocation() {
+        return preferredLocation;
+    }
+
+    public void setPreferredLocation(String preferredLocation) {
+        this.preferredLocation = preferredLocation;
+    }
+
+    public String getPreferredCategory() {
+        return preferredCategory;
+    }
+
+    public void setPreferredCategory(String preferredCategory) {
+        this.preferredCategory = preferredCategory;
+    }
+
+    public String getPreferredPayment() {
+        return preferredPayment;
+    }
+
+    public void setPreferredPayment(String preferredPayment) {
+        this.preferredPayment = preferredPayment;
+    }
+
+    public String getPreferredHours() {
+        return preferredHours;
+    }
+
+    public void setPreferredHours(String preferredHours) {
+        this.preferredHours = preferredHours;
+    }
 
 }

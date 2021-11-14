@@ -201,7 +201,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             user.setIsEmployee("yes");
         }
 
-        user.set
+        user.setPreferredCategory("");
+        user.setPreferredHours("");
+        user.setPreferredLocation("");
+        user.setPreferredPayment("");
+        ;
+
         return true;
     }
 
@@ -237,7 +242,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * Initializes the firebase database
      */
     protected void initializeDatabase() {
-        //initialize the database and the
+        //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         users = database.getReference(User.class.getSimpleName());
     }

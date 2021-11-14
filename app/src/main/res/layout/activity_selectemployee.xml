@@ -27,6 +27,20 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/Button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_button" />
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="127dp"
@@ -35,6 +49,9 @@
                 android:baselineAligned="false"
                 android:gravity="right"
                 app:srcCompat="@drawable/quick_cash_icon" />
+
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_height="wrap_content"
@@ -144,6 +161,21 @@
                         android:text="\u2717"/>
                 </LinearLayout>
             </RelativeLayout>
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/logout"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
+                android:text="logout"
+                android:insetTop="100dp"
+                android:layout_margin="10dp"
+                style="?android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:layout_height="60dp"

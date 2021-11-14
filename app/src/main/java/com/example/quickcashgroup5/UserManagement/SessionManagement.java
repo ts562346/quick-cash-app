@@ -1,20 +1,19 @@
+//Code adapted from:
+//https://www.tutorialspoint.com/android/android_shared_preferences.htmpackage com.example.quickcashgroup5.UserManagement;
+
 package com.example.quickcashgroup5.UserManagement;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
-import com.example.quickcashgroup5.UserManagement.LogInActivity;
 
 /**
  * Class used to manage sessions
  */
-
-//Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
 public class SessionManagement {
     private static final String preferencesName = "Session";
     private SharedPreferences sharedPreferences;
@@ -63,6 +62,16 @@ public class SessionManagement {
     }
 
     /**
+     * Sets the OTP value in a Session
+     *
+     * @param otp
+     */
+    public void setOTP(int otp){
+        editor.putInt("OTP", otp);
+        editor.apply();
+    }
+
+    /**
      * Gets the name value from a Session
      *
      * @return
@@ -87,6 +96,15 @@ public class SessionManagement {
      */
     public String getRole() {
         return sharedPreferences.getString("Role", null);
+    }
+
+    /**
+     * Gets the OTP value from a Session
+     *
+     * @return
+     */
+    public int getOTP(){
+        return sharedPreferences.getInt("OTP", -1);
     }
 
     /**

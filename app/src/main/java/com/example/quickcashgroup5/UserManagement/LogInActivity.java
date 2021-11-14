@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     //Initializing Variables
-    Button loginButton, notRegisteredUserLabel;
+    Button loginButton, forgotPassword, notRegisteredUserLabel;
     EditText emailEditText, passwordEditText;
     FirebaseDatabase database;
     DatabaseReference users;
@@ -48,7 +48,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress);
         passwordEditText = (EditText) findViewById(R.id.editTextTextPassword);
         notRegisteredUserLabel = (Button) findViewById(R.id.notRegisteredUserLabel);
+        forgotPassword = (Button) findViewById(R.id.forgotPass);
         loginButton = (Button) findViewById(R.id.loginButton);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LogInActivity.this, RecoveryAccountActivity.class));
+            }
+        });
 
         notRegisteredUserLabel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -119,8 +126,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             if (u.getPassword().equals(aes.encrypt(password))) {
                                 if (u.getIsEmployee().equals("yes")) {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
+                                    System.out.println("Why");
                                 } else {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employer");
+                                    System.out.println("What");
                                 }
                             } else {
                                 //Unsuccessful Login
