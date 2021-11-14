@@ -18,11 +18,10 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
-        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passwordresetcode);
 //        getSupportActionBar().hide();
-       // editTextCode = (EditText) findViewById(R.id.code);
+        editTextCode = (EditText) findViewById(R.id.code);
         buttonSend = (Button) findViewById(R.id.sendButton);
         buttonSend.setOnClickListener(this);
     }

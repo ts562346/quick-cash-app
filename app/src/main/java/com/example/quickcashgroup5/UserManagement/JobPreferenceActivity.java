@@ -1,15 +1,11 @@
 package com.example.quickcashgroup5.UserManagement;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -101,7 +97,7 @@ public class JobPreferenceActivity extends AppCompatActivity {
                             adSnapshot.getRef().updateChildren(updates);
 
                             updates = new HashMap<String, Object>();
-=                            updates.put("preferredLocation", minHours);
+                            updates.put("preferredLocation", minHours);
                             adSnapshot.getRef().updateChildren(updates);
 
                         } catch (Exception e) {
