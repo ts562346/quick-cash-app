@@ -29,9 +29,6 @@ import java.util.Map;
 
 public class JobPreferenceActivity extends AppCompatActivity {
     SessionManagement sessionManagement;
-    FirebaseDatabase database;
-    DatabaseReference users;
-
     Spinner category;
     EditText location, minPayment, minHours;
     Button submit;
@@ -87,10 +84,7 @@ public class JobPreferenceActivity extends AppCompatActivity {
 
 
                     if (userEmail.equals(sessionEmail)) {
-                        System.out.println("entered if statement");
                         try {
-                            System.out.print("entered try clause");
-
                             /**
                              * Added location, minPayment and minHours to
                              * the database of user.
