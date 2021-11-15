@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/drawable/dollar.xml" value="0.40208333333333335" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_createjob.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.3229166666666667" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_employerhome.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_jobpreference.xml" value="0.5" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.1648148148148148" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_recoveryaccount.xml" value="0.3859375" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_selectemployee.xml" value="0.37592592592592594" />
+        <entry key="..\:/Users/Tasneem/Desktop/CSCI 3130/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.3859375" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/drawable/custom_text.xml" value="0.32685185185185184" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/drawable/ic_baseline_mail_outline_24.xml" value="0.1574074074074074" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1574074074074074" />
@@ -13,7 +24,6 @@
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.29444444444444445" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Tasneem/Downloads/GroupProject/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.33" />
-        <entry key="..\:/Users/aksch/Desktop/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/drawable/selectable_text_bg_color_checked_state.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_createjob.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.17300724637681159" />
@@ -27,6 +37,13 @@
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_resetpassword.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_selectemployee.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/aksch/Desktop/UNI/Year 3/Fall 2021/CSCI3130/Group Project/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.31666666666666665" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_createjob.xml" value="0.25" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_employerdashboard.xml" value="0.30052083333333335" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_jobpreference.xml" value="0.26551226551226553" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_selectemployee.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.33" />
       </map>
     </option>
   </component>

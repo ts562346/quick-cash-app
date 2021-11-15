@@ -205,7 +205,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         user.setPreferredHours("");
         user.setPreferredLocation("");
         user.setPreferredPayment("");
-        ;
 
         return true;
     }

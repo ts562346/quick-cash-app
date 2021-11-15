@@ -1,11 +1,15 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.stream.Collectors.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +29,6 @@ import java.util.Map;
 
 public class JobPreferenceActivity extends AppCompatActivity {
     SessionManagement sessionManagement;
-    FirebaseDatabase database;
-    DatabaseReference users;
-
     Spinner category;
     EditText location, minPayment, minHours;
     Button submit;
@@ -41,7 +43,7 @@ public class JobPreferenceActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobpreference);
-        category = findViewById(R.id.jobCategory);
+        category = (Spinner) findViewById(R.id.jobCategory);
         location = findViewById(R.id.editTextLocation);
         minPayment = findViewById(R.id.editTextMinPay);
         minHours = findViewById(R.id.editTextMinHours);
@@ -76,49 +78,37 @@ public class JobPreferenceActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
                     User u = adSnapshot.getValue(User.class);
-                    System.out.print("User" + u.getEmail());
-                    System.out.println("Session" + sessionManagement.getEmail() + "hello");
-                    if (u.getEmail().equals(sessionManagement.getEmail())) {
-                        System.out.print(u.getEmail());
-                        try {
-                            System.out.print(u.getEmail());
 
+                    String userEmail = u.getEmail();
+                    String sessionEmail = sessionManagement.getEmail();
+
+
+                    if (userEmail.equals(sessionEmail)) {
+                        try {
                             /**
                              * Added location, minPayment and minHours to
                              * the database of user.
                              */
 
                             Map<String, Object> updates = new HashMap<String, Object>();
-                            updates.put("preferredLocation", location);
+                            updates.put("preferredCategory", (String) category.getSelectedItem());
+                            updates.put("preferredLocation", location.getText().toString());
+                            updates.put("preferredPayment", minPayment.getText().toString());
+                            updates.put("preferredHours", minHours.getText().toString());
                             adSnapshot.getRef().updateChildren(updates);
-
-                            updates = new HashMap<String, Object>();
-                            updates.put("preferredLocation", minPayment);
-                            adSnapshot.getRef().updateChildren(updates);
-
-                            updates = new HashMap<String, Object>();
-                            updates.put("preferredLocation", minHours);
-                            adSnapshot.getRef().updateChildren(updates);
-
+                            break;
                         } catch (Exception e) {
                             e.printStackTrace();
+                            break;
                         }
-                        break;
                     }
-
                 }
             }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 System.out.println("HELLO");
             }
-
-
         });
     }
 }
-
-
 

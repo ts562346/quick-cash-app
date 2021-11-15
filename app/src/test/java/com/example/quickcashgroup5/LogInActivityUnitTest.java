@@ -12,7 +12,7 @@ public class LogInActivityUnitTest {
 
     @Test
     public void checkIfPasswordisEmpty() {
-        assertTrue(activityA.(""));
+
     }
     @Test
     public void checkIfEmailIsValid() {
