@@ -126,10 +126,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                             if (u.getPassword().equals(aes.encrypt(password))) {
                                 if (u.getIsEmployee().equals("yes")) {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
-                                    System.out.println("Why");
                                 } else {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employer");
-                                    System.out.println("What");
                                 }
                             } else {
                                 //Unsuccessful Login
@@ -144,6 +142,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 if (!sessionManagement.isLoggedIn()) {
                     //Unsuccessful Login
                     Toast.makeText(getApplicationContext(), "Unsuccessful Login", Toast.LENGTH_SHORT).show();
+                } else {
+                    sessionManagement.accessControl();
                 }
             }
 
@@ -167,7 +167,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         if (emailValidation(email)) {
             if (passwordValidation(password)) {
                 authenticateUser(email, password);
-                sessionManagement.accessControl();
             } else {
                 Toast.makeText(getApplicationContext(), "Password field is empty", Toast.LENGTH_SHORT).show();
             }
