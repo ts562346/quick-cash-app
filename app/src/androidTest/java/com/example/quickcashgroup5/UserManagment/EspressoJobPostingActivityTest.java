@@ -3,12 +3,17 @@ package com.example.quickcashgroup5.UserManagment;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 
 import static org.hamcrest.CoreMatchers.anything;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.AllOf.allOf;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
@@ -35,34 +40,31 @@ public class EspressoJobPostingActivityTest {
     public void inputVisibilityTest(){
         //write visibility for texts
         //checking if job title is displayed
-        onView(withId(R.id.editTextTextJobDescription)).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.editTextJobTitle)).check(matches(isDisplayed()));
         //checking if location is displayed
-        onView(withId(R.id.editTextTextEmailAddress)).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.editTextTextEmailAddress)).check(matches(isDisplayed()));
         //checking if payment is displayed
-        onView(withId(R.id.editTextTextMinimumPayment)).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.editTextPayment)).check(matches(isDisplayed()));
         //checking if duration is displayed
-        onView(withId(R.id.editTextTextMinimumHours)).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.editTextDuration)).check(matches(isDisplayed()));
         //checking if category is displayed
-        onView(withId(R.id.spin)).check(ViewAssertions.matches(isDisplayed()));
+        onView(withId(R.id.spin)).check(matches(isDisplayed()));
         // checking if submit button is visible
-        onView(withId(R.id.submit)).check(ViewAssertions.matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        onView(withId(R.id.submit)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
     }
 
     @Test
     public void userInputTest(){
-        // input some text in the job title and close keyboard
-        onView(withId(R.id.editTextTextJobDescription)).perform(ViewActions.typeText(jobTitle));Espresso.closeSoftKeyboard();
-        // input some text in the edit location and close keyboard
-        onView(withId(R.id.editTextTextEmailAddress)).perform(ViewActions.typeText(location)); Espresso.closeSoftKeyboard();
-        //Espresso.onView(withText(location)).inRoot(withDecorView(not(mActivityTestRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed())) .perform(click());
-        //input some text in the edit payment Text and close keyboard
-        onView(withId(R.id.editTextTextMinimumPayment)).perform(ViewActions.typeText(payment)); Espresso.closeSoftKeyboard();
-        //input some text in the edit duration Text and close keyboard
-        onView(withId(R.id.editTextTextMinimumHours)).perform(ViewActions.typeText(duration)); Espresso.closeSoftKeyboard();
-        //input some text in the category and close keyboard
-        onView(withId(R.id.spin)).perform(click());
-        onData(anything()).atPosition(1).perform(click());
-        //click the submit button
+        onView(withId(R.id.editTextJobTitle)).perform(ViewActions.typeText(jobTitle));
+        onView(withId(R.id.editTextLocation)).perform(ViewActions.typeText(location));
+        onView(withId(R.id.editTextPayment)).perform(ViewActions.typeText(payment));
+        onView(withId(R.id.editTextDuration)).perform(ViewActions.typeText(duration));
+        Espresso.closeSoftKeyboard();
+
+        onView(withId(R.id.spinnerCategory)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is(category))).perform(click());
+        onView(withId(R.id.spinnerCategory)).check(matches(withSpinnerText(containsString(category))));
+
         onView(withId(R.id.submit)).perform(click());
     }
 }

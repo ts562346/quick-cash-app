@@ -19,17 +19,17 @@ public class CreateJob extends AppCompatActivity {
 
     //variable setting
     //(chage the names in the frontend as well)
-    private EditText editTextTitle;
-    private Spinner spinnerCategory;
-    private EditText editTextDuration;
-    private EditText editTextLocation;
-    private EditText editTextPayment;
-    private SessionManagement sessionManagement;
+    protected EditText editTextTitle;
+    protected Spinner spinnerCategory;
+    protected EditText editTextDuration;
+    protected EditText editTextLocation;
+    protected EditText editTextPayment;
+    protected SessionManagement sessionManagement;
 
-    private Button submit;
+    protected Button submit;
 
-    FirebaseDatabase database;
-    DatabaseReference jobPostings;
+    protected FirebaseDatabase database;
+    protected DatabaseReference jobPostings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +79,11 @@ public class CreateJob extends AppCompatActivity {
      * @param job
      * @return
      */
-    public Task<Void> add(JobPosting job) {
+    protected Task<Void> add(JobPosting job) {
         return jobPostings.push().setValue(job);
     }
 
-    private void insertJob(){
+    protected void insertJob(){
         JobPosting job = new JobPosting();
         try {
             if (createJob(job)) {

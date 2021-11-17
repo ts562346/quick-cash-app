@@ -15,29 +15,8 @@ public class JobPosting {
     HashMap<String, Object> appliedApplicants;
 
     public JobPosting(){
-        this.title = null;
-        this.location = null;
-        this.payment = null;
-        this.duration = null;
-        this.category = null;
-        this.date = null;
-        this.creatorEmail = null;
-        this.selectedApplicantEmail = null;
         this.appliedApplicants = new HashMap<String,Object>();
     }
-
-    public JobPosting(String title, String location, String payment, String duration, String category, String creatorEmail, String date, String selectedApplicantEmail, String appliedApplicants) {
-        this.title = title;
-        this.location = location;
-        this.payment = payment;
-        this.duration = duration;
-        this.category = category;
-        this.date = date;
-        this.creatorEmail = creatorEmail;
-        this.selectedApplicantEmail = selectedApplicantEmail;
-        this.appliedApplicants = new HashMap<String,Object>();
-    }
-
 
     public String getTitle() {
         return title;

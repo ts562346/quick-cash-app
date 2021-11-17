@@ -9,7 +9,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String confirmPassword;
     private String isEmployee; //if its y then yes(employee), otherwise no(employer)
     private String preferredLocation;
     private String preferredCategory;
@@ -22,14 +21,12 @@ public class User {
      * @param name
      * @param email
      * @param password
-     * @param confirmPassword
      * @param isEmployee
      */
-    public User(String name, String email, String password, String confirmPassword, String isEmployee) {
+    public User(String name, String email, String password, String isEmployee) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
         this.isEmployee = isEmployee;
     }
 
@@ -37,9 +34,7 @@ public class User {
     /**
      * Empty constructor
      */
-    public User() {
-
-    }
+    public User() {}
 
     /**
      * Gets the name from the class
@@ -93,24 +88,6 @@ public class User {
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * Gets the confirm password form the class
-     *
-     * @return
-     */
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    /**
-     * Sets the confirm password for the class
-     *
-     * @param confirmPassword
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     /**
