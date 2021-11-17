@@ -98,11 +98,11 @@
 
                 </TableRow>
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recycler_view"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/rectangle_underlined"/>-->
+                <!--                <androidx.recyclerview.widget.RecyclerView-->
+                <!--                    android:id="@+id/recycler_view"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@drawable/rectangle_underlined"/>-->
             </TableLayout>
 
             <Button
@@ -124,22 +124,22 @@
             <Button
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
-                android:id="@+id/submit"
-                android:text="Job Preference"
+                android:id="@+id/createJob"
+                android:text="Create Job"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"
                 />
 
-<!--            <Button-->
-<!--                android:layout_height="60dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:id="@+id/logout"-->
-<!--                android:text="Logout"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:radius="30dp"-->
-<!--                android:layout_weight="1"-->
-<!--                />-->
+            <!--            <Button-->
+            <!--                android:layout_height="60dp"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:id="@+id/logout"-->
+            <!--                android:text="Logout"-->
+            <!--                android:layout_margin="5dp"-->
+            <!--                android:radius="30dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                />-->
 
 
         </LinearLayout>

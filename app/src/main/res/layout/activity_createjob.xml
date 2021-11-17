@@ -69,14 +69,13 @@
 
 
             <EditText
-                android:id="@+id/editTextTextJobDescription"
+                android:id="@+id/editTextJobTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
                 android:drawableStart="@drawable/briefcase"
                 android:drawablePadding="15dp"
                 android:ems="10"
-                android:inputType="textEmailAddress"
                 android:padding="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +86,7 @@
 
 
             <TextView
-                android:id="@+id/emailLabel"
+                android:id="@+id/locationLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -98,14 +97,13 @@
 
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
                 android:drawableStart="@drawable/location"
                 android:drawablePadding="15dp"
                 android:ems="10"
-                android:inputType="textEmailAddress"
                 android:padding="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +113,7 @@
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
-                android:id="@+id/passwordLabel"
+                android:id="@+id/paymentLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -123,14 +121,13 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextMinimumPayment"
+                android:id="@+id/editTextPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
                 android:drawableStart="@drawable/dollar"
                 android:drawablePadding="15dp"
                 android:ems="10"
-                android:inputType="textEmailAddress"
                 android:padding="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +137,7 @@
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
-                android:id="@+id/confirmPasswordLabel"
+                android:id="@+id/durationLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -148,14 +145,13 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextMinimumHours"
+                android:id="@+id/editTextDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
                 android:drawableStart="@drawable/clock"
                 android:drawablePadding="15dp"
                 android:ems="10"
-                android:inputType="textEmailAddress"
                 android:padding="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +161,7 @@
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/categoryLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -175,12 +171,11 @@
                 tools:layout_editor_absoluteY="206dp" />
 
             <Spinner
-                android:id="@+id/spin"
+                android:id="@+id/spinnerCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:entries="@array/category" />
-
 
             <Button
                 android:layout_height="60dp"

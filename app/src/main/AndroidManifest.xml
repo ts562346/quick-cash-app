@@ -42,10 +42,11 @@
         <activity android:name=".Home.EmployeeHomeActivity">
 
         </activity>
+        <activity android:name=".UserManagement.JobPreferenceActivity">
 
+        </activity>
+        <activity android:name=".UserManagement.CreateJob">
 
-        <activity android:name=".UserManagement.JobPreferenceActivity"
->
         </activity>
 
 
