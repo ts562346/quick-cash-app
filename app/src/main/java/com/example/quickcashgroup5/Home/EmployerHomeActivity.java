@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.CreateJob;
+import com.example.quickcashgroup5.UserManagement.SendFeedback;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 
 /**
@@ -20,6 +21,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements View.OnCl
     SessionManagement sessionManagement;
     Button logout;
     Button buttonCreateJob;
+    Button buttonFeedback;
 
     /**
      * Mehtod that runs when activity is created
@@ -32,11 +34,21 @@ public class EmployerHomeActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().hide();
         setContentView(R.layout.activity_employerhome);
         buttonCreateJob = (Button)findViewById(R.id.createJob);
+        buttonFeedback = (Button)findViewById(R.id.feedback);
         logout = (Button)findViewById(R.id.logout);
 
         buttonCreateJob.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(EmployerHomeActivity.this, CreateJob.class);
+                startActivity(intent);
+                ((Activity) EmployerHomeActivity.this).finish();
+            }
+        });
+
+        buttonFeedback.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+//                Intent intent = new Intent(EmployerHomeActivity.this, ViewFeedbacks.class);
+                Intent intent = new Intent(EmployerHomeActivity.this, SendFeedback.class);
                 startActivity(intent);
                 ((Activity) EmployerHomeActivity.this).finish();
             }
