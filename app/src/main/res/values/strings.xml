@@ -12,4 +12,7 @@
         <item>Baby Sitter</item>
         <item>Dog Walker</item>
     </string-array>
+
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>
