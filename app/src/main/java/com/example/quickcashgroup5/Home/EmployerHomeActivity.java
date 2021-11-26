@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements View.OnCl
     Button logout;
     Button buttonCreateJob;
     Button buttonFeedback;
+    TextView title;
 
     /**
      * Mehtod that runs when activity is created
@@ -33,9 +35,12 @@ public class EmployerHomeActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_employerhome);
+        title = (TextView)findViewById(R.id.title);
         buttonCreateJob = (Button)findViewById(R.id.createJob);
         buttonFeedback = (Button)findViewById(R.id.feedback);
         logout = (Button)findViewById(R.id.logout);
+
+        title.setText(sessionManagement.getName());
 
         buttonCreateJob.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
