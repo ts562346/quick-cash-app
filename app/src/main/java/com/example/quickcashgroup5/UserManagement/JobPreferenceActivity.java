@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class JobPreferenceActivity extends AppCompatActivity {
+public class JobPreferenceActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SessionManagement sessionManagement;
     Spinner category;
     EditText location, minPayment, minHours;
@@ -60,8 +60,9 @@ public class JobPreferenceActivity extends AppCompatActivity {
         location = findViewById(R.id.editTextLocation);
         minPayment = findViewById(R.id.editTextMinPay);
         minHours = findViewById(R.id.editTextMinHours);
-
         submit = findViewById(R.id.submit);
+
+        sidebar.setNavigationItemSelectedListener(this);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +132,53 @@ public class JobPreferenceActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home: {
+                Intent intent = new Intent(this, EmployeeHomeActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_dashboard: {
+                Toast.makeText(this, "Dashboard page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, .class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_searchJob: {
+                Toast.makeText(this, "Search Job page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, CreateJob.class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_preferences: {
+//                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, JobPreferenceActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_feedback: {
+                Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, Feedback.class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_logout: {
+                sessionManagement.logout();
+                break;
+            }
+        }
+
+        return true;
     }
 }
 

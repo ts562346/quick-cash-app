@@ -1,5 +1,6 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,13 +15,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateJob extends AppCompatActivity {
+public class CreateJob extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected DrawerLayout drawerLayout;
     protected ActionBarDrawerToggle actionBarDrawerToggle;
@@ -55,6 +57,8 @@ public class CreateJob extends AppCompatActivity {
         editTextDuration = findViewById(R.id.editTextDuration);
         spinnerCategory = findViewById(R.id.spinnerCategory);
         submit = findViewById(R.id.submit);
+
+        sidebar.setNavigationItemSelectedListener(this);
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 insertJob();
@@ -125,6 +129,52 @@ public class CreateJob extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home: {
+                Intent intent = new Intent(this, EmployerHomeActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_dashboard: {
+                Toast.makeText(this, "Dashboard page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, .class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_createJob: {
+                Intent intent = new Intent(this, CreateJob.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_preferences: {
+                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, PreferenceActivity.class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_feedback: {
+                Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(EmployerHomeActivity.this, Feedback.class);
+//                startActivity(intent);
+//                ((Activity) EmployerHomeActivity.this).finish();
+                break;
+            }
+            case R.id.nav_logout: {
+                sessionManagement.logout();
+                break;
+            }
+        }
+
+        return true;
     }
 
 }
