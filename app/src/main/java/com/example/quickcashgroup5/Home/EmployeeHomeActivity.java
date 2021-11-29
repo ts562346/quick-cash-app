@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.CreateJob;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
+import com.example.quickcashgroup5.UserManagement.JobSearchActivity;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.RecoveryAccountActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
@@ -84,7 +85,6 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             case R.id.nav_searchJob: {
-                Toast.makeText(this, "Search Job page coming soon", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, JobSearchActivity.class);
                 startActivity(intent);
                 ((Activity) this).finish();

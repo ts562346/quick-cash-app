@@ -12,6 +12,10 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,12 +27,20 @@ import com.example.quickcashgroup5.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,11 +60,25 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     private Boolean mLocationPermissionGranted = false;
     private FusedLocationProviderClient mFusedLocationProviderClient;
 
+    private EditText inputSearch;
+
     private SessionManagement sessionManagement;
+    private ArrayList<String> jobLocations;
+    private ArrayList<String> filteredJobLocations;
+    FirebaseDatabase database;
+    DatabaseReference jobs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
+        inputSearch = findViewById(R.id.input_search);
+        jobLocations = new ArrayList<>();
+        filteredJobLocations = new ArrayList<>();
+
+        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
+        jobs = database.getReference();
+        setJobLocations();
+
         Log.d(TAG, "onCreate: Starts");
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
@@ -119,17 +145,25 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+    private void setJobLocations(){
+        jobs.child("JobPosting").addValueEventListener(new ValueEventListener() {
 
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
+                    JobPosting job = adSnapshot.getValue(JobPosting.class);
+                    jobLocations.add(job.getLocation());
+                }
+            }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Email does not exist", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "onCancelled: Something went wrong! Error:" + databaseError.getMessage());
+            }
+        });
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: starts");
@@ -144,12 +178,31 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
-            //Temp hard coding
-            addMarker("Halifax Public Gardens, Halifax");
-            addMarker("Parkland At The Gardens, Halifax");
-            addMarker("1491 South Park St, Halifax");
-            addMarker("Park Lane Mall, Halifax");
+            for (String location :  jobLocations) {
+                addMarker(location);
+            }
         }
+    }
+
+    private void searchInitialize(){
+        inputSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_SEARCH
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || event.getAction() == KeyEvent.ACTION_DOWN
+                        || event.getAction() == KeyEvent.KEYCODE_ENTER){
+                    // perform search
+                    mMap.clear();
+                    inputSearch.getText().toString();
+                }
+                return false;
+            }
+
+        });
+    }
+
+    public void filter(){
     }
 
     public void getPreferredLocation(){
@@ -162,38 +215,37 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                 new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), DEFAULT_ZOOM));
     }
 
-//    Add this function to signup and location permission functions
-//    public void getDeviceLocation(){
-//        Log.d(TAG, "getDeviceLocation: starts");
-//        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-//        try{
-//            if(mLocationPermissionGranted){
-//                Task location = mFusedLocationProviderClient.getLastLocation();
-//                location.addOnCompleteListener(new OnCompleteListener() {
-//                    @Override
-//                    public void onComplete(@NonNull Task task) {
-//                        if(task.isSuccessful()){
-//                            Log.d(TAG, "getDeviceLocation: onComplete: found location");
-//                            Location currentLocation = (Location) task.getResult();
-//                            if(currentLocation != null) {
-//                                Log.d(TAG, "getDeviceLocation: currentLocation Lattitude: " + currentLocation.getLatitude());
-//                                Log.d(TAG, "getDeviceLocation: currentLocation Longitude: " + currentLocation.getLongitude());
-//                                moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-//                                        DEFAULT_ZOOM,"current location");
-//                            }else
-//                                Log.d(TAG, "getDeviceLocation: Current location is null");
-//                        }else {
-//                            Log.d(TAG, "getDeviceLocation: Current location is null");
-//                            Toast.makeText(JobSearchActivity.this, "Unable to get curent location", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//            }
-//        }catch (SecurityException se){
-//            Log.d(TAG, "getDeviceLocation: SecurityException: =" + se.getMessage());
-//        }
-//        Log.d(TAG, "getDeviceLocation: ends");
-//    }
+    public void getDeviceLocation(){
+        Log.d(TAG, "getDeviceLocation: starts");
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        try{
+            if(mLocationPermissionGranted){
+                Task location = mFusedLocationProviderClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if(task.isSuccessful()){
+                            Log.d(TAG, "getDeviceLocation: onComplete: found location");
+                            Location currentLocation = (Location) task.getResult();
+                            if(currentLocation != null) {
+                                Log.d(TAG, "getDeviceLocation: currentLocation Lattitude: " + currentLocation.getLatitude());
+                                Log.d(TAG, "getDeviceLocation: currentLocation Longitude: " + currentLocation.getLongitude());
+                                moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                        DEFAULT_ZOOM,"current location");
+                            }else
+                                Log.d(TAG, "getDeviceLocation: Current location is null");
+                        }else {
+                            Log.d(TAG, "getDeviceLocation: Current location is null");
+                            Toast.makeText(JobSearchActivity.this, "Unable to get curent location", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }catch (SecurityException se){
+            Log.d(TAG, "getDeviceLocation: SecurityException: =" + se.getMessage());
+        }
+        Log.d(TAG, "getDeviceLocation: ends");
+    }
 
     public void moveCamera(LatLng latlng, float zoom, String title){
         Log.d(TAG, "moveCamera: starts with latitude: "+ latlng.latitude + " and Longitude: " + latlng.longitude);
@@ -220,9 +272,9 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             Address address = addressLists.get(0);
 
             Log.d(TAG, "GeoLocate: Found a location" + address.toString());
-            moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),
-                    DEFAULT_ZOOM,
-                    address.getAddressLine(0));
+//            moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),
+//                    DEFAULT_ZOOM,
+//                    address.getAddressLine(0));
         }
         Log.d(TAG, "GeoLocate: ends");
     }

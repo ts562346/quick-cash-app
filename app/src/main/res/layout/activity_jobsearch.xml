@@ -1,13 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MapsActivity" />
-</RelativeLayout>
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="127dp"
+                android:layout_height="126dp"
+                android:id="@+id/imageView"
+                android:layout_marginLeft="220dp"
+                app:srcCompat="@drawable/quick_cash_icon"
+                android:gravity="right"
+                android:baselineAligned="false"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/title"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#000000"
+                android:text="Job Search"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/title2"
+                android:textSize="16sp"
+                android:textColor="#788190"
+                android:text="Search for jobs"/>
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                tools:context=".MapsActivity"
+                android:layout_marginBottom="10dp"/>
+
+                <EditText
+                    android:id="@+id/input_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_text"
+                    android:drawableStart="@drawable/search"
+                    android:layout_centerVertical="true"
+                    android:hint="Enter Address, City or Zip Code"
+                    android:textColor="#000"
+                    android:textSize="15sp"/>
+
+            <TableLayout
+                :tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="7dp"
+                android:stretchColumns="1,2"
+                map:layout_constraintTop_toBottomOf="@+id/map"
+                tools:layout_editor_absoluteX="-16dp">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:background="@drawable/rectangle_background"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="Job Title"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="2"
+                        android:background="@drawable/rectangle_background"
+                        android:gravity="left"
+                        android:padding="10dp"
+                        android:text="Location"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
