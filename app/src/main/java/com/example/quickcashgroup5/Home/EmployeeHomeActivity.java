@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
+    TextView title;
 
     /**
      * Method that runs when activity is created
@@ -45,12 +47,14 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employeehome);
         sidebar = findViewById(R.id.sidebar);
+        title = findViewById(R.id.title);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sidebar.setNavigationItemSelectedListener(this);
+        title.setText(sessionManagement.getName());
     }
 
     // To open and close the navigation drawer when the icon is clicked

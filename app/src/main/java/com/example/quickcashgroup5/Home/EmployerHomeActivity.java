@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
+    TextView title;
 
     /**
      * Mehtod that runs when activity is created
@@ -41,10 +43,12 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
         setContentView(R.layout.activity_employerhome);
         sidebar = findViewById(R.id.sidebar);
         drawerLayout = findViewById(R.id.my_drawer_layout);
+        title = findViewById(R.id.title);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        title.setText(sessionManagement.getName());
         sidebar.setNavigationItemSelectedListener(this);
     }
 
