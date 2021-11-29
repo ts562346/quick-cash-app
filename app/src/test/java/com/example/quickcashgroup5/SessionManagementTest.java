@@ -27,8 +27,6 @@ public class SessionManagementTest {
     public static void setup() {
         mainActivity = new MainActivity();
         signUpActivity = new SignUpActivity();
-//        final Context context = Mockito.mock(Context.class);
-//        Mockito.when(context.getSharedPreferences(anyString(), anyInt())).thenReturn(sharedPrefs);
         sessionManagement = new SessionManagement(signUpActivity);
         sessionManagement2 = new SessionManagement(mainActivity);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.quickcashgroup5">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -18,6 +19,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
         <activity
             android:name="com.example.quickcashgroup5.MainActivity"
             android:exported="true">
@@ -26,8 +28,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
         <activity android:name=".UserManagement.LogInActivity">
+
+        </activity>
+        <activity android:name=".UserManagement.PasswordResetCodeActivity">
+
+        </activity>
+        <activity android:name=".UserManagement.RecoveryAccountActivity">
+
+        </activity>
+        <activity android:name=".UserManagement.ResetPasswordActivity">
 
         </activity>
         <activity android:name=".UserManagement.SignUpActivity">
@@ -42,6 +55,13 @@
         <activity android:name=".UserManagement.JobSearchActivity">
 
         </activity>
+        <activity android:name=".UserManagement.JobPreferenceActivity">
+
+        </activity>
+        <activity android:name=".UserManagement.CreateJob">
+
+        </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"

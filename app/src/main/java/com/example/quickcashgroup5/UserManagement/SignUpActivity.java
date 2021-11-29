@@ -201,6 +201,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             user.setIsEmployee("yes");
         }
 
+        user.setPreferredCategory("");
+        user.setPreferredHours("");
+        user.setPreferredLocation("");
+        user.setPreferredPayment("");
+
         return true;
     }
 

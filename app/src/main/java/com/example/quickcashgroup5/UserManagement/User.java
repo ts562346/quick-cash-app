@@ -9,8 +9,11 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String confirmPassword;
     private String isEmployee; //if its y then yes(employee), otherwise no(employer)
+    private String preferredLocation;
+    private String preferredCategory;
+    private String preferredPayment;
+    private String preferredHours;
 
     /**
      * Constructor for the user class
@@ -18,22 +21,20 @@ public class User {
      * @param name
      * @param email
      * @param password
-     * @param confirmPassword
      * @param isEmployee
      */
-    public User(String name, String email, String password, String confirmPassword, String isEmployee) {
+    public User(String name, String email, String password, String isEmployee) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
         this.isEmployee = isEmployee;
     }
+
 
     /**
      * Empty constructor
      */
-    public User() {
-    }
+    public User() {}
 
     /**
      * Gets the name from the class
@@ -90,24 +91,6 @@ public class User {
     }
 
     /**
-     * Gets the confirm password form the class
-     *
-     * @return
-     */
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    /**
-     * Sets the confirm password for the class
-     *
-     * @param confirmPassword
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    /**
      * Gets the status whether user IsEmployee
      *
      * @return
@@ -124,4 +107,38 @@ public class User {
     public void setIsEmployee(String isEmployee) {
         this.isEmployee = isEmployee;
     }
+
+
+    public String getPreferredLocation() {
+        return preferredLocation;
+    }
+
+    public void setPreferredLocation(String preferredLocation) {
+        this.preferredLocation = preferredLocation;
+    }
+
+    public String getPreferredCategory() {
+        return preferredCategory;
+    }
+
+    public void setPreferredCategory(String preferredCategory) {
+        this.preferredCategory = preferredCategory;
+    }
+
+    public String getPreferredPayment() {
+        return preferredPayment;
+    }
+
+    public void setPreferredPayment(String preferredPayment) {
+        this.preferredPayment = preferredPayment;
+    }
+
+    public String getPreferredHours() {
+        return preferredHours;
+    }
+
+    public void setPreferredHours(String preferredHours) {
+        this.preferredHours = preferredHours;
+    }
+
 }
