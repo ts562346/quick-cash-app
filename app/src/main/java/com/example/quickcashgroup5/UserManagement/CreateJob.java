@@ -165,7 +165,7 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
                 Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
 //                Intent intent = new Intent(EmployerHomeActivity.this, Feedback.class);
 //                startActivity(intent);
-//                ((Activity) EmployerHomeActivity.this).finish();
+//                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_logout: {
