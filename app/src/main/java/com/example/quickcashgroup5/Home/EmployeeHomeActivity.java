@@ -85,9 +85,9 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
             }
             case R.id.nav_searchJob: {
                 Toast.makeText(this, "Search Job page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, CreateJob.class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
+                Intent intent = new Intent(this, JobSearchActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_preferences: {
