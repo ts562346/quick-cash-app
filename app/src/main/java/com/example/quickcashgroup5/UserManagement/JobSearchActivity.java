@@ -5,7 +5,9 @@ package com.example.quickcashgroup5.UserManagement;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -13,16 +15,20 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -36,6 +42,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,7 +53,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
     private static final float DEFAULT_ZOOM = 15f;
     private GoogleMap mMap;
@@ -68,21 +75,33 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     FirebaseDatabase database;
     DatabaseReference jobs;
 
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView sidebar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_jobsearch);
+
         sessionManagement = new SessionManagement(this);
         inputSearch = findViewById(R.id.input_search);
         jobLocations = new ArrayList<>();
         filteredJobLocations = new ArrayList<>();
+
+        sidebar = findViewById(R.id.sidebar);
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        sidebar.setNavigationItemSelectedListener(this);
 
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         jobs = database.getReference();
         setJobLocations();
 
         Log.d(TAG, "onCreate: Starts");
-        super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_jobsearch);
         getLocationPermission();
         Log.d(TAG, "onCreate: Ends");
     }
@@ -299,5 +318,59 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         }
         return false;
     }
-}
 
+    // To open and close the navigation drawer when the icon is clicked
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home: {
+                Intent intent = new Intent(this, EmployeeHomeActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_dashboard: {
+                Toast.makeText(this, "Dashboard page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, .class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_searchJob: {
+                Intent intent = new Intent(this, JobSearchActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_preferences: {
+//                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, JobPreferenceActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_feedback: {
+                Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, Feedback.class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
+                break;
+            }
+            case R.id.nav_logout: {
+                sessionManagement.logout();
+                break;
+            }
+        }
+
+        return true;
+    }
+}
