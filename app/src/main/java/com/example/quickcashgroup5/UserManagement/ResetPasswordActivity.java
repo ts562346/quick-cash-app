@@ -1,6 +1,7 @@
 package com.example.quickcashgroup5.UserManagement;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
     private Button buttonReset;
+    private Button buttonBackToLogin;
     SessionManagement sessionManagement;
     String email;
 
@@ -38,6 +40,14 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         buttonReset.setOnClickListener(this);
         Bundle bundle = getIntent().getExtras();
         email = bundle.getString("email");
+        buttonBackToLogin = (Button) findViewById((R.id.backToLogin));
+
+        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(ResetPasswordActivity.this, LogInActivity.class));
+                ((Activity) ResetPasswordActivity.this).finish();
+            }
+        });
     }
 
     @Override
@@ -48,6 +58,8 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         if(password.equals(confirmPassword)){
             changePassword(password);
             Toast.makeText(this, "Your password has successfully been reset", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LogInActivity.class));
+            ((Activity) this).finish();
         } else{
             Toast.makeText(this, "Your password should match the confirm password", Toast.LENGTH_SHORT).show();
         }
