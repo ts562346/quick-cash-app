@@ -11,9 +11,21 @@ x
 Happ/src/test/java/com/example/quickcashgroup5/LogInActivityUnitTest.java,d\9\d982177f337c23de4b3d169b0440ae2186335a1d
 t
 Dapp/src/test/java/com/example/quickcashgroup5/CreateJobUnitTest.java,b\4\b48c0f1a418e63ea36bef018cb055b5b323e01b6
-u
-Eapp/src/test/java/com/example/quickcashgroup5/ValidationUnitTest.java,3\8\38acac3331343705ac8acf20d0330277ad1f1592
-m
-=app/src/main/java/com/example/quickcashgroup5/Validation.java,8\d\8d81fb6be83e4f37af80c0b810ff11eb6a7040e5
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+ƒ
+Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/SessionManagement.java,b\7\b70a70eb541ecf3cbc0168bf165550071180adb8
+|
+Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployeeHomeActivity.java,f\8\f856dcfabc91faea76a136c1e1781cada4bcb3d3
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+i
+9app/src/main/java/com/example/quickcashgroup5/Config.java,9\b\9b0015e74006952c2a3b2fb45ce45d68436eb146
+z
+Japp/src/main/java/com/example/quickcashgroup5/UserManagement/Feedback.java,c\3\c3d2a382d92d2391528829cdc447214f2c5ef1e9
+
+Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
+s
+Capp/src/main/java/com/example/quickcashgroup5/FeedbackFragment.java,a\8\a8679912f376e8c62661475617c6be21e73b26e5
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

@@ -1,5 +1,6 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -17,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SendFeedbackActivity extends AppCompatActivity {
 
-    //variable setting
-    //(chage the names in the frontend as well)
     protected EditText editTextName;
     protected EditText editTextUserType;
     protected EditText editTextFeedback;
@@ -32,7 +32,6 @@ public class SendFeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_sendfeedback);
 
         editTextName = findViewById(R.id.editTextName);
@@ -82,7 +81,7 @@ public class SendFeedbackActivity extends AppCompatActivity {
             if (createFeedback(feedback)) {
                 this.add(feedback).addOnSuccessListener(suc -> {
                     Toast.makeText(this, "Successfully sent the feedback", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, LogInActivity.class);
+                    Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                     startActivity(intent);
                 }).addOnFailureListener(fal -> {
                     Toast.makeText(this, "Unsuccessfully sent the feedback", Toast.LENGTH_SHORT).show();
@@ -98,7 +97,7 @@ public class SendFeedbackActivity extends AppCompatActivity {
      */
     protected void initializeDatabase() {
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        userFeedbacks = database.getReference(Feedback.class.getSimpleName());
+        userFeedbacks = database.getReference("Feedback");
     }
 
 }

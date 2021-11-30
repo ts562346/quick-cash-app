@@ -1,5 +1,6 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -25,17 +26,19 @@ public class ViewFeedbacksActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference feedbacks;
     Button submit;
+    ValueEventListener event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_viewfeedbacks);
 
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(ViewFeedbacksActivity.this, SendFeedbackActivity.class));
+                feedbacks.child("Feedback").removeEventListener(event);
+                ((Activity) ViewFeedbacksActivity.this).finish();
             }
         });
 
@@ -46,7 +49,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity {
     }
 
     protected void find(){
-        feedbacks.child("Feedback").addValueEventListener(new ValueEventListener() {
+        event = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
@@ -59,7 +62,8 @@ public class ViewFeedbacksActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        };
+        feedbacks.child("Feedback").addValueEventListener(event);
     }
 
     //https://www.c-sharpcorner.com/UploadFile/1e5156/dynamically-add-fragment-in-android-studio/
