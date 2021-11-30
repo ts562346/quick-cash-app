@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">""</string>
+    <string name="app_name">"Quick Cash"</string>
 
     <string-array name="role">
         <item>Employee</item>
