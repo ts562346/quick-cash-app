@@ -51,7 +51,7 @@
         <activity android:name=".UserManagement.SendFeedback">
 
         </activity>
-        <activity android:name=".UserManagement.ViewFeedbacks">
+        <activity android:name=".UserManagement.ViewFeedbacksActivity">
 
         </activity>
 
