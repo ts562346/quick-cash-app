@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity
             android:name="com.example.quickcashgroup5.MainActivity"
             android:exported="true">
@@ -48,7 +49,7 @@
         <activity android:name=".UserManagement.CreateJob">
 
         </activity>
-        <activity android:name=".UserManagement.SendFeedback">
+        <activity android:name=".UserManagement.SendFeedbackActivity">
 
         </activity>
         <activity android:name=".UserManagement.ViewFeedbacksActivity">

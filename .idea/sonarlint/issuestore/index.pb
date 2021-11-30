@@ -1,6 +1,4 @@
 
-
-Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
 ‹
 [app/src/main/java/com/example/quickcashgroup5/UserManagement/PasswordResetCodeActivity.java,a\5\a5dd173c5971f2843382c7b183d3eb1a302bfbb0
 ‰

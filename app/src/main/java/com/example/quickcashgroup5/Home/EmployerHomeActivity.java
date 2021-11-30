@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.CreateJob;
-import com.example.quickcashgroup5.UserManagement.SendFeedback;
+import com.example.quickcashgroup5.UserManagement.SendFeedbackActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 
 /**
@@ -53,7 +53,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements View.OnCl
         buttonFeedback.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                Intent intent = new Intent(EmployerHomeActivity.this, ViewFeedbacks.class);
-                Intent intent = new Intent(EmployerHomeActivity.this, SendFeedback.class);
+                Intent intent = new Intent(EmployerHomeActivity.this, SendFeedbackActivity.class);
                 startActivity(intent);
                 ((Activity) EmployerHomeActivity.this).finish();
             }

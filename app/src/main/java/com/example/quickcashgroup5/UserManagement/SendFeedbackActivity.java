@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SendFeedback extends AppCompatActivity {
+public class SendFeedbackActivity extends AppCompatActivity {
 
     //variable setting
     //(chage the names in the frontend as well)
