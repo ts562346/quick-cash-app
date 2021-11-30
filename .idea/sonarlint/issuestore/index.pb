@@ -3,8 +3,6 @@
 [app/src/main/java/com/example/quickcashgroup5/UserManagement/PasswordResetCodeActivity.java,a\5\a5dd173c5971f2843382c7b183d3eb1a302bfbb0
 ‰
 Yapp/src/main/java/com/example/quickcashgroup5/UserManagement/RecoveryAccountActivity.java,4\f\4ff2f4cdaba3da24ad381d869dc5c13ee2f5279f
-{
-Kapp/src/main/java/com/example/quickcashgroup5/UserManagement/CreateJob.java,7\5\75a4ee45494caee695399124de7ed7bbfaaf6c1b
 €
 Papp/src/main/java/com/example/quickcashgroup5/UserManagement/SignUpActivity.java,2\1\212caaf192850f96d806bda1085b9b71e7d81ef3
 x
@@ -15,8 +13,6 @@ Dapp/src/test/java/com/example/quickcashgroup5/CreateJobUnitTest.java,b\4\b48c0
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ƒ
 Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/SessionManagement.java,b\7\b70a70eb541ecf3cbc0168bf165550071180adb8
-|
-Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployeeHomeActivity.java,f\8\f856dcfabc91faea76a136c1e1781cada4bcb3d3
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 i
@@ -27,5 +23,3 @@ Japp/src/main/java/com/example/quickcashgroup5/UserManagement/Feedback.java,c\3
 Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
 s
 Capp/src/main/java/com/example/quickcashgroup5/FeedbackFragment.java,a\8\a8679912f376e8c62661475617c6be21e73b26e5
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
