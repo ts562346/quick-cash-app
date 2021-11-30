@@ -22,6 +22,7 @@ import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.RecoveryAccountActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 import com.example.quickcashgroup5.UserManagement.SignUpActivity;
+import com.example.quickcashgroup5.UserManagement.ViewFeedbacksActivity;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -98,10 +99,9 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             case R.id.nav_feedback: {
-                Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, Feedback.class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
+                Intent intent = new Intent(this, ViewFeedbacksActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_logout: {

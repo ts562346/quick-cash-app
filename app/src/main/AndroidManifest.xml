@@ -48,6 +48,12 @@
         <activity android:name=".UserManagement.CreateJob">
 
         </activity>
+        <activity android:name=".UserManagement.SendFeedbackActivity">
+
+        </activity>
+        <activity android:name=".UserManagement.ViewFeedbacksActivity">
+
+        </activity>
 
 
         <meta-data

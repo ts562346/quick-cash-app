@@ -1,13 +1,16 @@
 package com.example.quickcashgroup5.UserManagement;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,111 +18,82 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.quickcashgroup5.FeedbackFragment;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.R;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class CreateJob extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    protected DrawerLayout drawerLayout;
-    protected ActionBarDrawerToggle actionBarDrawerToggle;
-    protected NavigationView sidebar;
-    protected EditText editTextTitle;
-    protected Spinner spinnerCategory;
-    protected EditText editTextDuration;
-    protected EditText editTextLocation;
-    protected EditText editTextPayment;
+public class ViewFeedbacksActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    FirebaseDatabase database;
+    DatabaseReference feedbacks;
+    Button submit;
+    ValueEventListener event;
     protected SessionManagement sessionManagement;
 
-    protected Button submit;
-
-    protected FirebaseDatabase database;
-    protected DatabaseReference jobPostings;
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView sidebar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sessionManagement = new SessionManagement(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_createjob);
+        setContentView(R.layout.activity_viewfeedbacks);
+        sessionManagement = new SessionManagement(this);
+
         sidebar = findViewById(R.id.sidebar);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        editTextTitle = findViewById(R.id.editTextJobTitle);
-        editTextLocation = findViewById(R.id.editTextLocation);
-        editTextPayment = findViewById(R.id.editTextPayment);
-        editTextDuration = findViewById(R.id.editTextDuration);
-        spinnerCategory = findViewById(R.id.spinnerCategory);
-        submit = findViewById(R.id.submit);
-
         sidebar.setNavigationItemSelectedListener(this);
+
+        submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                insertJob();
+                startActivity(new Intent(ViewFeedbacksActivity.this, SendFeedbackActivity.class));
+                feedbacks.child("Feedback").removeEventListener(event);
+                ((Activity) ViewFeedbacksActivity.this).finish();
             }
         });
 
-        initializeDatabase();
-    }
-
-    private boolean createJob(JobPosting job){
-        String title = editTextTitle.getText().toString().trim();
-        String location = editTextLocation.getText().toString().trim();
-        String payment = editTextPayment.getText().toString().trim();
-        String duration = editTextDuration.getText().toString().trim();
-        String category = spinnerCategory.getSelectedItem().toString();
-        String creatorEmail = sessionManagement.getEmail();
-
-        job.setTitle(title);
-        job.setLocation(location);
-        job.setPayment(payment);
-        job.setDuration(duration);
-        job.setCategory(category);
-        job.setCreatorEmail(creatorEmail);
-        job.setSelectedApplicantEmail("");
-
-        return true;
-    }
-
-    /**
-     * Adds JobPosting object to the Firebase Database
-     *
-     * @param job
-     * @return
-     */
-    protected Task<Void> add(JobPosting job) {
-        return jobPostings.push().setValue(job);
-    }
-
-    protected void insertJob(){
-        JobPosting job = new JobPosting();
-        try {
-            if (createJob(job)) {
-                this.add(job).addOnSuccessListener(suc -> {
-                    Toast.makeText(this, "Successful Job Creation", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, LogInActivity.class);
-                    startActivity(intent);
-                }).addOnFailureListener(fal -> {
-                    Toast.makeText(this, "Unsuccessful Job Creation", Toast.LENGTH_SHORT).show();
-                });
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Initializes the firebase database
-     */
-    protected void initializeDatabase() {
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobPostings = database.getReference(JobPosting.class.getSimpleName());
+        feedbacks = database.getReference();
+
+        find();
+    }
+
+    protected void find(){
+        event = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
+                    Feedback feedback = adSnapshot.getValue(Feedback.class);
+                    addToLayout(feedback);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        feedbacks.child("Feedback").addValueEventListener(event);
+    }
+
+    //https://www.c-sharpcorner.com/UploadFile/1e5156/dynamically-add-fragment-in-android-studio/
+    protected void addToLayout(Feedback feedback){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        FeedbackFragment fm2 = new FeedbackFragment();
+        fm2.setFeedback(feedback);
+        fragmentTransaction.add(R.id.dynamicLayout, fm2, null);
+        fragmentTransaction.commit();
     }
 
     // To open and close the navigation drawer when the icon is clicked
@@ -128,6 +102,7 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -175,5 +150,4 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
 
         return true;
     }
-
 }
