@@ -16,7 +16,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +80,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
+    Button search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,14 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         jobs = database.getReference();
         setJobLocations();
+
+        search = findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                display();
+            }
+        });
 
         Log.d(TAG, "onCreate: Starts");
         getLocationPermission();
@@ -183,6 +194,14 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         });
     }
 
+    private void display() {
+        mMap.clear();
+        for (String location : jobLocations) {
+            System.out.println(location);
+            addMarker(location);
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: starts");
@@ -196,10 +215,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-            for (String location :  jobLocations) {
-                addMarker(location);
-            }
         }
     }
 
@@ -212,7 +227,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                         || event.getAction() == KeyEvent.ACTION_DOWN
                         || event.getAction() == KeyEvent.KEYCODE_ENTER){
                     // perform search
-                    mMap.clear();
                     inputSearch.getText().toString();
                 }
                 return false;
@@ -269,10 +283,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     public void moveCamera(LatLng latlng, float zoom, String title){
         Log.d(TAG, "moveCamera: starts with latitude: "+ latlng.latitude + " and Longitude: " + latlng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,zoom));
-        MarkerOptions options = new MarkerOptions()
-                .position(latlng)
-                .title(title);
-        mMap.addMarker(options);
     }
 
     private void addMarker(String markerLocation) {
@@ -291,9 +301,11 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             Address address = addressLists.get(0);
 
             Log.d(TAG, "GeoLocate: Found a location" + address.toString());
-//            moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),
-//                    DEFAULT_ZOOM,
-//                    address.getAddressLine(0));
+            LatLng location = new LatLng(address.getLatitude(),address.getLongitude());
+            MarkerOptions options = new MarkerOptions()
+                    .position(location)
+                    .title(address.toString());
+            mMap.addMarker(options);
         }
         Log.d(TAG, "GeoLocate: ends");
     }

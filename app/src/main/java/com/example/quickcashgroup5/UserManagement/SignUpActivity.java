@@ -216,7 +216,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @return
      */
     public boolean isPreviousUser(String email) {
-        users.child("User").addValueEventListener(new ValueEventListener() {
+        users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
