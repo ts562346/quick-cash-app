@@ -125,9 +125,28 @@ public class ValidationUnitTest {
     }
 
     @Test
-    public void checkIfLocationIsEmpty() {
-        EmployeeHomeActivity employeeHomeActivity = new EmployeeHomeActivity();
-        assertFalse(validation.locationValidation("", employeeHomeActivity));
+    public void checkIfWageIsEmpty() {
+        assertFalse(validation.wageValidation(""));
+    }
+
+    @Test
+    public void checkIfWageIsValidDecimal() {
+        assertTrue(validation.wageValidation("12.34"));
+    }
+
+    @Test
+    public void checkIfWageIsValidNumeric() {
+        assertTrue(validation.wageValidation("12"));
+    }
+
+    @Test
+    public void checkIfWageIsInvalidLess() {
+        assertFalse(validation.wageValidation("12."));
+    }
+
+    @Test
+    public void checkIfWageIsInvalidMore() {
+        assertFalse(validation.otpValidation("12.345"));
     }
 
 }
