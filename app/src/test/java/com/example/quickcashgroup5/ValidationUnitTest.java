@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
+
 import org.junit.Test;
 
 public class ValidationUnitTest {
@@ -114,12 +116,18 @@ public class ValidationUnitTest {
 
     @Test
     public void checkIfJobTitleIsEmpty() {
-        assertFalse(validation.otpValidation(""));
+        assertFalse(validation.jobTitleValidation(""));
     }
 
     @Test
     public void checkIfJobTitleIsNotEmpty() {
-        assertTrue(validation.otpValidation("Hey there"));
+        assertTrue(validation.jobTitleValidation("Hey there"));
+    }
+
+    @Test
+    public void checkIfLocationIsEmpty() {
+        EmployeeHomeActivity employeeHomeActivity = new EmployeeHomeActivity();
+        assertFalse(validation.locationValidation("", employeeHomeActivity));
     }
 
 }
