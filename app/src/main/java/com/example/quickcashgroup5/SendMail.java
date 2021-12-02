@@ -2,7 +2,6 @@
 
 package com.example.quickcashgroup5;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +9,6 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.quickcashgroup5.UserManagement.PasswordResetCodeActivity;
-import com.example.quickcashgroup5.UserManagement.ResetPasswordActivity;
 
 import java.util.Properties;
 
@@ -49,7 +47,6 @@ public class SendMail extends AsyncTask<Void,Void,Void>{
         Intent intent = new Intent(context, PasswordResetCodeActivity.class);
         intent.putExtra("email", email);
         context.startActivity(intent);
-        ((Activity) context).finish();
     }
     @Override
     protected Void doInBackground(Void... params) {

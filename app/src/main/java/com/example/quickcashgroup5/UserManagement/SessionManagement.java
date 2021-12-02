@@ -20,6 +20,7 @@ public class SessionManagement {
     private Context context;
     SharedPreferences.Editor editor;
 
+
     /**
      * SessionManagement constructor
      *

@@ -13,8 +13,6 @@ import com.example.quickcashgroup5.R;
 public class PasswordResetCodeActivity extends Activity implements View.OnClickListener{
     private EditText editTextCode;
     private Button buttonSend;
-    private Button buttonBackToLogin;
-    private Button buttonCodeNotReceived;
     SessionManagement sessionManagement;
 
     @Override
@@ -25,21 +23,6 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
 //        getSupportActionBar().hide();
         editTextCode = (EditText) findViewById(R.id.code);
         buttonSend = (Button) findViewById(R.id.sendButton);
-        buttonBackToLogin = (Button) findViewById((R.id.backToLogin));
-        buttonCodeNotReceived = (Button) findViewById((R.id.codeNotReceived));
-
-        buttonCodeNotReceived.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(PasswordResetCodeActivity.this, RecoveryAccountActivity.class));
-                ((Activity) PasswordResetCodeActivity.this).finish();
-            }
-        });
-        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(PasswordResetCodeActivity.this, LogInActivity.class));
-                ((Activity) PasswordResetCodeActivity.this).finish();
-            }
-        });
         buttonSend.setOnClickListener(this);
     }
 
@@ -53,7 +36,7 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
             Intent intent = new Intent(PasswordResetCodeActivity.this, ResetPasswordActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
-            ((Activity) this).finish();
+
         } else{
             Toast.makeText(this,"The OTP you have entered is not valid",Toast.LENGTH_LONG).show();
         }

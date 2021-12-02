@@ -2,8 +2,6 @@
 
 package com.example.quickcashgroup5.UserManagement;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +17,6 @@ import java.util.Random;
 public class RecoveryAccountActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText editTextEmail;
     private Button buttonSend;
-    private Button buttonBackToLogin;
     SessionManagement sessionManagement;
 
     @Override
@@ -30,14 +27,6 @@ public class RecoveryAccountActivity extends AppCompatActivity implements View.O
         getSupportActionBar().hide();
         editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
         buttonSend = (Button) findViewById(R.id.sendButton);
-        buttonBackToLogin = (Button) findViewById((R.id.backToLogin));
-
-        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(RecoveryAccountActivity.this, LogInActivity.class));
-                ((Activity) RecoveryAccountActivity.this).finish();
-            }
-        });
         buttonSend.setOnClickListener(this);
     }
 

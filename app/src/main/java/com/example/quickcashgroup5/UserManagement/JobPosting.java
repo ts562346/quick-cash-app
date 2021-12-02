@@ -1,6 +1,8 @@
 package com.example.quickcashgroup5.UserManagement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class JobPosting {
 
@@ -12,10 +14,26 @@ public class JobPosting {
     String date;
     String creatorEmail;
     String selectedApplicantEmail;
-    HashMap<String, Object> appliedApplicants;
+    String status;
+
+
+    List<String> appliedApplicants;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public List<String> getAppliedApplicants() {
+        return appliedApplicants;
+    }
 
     public JobPosting(){
-        this.appliedApplicants = new HashMap<String,Object>();
+        this.appliedApplicants = new ArrayList<String>();
     }
 
     public String getTitle() {
@@ -80,11 +98,11 @@ public class JobPosting {
         this.selectedApplicantEmail = selectedApplicantEmail;
     }
 
-    public Object getAppliedApplicant(String key) {
+    public Object getAppliedApplicant(int key) {
         return appliedApplicants.get(key);
     }
 
-    public void addAppliedApplicants(Object value) {
-        this.appliedApplicants.put(String.valueOf(appliedApplicants.size()), value);
+    public void addAppliedApplicants(String value) {
+        this.appliedApplicants.add(value);
     }
 }

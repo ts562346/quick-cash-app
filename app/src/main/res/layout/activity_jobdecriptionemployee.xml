@@ -53,10 +53,10 @@
 
 
             <TextView
-                android:id="@+id/title"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Job Preference"
+                android:text="Job Description"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,115 +66,88 @@
                 android:id="@+id/title2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Enter Job Description"
+                android:text="View job offer"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="130dp" />
 
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Category"
-                android:textSize="16sp"
+                android:text="JOB TITLE"
+                android:textAppearance="@style/TextAppearance.MediaRouter.Dynamic.Body.Light"
+                android:textSize="24sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
 
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/jobCategory"
-                android:layout_margin="15dp"
-                android:entries="@array/category"/>
-
 
             <TextView
-                android:id="@+id/emailLabel"
+                android:id="@+id/locationLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Location"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="206dp" />
+                tools:layout_editor_absoluteY="206dp"
+                android:drawableStart="@drawable/location"/>
 
-
-            <EditText
-                android:id="@+id/editTextLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_text"
-                android:drawablePadding="15dp"
-                android:drawableStart="@drawable/location"
-                android:padding="15dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
 
             <TextView
-                android:id="@+id/passwordLabel"
+                android:id="@+id/payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Minimum Payment"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/editTextMinPay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_text"
-                android:drawablePadding="15dp"
-                android:drawableStart="@drawable/dollar"
-                android:padding="15dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                android:textSize="16sp"
+                android:drawableStart="@drawable/dollar"/>
 
             <TextView
-                android:id="@+id/confirmPasswordLabel"
+                android:id="@+id/hours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Minimum Hours"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:drawableStart="@drawable/clock"/>
 
-            <EditText
-                android:id="@+id/editTextMinHours"
+
+            <TextView
+                android:id="@+id/categoryLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_text"
-                android:drawablePadding="15dp"
-                android:drawableStart="@drawable/clock"
-                android:padding="15dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:layout_marginBottom="150dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                android:layout_marginTop="30dp"
+                android:text="Job category"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/category"/>
 
+            <TextView
+                android:id="@+id/employer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="EMPLOYER"
+                android:textAppearance="@style/TextAppearance.MediaRouter.Dynamic.Body.Light"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="206dp" />
+
+            <TextView
+                android:id="@+id/employerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Employer name"
+                android:textSize="16sp" />
 
             <Button
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/submit"
-                android:text="Submit"
+                android:text="Apply"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"

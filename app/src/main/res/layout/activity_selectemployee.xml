@@ -31,17 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/Button"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/back_button" />
-
-            <ImageView
+                <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="127dp"
                 android:layout_height="126dp"
@@ -98,69 +88,18 @@
                     android:layout_marginLeft="0dp"
                     android:layout_toRightOf="@id/textview1"
                     android:padding="2dp"
-                    android:text="Accept/Decline" />
+                    android:text="Accept" />
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="47dp"
-                android:background="@drawable/rectangle_underlined">
 
-                <TextView
-                    android:id="@+id/textview3"
-                    android:layout_width="229dp"
-                    android:layout_height="45dp"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:padding="2dp"
-                    android:text="Mirazul Islam" />
 
-                <LinearLayout
-                    android:layout_width="163dp"
-                    android:layout_height="45dp"
-                    android:layout_toEndOf="@id/textview3">
+            <FrameLayout
+                android:id="@+id/selectEmployeeRecycle"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
-                    <Button
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent"
-                        android:text="\u2713"/>
-                    <Button
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent"
-                        android:text="\u2717"/>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="47dp"
-                android:background="@drawable/rectangle_underlined">
-
-                <TextView
-                    android:id="@+id/textview4"
-                    android:layout_width="229dp"
-                    android:layout_height="45dp"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:padding="2dp"
-                    android:text="Miftahul Kashfy" />
-
-                <LinearLayout
-                    android:layout_width="163dp"
-                    android:layout_height="45dp"
-                    android:layout_toEndOf="@id/textview4">
-
-                    <Button
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent"
-                        android:text="\u2713"/>
-                    <Button
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent"
-                        android:text="\u2717"/>
-                </LinearLayout>
-            </RelativeLayout>
+            </FrameLayout>
 
             <Button
                 android:layout_height="wrap_content"

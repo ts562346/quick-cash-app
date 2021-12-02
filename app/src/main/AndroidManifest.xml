@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
-        <activity android:name="com.example.quickcashgroup5.MainActivity"
+        <activity
+            android:name="com.example.quickcashgroup5.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,10 +48,20 @@
         <activity android:name=".UserManagement.CreateJob">
 
         </activity>
-        <activity android:name=".UserManagement.SendFeedbackActivity">
+
+        <activity android:name=".JobDescriptionEmployeeActivity">
 
         </activity>
-        <activity android:name=".UserManagement.ViewFeedbacksActivity">
+
+        <activity android:name=".JobSearchActivity">
+
+        </activity>
+
+        <activity android:name=".JobDescriptionEmployerActivity">
+
+        </activity>
+
+        <activity android:name=".SelectEmployeeActivity">
 
         </activity>
 
