@@ -97,7 +97,7 @@ public class Validation {
     }
 
     public boolean jobTitleValidation(String jobTitle){
-        return jobTitle.isEmpty();
+        return !jobTitle.isEmpty();
     }
 
     public boolean locationValidation(String location, Context context){

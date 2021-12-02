@@ -146,7 +146,31 @@ public class ValidationUnitTest {
 
     @Test
     public void checkIfWageIsInvalidMore() {
-        assertFalse(validation.otpValidation("12.345"));
+        assertFalse(validation.wageValidation("12.345"));
     }
 
+    @Test
+    public void checkIfHoursIsEmpty() {
+        assertFalse(validation.hoursValidation(""));
+    }
+
+    @Test
+    public void checkIfHoursIsValidDecimal() {
+        assertTrue(validation.hoursValidation("12.34"));
+    }
+
+    @Test
+    public void checkIfHoursIsValidNumeric() {
+        assertTrue(validation.hoursValidation("12"));
+    }
+
+    @Test
+    public void checkIfHoursIsInvalidLess() {
+        assertFalse(validation.hoursValidation("12."));
+    }
+
+    @Test
+    public void checkIfHoursIsInvalidMore() {
+        assertFalse(validation.hoursValidation("12.345"));
+    }
 }
