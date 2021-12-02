@@ -3,6 +3,7 @@ package com.example.quickcashgroup5;
 import androidx.annotation.NonNull;
 
 import com.example.quickcashgroup5.UserManagement.Feedback;
+import com.example.quickcashgroup5.UserManagement.JobPosting;
 import com.example.quickcashgroup5.UserManagement.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -46,9 +47,7 @@ public class DatabaseManagement {
         return userExists.get();
     }
 
-    private boolean add(User user) {
-        DatabaseReference users = database.getReference(User.class.getSimpleName());
-        Task<Void> task = users.push().setValue(user);
+    private boolean isAdded(Task<Void> task){
         AtomicBoolean success = new AtomicBoolean(false);
 
         task.addOnSuccessListener(suc -> {
@@ -60,17 +59,15 @@ public class DatabaseManagement {
         return success.get();
     }
 
+    private boolean add(User user) {
+        DatabaseReference users = database.getReference(User.class.getSimpleName());
+        Task<Void> task = users.push().setValue(user);
+        return isAdded(task);
+    }
+
     private boolean add(Feedback feedback) {
         DatabaseReference feedbacks = database.getReference(Feedback.class.getSimpleName());
         Task<Void> task = feedbacks.push().setValue(feedback);
-        AtomicBoolean success = new AtomicBoolean(false);
-
-        task.addOnSuccessListener(suc -> {
-            success.set(true);
-        }).addOnFailureListener(fal -> {
-            success.set(false);
-        });
-
-        return success.get();
+        return isAdded(task);
     }
 }
