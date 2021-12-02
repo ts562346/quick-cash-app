@@ -99,7 +99,7 @@ public class ValidationUnitTest {
 
     @Test
     public void checkIfOTPIsValid() {
-        assertFalse(validation.otpValidation("1234"));
+        assertTrue(validation.otpValidation("1234"));
     }
 
     @Test
@@ -110,6 +110,16 @@ public class ValidationUnitTest {
     @Test
     public void checkIfOTPIsInvalidMore() {
         assertFalse(validation.otpValidation("12345"));
+    }
+
+    @Test
+    public void checkIfJobTitleIsEmpty() {
+        assertFalse(validation.otpValidation(""));
+    }
+
+    @Test
+    public void checkIfJobTitleIsNotEmpty() {
+        assertTrue(validation.otpValidation("Hey there"));
     }
 
 }
