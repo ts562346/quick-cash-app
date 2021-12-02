@@ -5,8 +5,6 @@
 Yapp/src/main/java/com/example/quickcashgroup5/UserManagement/RecoveryAccountActivity.java,4\f\4ff2f4cdaba3da24ad381d869dc5c13ee2f5279f
 €
 Papp/src/main/java/com/example/quickcashgroup5/UserManagement/SignUpActivity.java,2\1\212caaf192850f96d806bda1085b9b71e7d81ef3
-x
-Happ/src/test/java/com/example/quickcashgroup5/LogInActivityUnitTest.java,d\9\d982177f337c23de4b3d169b0440ae2186335a1d
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
