@@ -60,7 +60,6 @@ public class ValidationUnitTest {
         assertFalse(validation.emailValidation(invalidEmail));
     }
 
-
     @Test
     public void checkIfPasswordIsEmpty() {
         assertFalse(validation.passwordValidation(""));
@@ -74,6 +73,23 @@ public class ValidationUnitTest {
     @Test
     public void checkIfPasswordIsInvalid() {
         assertFalse(validation.passwordValidation(invalidPassword));
+    }
+
+    @Test
+    public void checkIfConfirmPasswordIsEmpty() {
+        assertFalse(validation.confirmPasswordValidation("", ""));
+        assertFalse(validation.confirmPasswordValidation("", validPassword));
+        assertFalse(validation.confirmPasswordValidation("", invalidPassword));
+    }
+
+    @Test
+    public void checkIfConfirmPasswordIsValid() {
+        assertTrue(validation.confirmPasswordValidation(validPassword, validPassword));
+    }
+
+    @Test
+    public void checkIfConfirmPasswordIsInvalid() {
+        assertFalse(validation.confirmPasswordValidation(validPassword, invalidPassword));
     }
 
 }
