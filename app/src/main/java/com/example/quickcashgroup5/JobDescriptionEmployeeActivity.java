@@ -94,8 +94,6 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
 
                 TextView employer = (TextView)findViewById(R.id.employerName);
                 employer.setText(jobPosting.getCreatorEmail());
-
-
             }
 
             @Override

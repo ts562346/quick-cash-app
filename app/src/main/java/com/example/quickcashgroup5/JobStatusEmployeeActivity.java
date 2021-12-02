@@ -36,40 +36,24 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         initializeDatabase();
         jobPosting=new JobPosting();
 
-//        submit = (Button) findViewById(R.id.submit);
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        JobPosting job = dataSnapshot.getValue(JobPosting.class);
-//                        for (DataSnapshot adSnapshot : dataSnapshot.child("appliedApplicant").getChildren()) {
-//                            job.addAppliedApplicants(adSnapshot.getValue(String.class));
-//                        }
-//                        try {
-//                            if(!job.getAppliedApplicants().contains(user.getEmail())) {
-//                                job.addAppliedApplicants(user.getEmail());
-//                                dataSnapshot.getRef().child("appliedApplicants").setValue(job.getAppliedApplicants());
-//                                Toast toast=Toast. makeText(getApplicationContext(),"Applied Successfully",Toast. LENGTH_LONG);
-//                                toast. show();
-//                            }else{
-//                                Toast toast=Toast. makeText(getApplicationContext(),"Already applied to this job",Toast. LENGTH_LONG);
-//                                toast. show();
-//                            }
-//                            Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
-//                            startActivity(intent);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//            }
-//        });
+        submit = (Button) findViewById(R.id.submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        JobPosting job = dataSnapshot.getValue(JobPosting.class);
+                        job.setStatus("Completed");
+                        dataSnapshot.getRef().child("status").setValue(job.getStatus());
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
 
         jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {

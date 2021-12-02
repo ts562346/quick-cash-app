@@ -167,7 +167,7 @@
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/submit"
-                android:text="Submit"
+                android:text="Completed"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1" />
