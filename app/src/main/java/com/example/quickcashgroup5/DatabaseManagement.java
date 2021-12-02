@@ -95,4 +95,18 @@ public class DatabaseManagement {
 
         return success.get();
     }
+
+    private boolean add(Feedback feedback) {
+        DatabaseReference feedbacks = database.getReference(Feedback.class.getSimpleName());
+        Task<Void> task = feedbacks.push().setValue(feedback);
+        AtomicBoolean success = new AtomicBoolean(false);
+
+        task.addOnSuccessListener(suc -> {
+            success.set(true);
+        }).addOnFailureListener(fal -> {
+            success.set(false);
+        });
+
+        return success.get();
+    }
 }
