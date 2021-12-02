@@ -139,7 +139,7 @@
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/apply"
-                android:text="Home"
+                android:text="Pay"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"

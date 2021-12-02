@@ -1,10 +1,8 @@
 package com.example.quickcashgroup5;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,18 +20,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class JobStatusEmployeeActivity extends AppCompatActivity {
+public class PayEmployeeActivity extends AppCompatActivity {
+
     private JobPosting jobPosting;
     FirebaseDatabase database;
     DatabaseReference jobs;
     Button submit;
     SessionManagement user;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         user= new SessionManagement(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobstatusemployee);
+        setContentView(R.layout.activity_jobdescriptionemployer);
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("Key");
         initializeDatabase();
@@ -47,17 +45,30 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         JobPosting job = dataSnapshot.getValue(JobPosting.class);
-                        job.setStatus("Completed");
-                        dataSnapshot.getRef().child("status").setValue(job.getStatus());
-
+                        for (DataSnapshot adSnapshot : dataSnapshot.child("appliedApplicant").getChildren()) {
+                            job.addAppliedApplicants(adSnapshot.getValue(String.class));
+                        }
+                        try {
+                            if(!job.getAppliedApplicants().contains(user.getEmail())) {
+                                job.addAppliedApplicants(user.getEmail());
+                                dataSnapshot.getRef().child("appliedApplicants").setValue(job.getAppliedApplicants());
+                                Toast toast=Toast. makeText(getApplicationContext(),"Applied Successfully",Toast. LENGTH_LONG);
+                                toast. show();
+                            }else{
+                                Toast toast=Toast. makeText(getApplicationContext(),"Already applied to this job",Toast. LENGTH_LONG);
+                                toast. show();
+                            }
+                            Intent intent = new Intent(PayEmployeeActivity.this, EmployeeHomeActivity.class);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
-                Intent intent =  new Intent(JobStatusEmployeeActivity.this, EmployerHomeActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -84,19 +95,11 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
                 category.setText(jobPosting.getCategory());
 
 
-                TextView employer = (TextView)findViewById(R.id.employerName);
-                employer.setText(jobPosting.getCreatorEmail());
-
-
-                TextView status = (TextView) findViewById(R.id.statusUpdate);
-                if(jobPosting.getSelectedApplicantEmail()==null || !jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
-                    status.setText("Waiting");
-                }else if(jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
-                    status.setText("Ongoing");
-                }else if(jobPosting.getStatus().equals("Completed")){
-                    status.setText("Completed");
+                TextView status = (TextView) findViewById(R.id.employerName);
+                if(jobPosting.getSelectedApplicantEmail().equals("")) {
+                    status.setText(jobPosting.getSelectedApplicantEmail());
                 }else{
-                    status.setText("Paid");
+                    status.setText("Pending");
                 }
 
             }

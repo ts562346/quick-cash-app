@@ -111,10 +111,8 @@ public class FragmentSelectEmployee extends Fragment {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("Test44545");
                 jobPosting=dataSnapshot.getValue(JobPosting.class);
                 for (int i=0; i<jobPosting.getAppliedApplicants().size(); i++){
-                    System.out.println("Test");
                     System.out.println(jobPosting.getAppliedApplicants().get(i));
                     DataModelSelectEmployee name= new DataModelSelectEmployee(key, jobPosting.getAppliedApplicants().get(i));
 

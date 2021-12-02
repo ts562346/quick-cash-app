@@ -94,6 +94,16 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                     return true;
+
+                case R.id.pay:
+
+                    Log.d(TAG, "onMenuItemClick: pay" + getAdapterPosition());
+                    intent =  new Intent(context, PayEmployeeActivity.class);
+                    bundle = new Bundle();
+                    bundle.putString("Key", key.get(getAdapterPosition()));
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                    return true;
             }
             return false;
         }

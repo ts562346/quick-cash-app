@@ -16,8 +16,6 @@ public class DataModelDashboard {
         this.key = key;
     }
 
-
-
     public String getJobTitle() {
         return jobTitle;
     }

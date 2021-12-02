@@ -7,4 +7,7 @@
     <item
         android:id="@+id/select"
         android:title="Select Employee" />
+    <item
+        android:id="@+id/pay"
+        android:title="Pay Employee" />
 </menu>

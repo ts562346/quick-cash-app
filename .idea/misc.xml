@@ -54,13 +54,18 @@
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_jobstatusemployee.xml" value="0.25" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_login.xml" value="0.3421875" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_main.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_passwordresetcode.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_payemployee.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_selectemployee.xml" value="0.3302083333333333" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_sendfeedback.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_signup.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/activity_test.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/fragment_dashboard.xml" value="0.3302083333333333" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/singlerow_dashboard.xml" value="0.3302083333333333" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/singlerow_jobsearch.xml" value="0.3380208333333333" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/layout/singlerow_selectemployee.xml" value="0.31179775280898875" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/menu/mymenu_employeedashboard.xml" value="0.3380208333333333" />
+        <entry key="..\:/Users/miraz/Desktop/CSCI3130/3130-project-group-5/app/src/main/res/menu/mymenu_employerdashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_createjob.xml" value="0.25" />
         <entry key="..\:/Users/miraz/Desktop/CSCI3130/GroupProject/3130-project-group-5/app/src/main/res/layout/activity_employeehome.xml" value="0.20052083333333334" />
