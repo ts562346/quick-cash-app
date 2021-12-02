@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.UserManagement.JobPosting;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -81,6 +82,8 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
                     dataSnapshot.getRef().child("selectedApplicantEmail").setValue(jobPosting.getSelectedApplicantEmail());
                     jobPosting.setStatus("Ongoing");
                     dataSnapshot.getRef().child("status").setValue(jobPosting.getStatus());
+                    Intent intent =  new Intent(context, EmployerHomeActivity.class);
+                    context.startActivity(intent);
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
