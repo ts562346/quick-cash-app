@@ -23,9 +23,13 @@ s
 Capp/src/main/java/com/example/quickcashgroup5/FeedbackFragment.java,a\8\a8679912f376e8c62661475617c6be21e73b26e5
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-{
-Kapp/src/main/java/com/example/quickcashgroup5/UserManagement/CreateJob.java,7\5\75a4ee45494caee695399124de7ed7bbfaaf6c1b
 |
 Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployerHomeActivity.java,2\1\2177d431fd517b9677f9d1100fbe035cb4eeccbf
 |
 Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployeeHomeActivity.java,f\8\f856dcfabc91faea76a136c1e1781cada4bcb3d3
+|
+Lapp/src/main/java/com/example/quickcashgroup5/UserManagement/JobPosting.java,9\7\9738bbdfd86e1924b23294c56fdfdd6e747185a1
+
+Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
+†
+Vapp/src/main/java/com/example/quickcashgroup5/UserManagement/SendFeedbackActivity.java,9\c\9c16d44b9ddbbd372870cf49211a8a48f4d8fd16

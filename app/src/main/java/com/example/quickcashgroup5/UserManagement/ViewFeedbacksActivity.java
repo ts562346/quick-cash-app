@@ -32,7 +32,6 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     FirebaseDatabase database;
     DatabaseReference feedbacks;
     Button submit;
-    ValueEventListener event;
     protected SessionManagement sessionManagement;
 
     public DrawerLayout drawerLayout;
@@ -57,7 +56,6 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(ViewFeedbacksActivity.this, SendFeedbackActivity.class));
-                feedbacks.child("Feedback").removeEventListener(event);
                 ((Activity) ViewFeedbacksActivity.this).finish();
             }
         });
@@ -69,7 +67,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     }
 
     protected void find(){
-        event = new ValueEventListener() {
+        feedbacks.child("Feedback").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
@@ -82,8 +80,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        };
-        feedbacks.child("Feedback").addValueEventListener(event);
+        });
     }
 
     //https://www.c-sharpcorner.com/UploadFile/1e5156/dynamically-add-fragment-in-android-studio/
