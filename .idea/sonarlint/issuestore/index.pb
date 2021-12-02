@@ -19,8 +19,6 @@ Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployerHomeActivity.java,2
 Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployeeHomeActivity.java,f\8\f856dcfabc91faea76a136c1e1781cada4bcb3d3
 |
 Lapp/src/main/java/com/example/quickcashgroup5/UserManagement/JobPosting.java,9\7\9738bbdfd86e1924b23294c56fdfdd6e747185a1
-
-Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
 •
 eapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoJobPreferenceActivity.java,a\6\a69e9db33784e391cb20df430eb46b682c823cf3
 ‘

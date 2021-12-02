@@ -18,33 +18,7 @@ public class DatabaseManagement {
     FirebaseDatabase database;
 
     protected DatabaseManagement() {
-        //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-    }
-
-    public boolean isPreviousUser(String email) {
-        DatabaseReference users = database.getReference(User.class.getSimpleName());
-
-        AtomicBoolean userExists = new AtomicBoolean(false);
-        users.child("User").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
-                    User u = adSnapshot.getValue(User.class);
-                    if (u.getEmail().equals(email)) {
-                        System.out.println("Old User");
-                        userExists.set(true);
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("New User");
-            }
-        });
-        return userExists.get();
     }
 
     private boolean isAdded(Task<Void> task){
@@ -75,5 +49,36 @@ public class DatabaseManagement {
         DatabaseReference jobPostings = database.getReference(JobPosting.class.getSimpleName());
         Task<Void> task = jobPostings.push().setValue(job);
         return isAdded(task);
+    }
+
+    public User findUser(String email) {
+        User user = null;
+
+        DataSnapshot dataSnapshot = getDataSnapshot(User.class.getSimpleName());
+        for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
+            User u = adSnapshot.getValue(User.class);
+            if(u.getEmail().equals(email)){
+                user = u;
+            }
+        }
+
+        return user;
+    }
+
+    private DataSnapshot getDataSnapshot(String reference){
+        DatabaseReference ref = database.getReference(reference);
+        final DataSnapshot[] data = {null};
+        ref.child("Feedback").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                data[0] = dataSnapshot;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return data[0];
     }
 }
