@@ -92,4 +92,24 @@ public class ValidationUnitTest {
         assertFalse(validation.confirmPasswordValidation(validPassword, invalidPassword));
     }
 
+    @Test
+    public void checkIfOTPIsEmpty() {
+        assertFalse(validation.otpValidation(""));
+    }
+
+    @Test
+    public void checkIfOTPIsValid() {
+        assertFalse(validation.otpValidation("1234"));
+    }
+
+    @Test
+    public void checkIfOTPIsInvalidLess() {
+        assertFalse(validation.otpValidation("1"));
+    }
+
+    @Test
+    public void checkIfOTPIsInvalidMore() {
+        assertFalse(validation.otpValidation("12345"));
+    }
+
 }
