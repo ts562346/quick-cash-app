@@ -56,7 +56,7 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
 
                     }
                 });
-                Intent intent =  new Intent(JobStatusEmployeeActivity.this, EmployerHomeActivity.class);
+                Intent intent =  new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
                 startActivity(intent);
             }
         });
