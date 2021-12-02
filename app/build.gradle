@@ -33,6 +33,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'com.google.firebase:firebase-database:20.0.2'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation files('src/libs/mail.jar')
     implementation files('src/libs/activation.jar')
     implementation files('src/libs/additionnal.jar')
