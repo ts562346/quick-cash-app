@@ -105,4 +105,10 @@ public class DatabaseManagement {
         Task<Void> task = feedbacks.push().setValue(feedback);
         return isAdded(task);
     }
+
+    private boolean add(JobPosting job) {
+        DatabaseReference jobPostings = database.getReference(JobPosting.class.getSimpleName());
+        Task<Void> task = jobPostings.push().setValue(job);
+        return isAdded(task);
+    }
 }
