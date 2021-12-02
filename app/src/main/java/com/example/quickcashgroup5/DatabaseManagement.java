@@ -81,4 +81,18 @@ public class DatabaseManagement {
         });
         return data[0];
     }
+
+    private boolean add(User user) {
+        DatabaseReference users = database.getReference(User.class.getSimpleName());
+        Task<Void> task = users.push().setValue(user);
+        AtomicBoolean success = new AtomicBoolean(false);
+
+        task.addOnSuccessListener(suc -> {
+            success.set(true);
+        }).addOnFailureListener(fal -> {
+            success.set(false);
+        });
+
+        return success.get();
+    }
 }
