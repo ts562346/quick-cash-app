@@ -97,12 +97,7 @@ public class Validation {
     }
 
     public boolean jobTitleValidation(String jobTitle){
-        if (!jobTitle.isEmpty()) {
-            //The job title can only contain letters, numbers, and space characters
-            return jobTitle.matches("^[A-Za-z\\d\\s]+$");
-        } else {
-            return false;
-        }
+        return jobTitle.isEmpty();
     }
 
     public boolean locationValidation(String location, Context context){
