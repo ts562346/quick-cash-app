@@ -30,12 +30,9 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
     String TAG = "MyViewHolder";
     ArrayList<String> key = new ArrayList<String>();
     ArrayList<String> email = new ArrayList<String>();
-
     FirebaseDatabase database;
     DatabaseReference jobs;
     private JobPosting jobPosting;
-
-
 
     public MyAdapterSelectEmployee(ArrayList<DataModelSelectEmployee> dataHolder) {
         this.dataHolder = dataHolder;
@@ -44,10 +41,8 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
     @NonNull
     @Override
     public MyViewHolderSelectEmployee onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_selectemployee, parent, false);
         return new MyViewHolderSelectEmployee(view);
-
     }
 
     @Override
@@ -63,13 +58,11 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
     }
 
     class MyViewHolderSelectEmployee extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         TextView name;
         ImageButton accept;
         Context context;
         public MyViewHolderSelectEmployee(@NonNull View itemView) {
             super(itemView);
-            System.out.println("Debug");
             context = itemView.getContext();
             name = itemView.findViewById(R.id.name);
             accept = itemView.findViewById(R.id.accept);
@@ -80,29 +73,20 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
         public void onClick(View view) {
             database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
             jobs = database.getReference();
-
-
             jobs.child("JobPosting").child(key.get(getAdapterPosition())).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    System.out.println("lol");
                     jobPosting=dataSnapshot.getValue(JobPosting.class);
                     jobPosting.setSelectedApplicantEmail(email.get(getAdapterPosition()));
                     dataSnapshot.getRef().child("selectedApplicantEmail").setValue(jobPosting.getSelectedApplicantEmail());
-
-
+                    jobPosting.setStatus("Ongoing");
+                    dataSnapshot.getRef().child("status").setValue(jobPosting.getStatus());
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     // ...
                 }
             });
-
-
-
         }
-
-
     }
 }

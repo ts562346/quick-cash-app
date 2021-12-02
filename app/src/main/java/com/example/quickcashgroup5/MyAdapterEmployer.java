@@ -93,11 +93,6 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     bundle.putString("Key", key.get(getAdapterPosition()));
                     intent.putExtras(bundle);
                     context.startActivity(intent);
-//                    Intent selectEmployee = new Intent(context, FragmentSelectEmployee.class);
-//                    bundle = new Bundle();
-//                    bundle.putString("Key", key.get(getAdapterPosition()));
-//                    selectEmployee.putExtras(bundle);
-//                    context.startActivity(selectEmployee);
                     return true;
             }
             return false;

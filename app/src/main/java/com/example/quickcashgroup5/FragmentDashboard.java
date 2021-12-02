@@ -123,7 +123,7 @@ public class FragmentDashboard extends Fragment{
 
             recyclerView.setAdapter(new MyAdapterEmployer(dataModelDashboard));
         }else {
-            jobs.child("JobPosting").addListenerForSingleValueEvent(new ValueEventListener() {
+            jobs.child("JobPosting").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
