@@ -80,7 +80,7 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
 
 
                 TextView status = (TextView) findViewById(R.id.employerName);
-                if(jobPosting.getSelectedApplicantEmail().equals("")) {
+                if(!jobPosting.getSelectedApplicantEmail().equals("")) {
                     status.setText(jobPosting.getSelectedApplicantEmail());
                 }else{
                     status.setText("Pending");

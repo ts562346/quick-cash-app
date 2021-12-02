@@ -86,7 +86,6 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     context.startActivity(intent);
                     return true;
                 case R.id.select:
-
                     Log.d(TAG, "onMenuItemClick: select" + getAdapterPosition());
                     intent =  new Intent(context, SelectEmployeeActivity.class);
                     bundle = new Bundle();
@@ -94,9 +93,7 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                     return true;
-
                 case R.id.pay:
-
                     Log.d(TAG, "onMenuItemClick: pay" + getAdapterPosition());
                     intent =  new Intent(context, PayEmployeeActivity.class);
                     bundle = new Bundle();

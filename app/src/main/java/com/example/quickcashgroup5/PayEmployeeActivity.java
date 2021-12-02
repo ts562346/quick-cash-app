@@ -31,13 +31,14 @@ public class PayEmployeeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         user= new SessionManagement(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobdescriptionemployer);
+        setContentView(R.layout.activity_payemployee);
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("Key");
         initializeDatabase();
         jobPosting=new JobPosting();
 
-        submit = (Button) findViewById(R.id.submit);
+        submit = (Button) findViewById(R.id.apply);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,24 +46,12 @@ public class PayEmployeeActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         JobPosting job = dataSnapshot.getValue(JobPosting.class);
-                        for (DataSnapshot adSnapshot : dataSnapshot.child("appliedApplicant").getChildren()) {
-                            job.addAppliedApplicants(adSnapshot.getValue(String.class));
-                        }
-                        try {
-                            if(!job.getAppliedApplicants().contains(user.getEmail())) {
-                                job.addAppliedApplicants(user.getEmail());
-                                dataSnapshot.getRef().child("appliedApplicants").setValue(job.getAppliedApplicants());
-                                Toast toast=Toast. makeText(getApplicationContext(),"Applied Successfully",Toast. LENGTH_LONG);
-                                toast. show();
-                            }else{
-                                Toast toast=Toast. makeText(getApplicationContext(),"Already applied to this job",Toast. LENGTH_LONG);
-                                toast. show();
-                            }
-                            Intent intent = new Intent(PayEmployeeActivity.this, EmployeeHomeActivity.class);
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        job.setStatus("Paid");
+
+                        Intent intent = new Intent(PayEmployeeActivity.this, EmployerHomeActivity.class);
+                        startActivity(intent);
+
+
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -96,7 +85,7 @@ public class PayEmployeeActivity extends AppCompatActivity {
 
 
                 TextView status = (TextView) findViewById(R.id.employerName);
-                if(jobPosting.getSelectedApplicantEmail().equals("")) {
+                if(!jobPosting.getSelectedApplicantEmail().equals("")) {
                     status.setText(jobPosting.getSelectedApplicantEmail());
                 }else{
                     status.setText("Pending");
