@@ -30,11 +30,11 @@ public class EspressoJobPostingActivityTest {
     @Rule
     public ActivityScenarioRule<CreateJob> activityTestRule = new ActivityScenarioRule<>(CreateJob.class);
 
-    private String jobTitle= "Sample Test";
-    private String location= "Halifax, Nova Scotia";
-    private String payment= "15";
-    private String duration = "12";
-    private String category = "Electronics Repair";
+    private final String jobTitle= "Sample Test";
+    private final String location= "Halifax, Nova Scotia";
+    private final String payment= "15";
+    private final String duration = "12";
+    private final String category = "Electronics Repair";
 
     @Test
     public void inputVisibilityTest(){

@@ -48,19 +48,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().hide();
         setContentView(R.layout.activity_signup);
 
-        registeredUserLabel = (Button) findViewById(R.id.registeredUserLabel);
-        registerButton = (Button) findViewById(R.id.registerButton);
-        nameEditText = (EditText) findViewById(R.id.editTextUsername);
-        emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        passwordEditText = (EditText) findViewById(R.id.editTextTextPassword);
-        confirmPasswordEditText = (EditText) findViewById(R.id.editTextTextConfirmPassword);
-        dropDown = (Spinner) findViewById(R.id.spin);
+        registeredUserLabel = findViewById(R.id.registeredUserLabel);
+        registerButton = findViewById(R.id.registerButton);
+        nameEditText = findViewById(R.id.editTextUsername);
+        emailEditText = findViewById(R.id.editTextTextEmailAddress);
+        passwordEditText = findViewById(R.id.editTextTextPassword);
+        confirmPasswordEditText = findViewById(R.id.editTextTextConfirmPassword);
+        dropDown = findViewById(R.id.spin);
         userExists = false;
 
         registeredUserLabel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
-                ((Activity) SignUpActivity.this).finish();
+                SignUpActivity.this.finish();
             }
         });
         registerButton.setOnClickListener(this);
@@ -184,7 +184,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if (confirmPasswordValidation(password, confirmPassword)) {
             //Validate password
             if (passwordValidation(password)) {
-                user.setPassword(aes.encrypt(password));
+                user.setPassword(AESCrypt.encrypt(password));
             } else {
                 Toast.makeText(getApplicationContext(), "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();
                 return false;

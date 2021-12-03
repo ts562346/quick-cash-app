@@ -45,11 +45,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
-        emailEditText = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        passwordEditText = (EditText) findViewById(R.id.editTextTextPassword);
-        notRegisteredUserLabel = (Button) findViewById(R.id.notRegisteredUserLabel);
-        forgotPassword = (Button) findViewById(R.id.forgotPass);
-        loginButton = (Button) findViewById(R.id.loginButton);
+        emailEditText = findViewById(R.id.editTextTextEmailAddress);
+        passwordEditText = findViewById(R.id.editTextTextPassword);
+        notRegisteredUserLabel = findViewById(R.id.notRegisteredUserLabel);
+        forgotPassword = findViewById(R.id.forgotPass);
+        loginButton = findViewById(R.id.loginButton);
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         notRegisteredUserLabel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(LogInActivity.this, SignUpActivity.class));
-                ((Activity) LogInActivity.this).finish();
+                LogInActivity.this.finish();
             }
         });
 
@@ -123,7 +123,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                     User u = adSnapshot.getValue(User.class);
                     if (u.getEmail().equals(email)) {
                         try {
-                            if (u.getPassword().equals(aes.encrypt(password))) {
+                            if (u.getPassword().equals(AESCrypt.encrypt(password))) {
                                 if (u.getIsEmployee().equals("yes")) {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
                                 } else {

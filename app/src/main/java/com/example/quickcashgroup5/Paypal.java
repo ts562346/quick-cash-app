@@ -135,7 +135,7 @@ public class Paypal extends AppCompatActivity {
                             //Go back
                             Intent i = i = new Intent(Paypal.this, EmployerHomeActivity.class);
                             startActivity(i);
-                            ((Activity) Paypal.this).finish();
+                            Paypal.this.finish();
                         } catch (JSONException e) {
                             // handling json exception on below line
                             Log.e("Error", "an extremely unlikely failure occurred: ", e);

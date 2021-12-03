@@ -56,7 +56,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(ViewFeedbacksActivity.this, SendFeedbackActivity.class));
-                ((Activity) ViewFeedbacksActivity.this).finish();
+                ViewFeedbacksActivity.this.finish();
             }
         });
 
@@ -110,25 +110,25 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
             case R.id.nav_home: {
                 Intent intent = new Intent(this, EmployerHomeActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_createJob: {
                 Intent intent = new Intent(this, CreateJob.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_preferences: {
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_feedback: {
                 Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_logout: {

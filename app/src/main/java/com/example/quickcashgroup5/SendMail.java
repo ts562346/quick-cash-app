@@ -23,11 +23,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendMail extends AsyncTask<Void,Void,Void>{
-    private Context context;
+    private final Context context;
     private Session session;
-    private String email;
-    private String subject;
-    private String message;
+    private final String email;
+    private final String subject;
+    private final String message;
     private ProgressDialog progressDialog;
     public SendMail(Context context, String email, String subject, String message){
         this.context = context;

@@ -48,7 +48,7 @@ public class FragmentDashboard extends Fragment{
 
     public FragmentDashboard(SessionManagement sessionManagement) {
         // Required empty public constructor
-        this.sessionManagement= sessionManagement;
+        FragmentDashboard.sessionManagement = sessionManagement;
     }
 
     protected void initializeDatabase() {

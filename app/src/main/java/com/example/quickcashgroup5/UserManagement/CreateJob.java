@@ -139,25 +139,25 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
             case R.id.nav_home: {
                 Intent intent = new Intent(this, EmployerHomeActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_createJob: {
                 Intent intent = new Intent(this, CreateJob.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_preferences: {
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_feedback: {
                 Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_logout: {

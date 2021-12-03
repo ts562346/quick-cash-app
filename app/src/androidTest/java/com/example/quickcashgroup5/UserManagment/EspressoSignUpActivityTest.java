@@ -32,9 +32,9 @@ public class EspressoSignUpActivityTest {
     @Rule
     public ActivityScenarioRule<SignUpActivity> activityTestRule = new ActivityScenarioRule<>(SignUpActivity.class);
 
-    private String nameText = "Sample Test";
-    private String emailText = "sampletest@gmail.com";
-    private String passwordText = "Sample@123";
+    private final String nameText = "Sample Test";
+    private final String emailText = "sampletest@gmail.com";
+    private final String passwordText = "Sample@123";
 
 
     @Test

@@ -53,7 +53,7 @@ public class FragmentSelectEmployee extends Fragment {
     public FragmentSelectEmployee(SessionManagement sessionManagement, String key) {
         // Required empty public constructor
         this.key=key;
-        this.sessionManagement= sessionManagement;
+        FragmentSelectEmployee.sessionManagement = sessionManagement;
     }
 
     protected void initializeDatabase() {

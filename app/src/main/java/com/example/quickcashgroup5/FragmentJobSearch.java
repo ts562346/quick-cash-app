@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FragmentJobSearch extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -37,24 +38,18 @@ public class FragmentJobSearch extends Fragment {
     }
 
     private JobPosting jobPosting;
-    FirebaseDatabase database;
-    DatabaseReference jobs;
+    static HashMap<String, JobPosting> jobPostings;
+
     public FragmentJobSearch(){
 
     }
 
 
-    public FragmentJobSearch(SessionManagement sessionManagement) {
+    public FragmentJobSearch(SessionManagement sessionManagement, HashMap<String, JobPosting> jobPostings) {
         // Required empty public constructor
-        this.sessionManagement= sessionManagement;
+        this.sessionManagement = sessionManagement;
+        this.jobPostings = jobPostings;
     }
-
-    protected void initializeDatabase() {
-        //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobs = database.getReference();
-    }
-
 
     /**
      * Use this factory method to create a new instance of
@@ -66,7 +61,7 @@ public class FragmentJobSearch extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static FragmentJobSearch newInstance(String param1, String param2) {
-        FragmentJobSearch fragment = new FragmentJobSearch(sessionManagement);
+        FragmentJobSearch fragment = new FragmentJobSearch(sessionManagement, jobPostings);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,7 +74,6 @@ public class FragmentJobSearch extends Fragment {
         System.out.println("Test 2");
         super.onCreate(savedInstanceState);
         System.out.println("Check");
-        initializeDatabase();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -96,27 +90,14 @@ public class FragmentJobSearch extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         dataModelJobSearch = new ArrayList<>();
+        for (String key: jobPostings.keySet()) {
+            JobPosting job = jobPostings.get(key);
+            if(job.getSelectedApplicantEmail().equals("")) {
+                DataModelDashboard ob1 = new DataModelDashboard(job, key);
+                dataModelJobSearch.add(ob1);
+            }
+        }
 
-
-
-            jobs.child("JobPosting").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
-                        JobPosting u = adSnapshot.getValue(JobPosting.class);
-
-                            if(u.getSelectedApplicantEmail().equals("")) {
-                                DataModelDashboard ob1 = new DataModelDashboard(u, adSnapshot.getKey());
-                                dataModelJobSearch.add(ob1);
-                            }
-
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
 
             MyAdapterJobSearch myAdapterJobSearch = new MyAdapterJobSearch(dataModelJobSearch);
             recyclerView.setAdapter(myAdapterJobSearch);

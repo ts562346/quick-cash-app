@@ -20,8 +20,8 @@ import com.example.quickcashgroup5.UserManagement.LogInActivity;
 //Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
 public class SessionManagement {
     private static final String preferencesName = "Session";
-    private SharedPreferences sharedPreferences;
-    private Context context;
+    private final SharedPreferences sharedPreferences;
+    private final Context context;
     SharedPreferences.Editor editor;
 
 
@@ -32,7 +32,7 @@ public class SessionManagement {
      */
     public SessionManagement(Context context) {
         this.context = context;
-        this.sharedPreferences = this.context.getSharedPreferences(preferencesName, this.context.MODE_PRIVATE);
+        this.sharedPreferences = this.context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
     }
 

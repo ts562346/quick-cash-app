@@ -28,14 +28,14 @@ public class RecoveryAccountActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recoveryaccount);
         getSupportActionBar().hide();
-        editTextEmail = (EditText) findViewById(R.id.editTextTextEmailAddress);
-        buttonSend = (Button) findViewById(R.id.sendButton);
-        buttonBackToLogin = (Button) findViewById((R.id.backToLogin));
+        editTextEmail = findViewById(R.id.editTextTextEmailAddress);
+        buttonSend = findViewById(R.id.sendButton);
+        buttonBackToLogin = findViewById((R.id.backToLogin));
 
         buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(RecoveryAccountActivity.this, LogInActivity.class));
-                ((Activity) RecoveryAccountActivity.this).finish();
+                RecoveryAccountActivity.this.finish();
             }
         });
         buttonSend.setOnClickListener(this);

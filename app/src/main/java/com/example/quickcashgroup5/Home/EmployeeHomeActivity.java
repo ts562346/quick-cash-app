@@ -76,25 +76,25 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
             case R.id.nav_home: {
                 Intent intent = new Intent(this, EmployeeHomeActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_searchJob: {
                 Intent intent = new Intent(this, JobSearchActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_preferences: {
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_feedback: {
                 Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_logout: {

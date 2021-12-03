@@ -39,7 +39,7 @@ public class PayEmployeeActivity extends AppCompatActivity {
         initializeDatabase();
         jobPosting = new JobPosting();
 
-        submit = (Button) findViewById(R.id.apply);
+        submit = findViewById(R.id.apply);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,22 +60,22 @@ public class PayEmployeeActivity extends AppCompatActivity {
                 jobPosting=dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
                 System.out.println(jobPosting.getTitle());
 
-                TextView title = (TextView)findViewById(R.id.jobTitle);
+                TextView title = findViewById(R.id.jobTitle);
                 title.setText(jobPosting.getTitle());
 
-                TextView location = (TextView)findViewById(R.id.locationLabel);
+                TextView location = findViewById(R.id.locationLabel);
                 location.setText(jobPosting.getLocation());
 
-                TextView payment = (TextView)findViewById(R.id.payment);
+                TextView payment = findViewById(R.id.payment);
                 payment.setText(jobPosting.getPayment());
 
-                TextView hours = (TextView)findViewById(R.id.hours);
+                TextView hours = findViewById(R.id.hours);
                 hours.setText(jobPosting.getDuration());
 
-                TextView category = (TextView)findViewById(R.id.categoryLabel);
+                TextView category = findViewById(R.id.categoryLabel);
                 category.setText(jobPosting.getCategory());
 
-                TextView status = (TextView) findViewById(R.id.employerName);
+                TextView status = findViewById(R.id.employerName);
                 String employeeEmail = jobPosting.getSelectedApplicantEmail();
                 DataSnapshot data = dataSnapshot.child("User");
                 for (DataSnapshot ds: data.getChildren()) {

@@ -36,7 +36,7 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
         initializeDatabase();
         jobPosting=new JobPosting();
 
-        accept = (Button) findViewById(R.id.submit);
+        accept = findViewById(R.id.submit);
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,22 +78,22 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
                 jobPosting=dataSnapshot.getValue(JobPosting.class);
                 System.out.println(jobPosting.getTitle());
 
-                TextView title = (TextView)findViewById(R.id.title);
+                TextView title = findViewById(R.id.title);
                 title.setText(jobPosting.getTitle());
 
-                TextView location = (TextView)findViewById(R.id.locationLabel);
+                TextView location = findViewById(R.id.locationLabel);
                 location.setText(jobPosting.getLocation());
 
-                TextView payment = (TextView)findViewById(R.id.payment);
+                TextView payment = findViewById(R.id.payment);
                 payment.setText(jobPosting.getPayment());
 
-                TextView hours = (TextView)findViewById(R.id.hours);
+                TextView hours = findViewById(R.id.hours);
                 hours.setText(jobPosting.getDuration());
 
-                TextView category = (TextView)findViewById(R.id.categoryLabel);
+                TextView category = findViewById(R.id.categoryLabel);
                 category.setText(jobPosting.getCategory());
 
-                TextView employer = (TextView)findViewById(R.id.employerName);
+                TextView employer = findViewById(R.id.employerName);
                 employer.setText(jobPosting.getCreatorEmail());
             }
 

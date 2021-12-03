@@ -23,21 +23,21 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passwordresetcode);
 //        getSupportActionBar().hide();
-        editTextCode = (EditText) findViewById(R.id.code);
-        buttonSend = (Button) findViewById(R.id.sendButton);
-        buttonBackToLogin = (Button) findViewById((R.id.backToLogin));
-        buttonCodeNotReceived = (Button) findViewById((R.id.codeNotReceived));
+        editTextCode = findViewById(R.id.code);
+        buttonSend = findViewById(R.id.sendButton);
+        buttonBackToLogin = findViewById((R.id.backToLogin));
+        buttonCodeNotReceived = findViewById((R.id.codeNotReceived));
 
         buttonCodeNotReceived.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(PasswordResetCodeActivity.this, RecoveryAccountActivity.class));
-                ((Activity) PasswordResetCodeActivity.this).finish();
+                PasswordResetCodeActivity.this.finish();
             }
         });
         buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(PasswordResetCodeActivity.this, LogInActivity.class));
-                ((Activity) PasswordResetCodeActivity.this).finish();
+                PasswordResetCodeActivity.this.finish();
             }
         });
         buttonSend.setOnClickListener(this);
@@ -53,7 +53,7 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
             Intent intent = new Intent(PasswordResetCodeActivity.this, ResetPasswordActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
-            ((Activity) this).finish();
+            this.finish();
         } else{
             Toast.makeText(this,"The OTP you have entered is not valid",Toast.LENGTH_LONG).show();
         }

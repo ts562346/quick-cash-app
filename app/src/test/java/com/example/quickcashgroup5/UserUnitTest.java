@@ -10,14 +10,14 @@ import com.example.quickcashgroup5.UserManagement.User;
 import org.junit.Test;
 
 public class UserUnitTest {
-    private String name = "Unit";
-    private String email = "unit@test.com";
-    private String password = "Test@1234";
-    private String isEmployee = "y";
-    private String preferredLocation = "Halifax, Canada";
-    private String preferredCategory = "Computer Repair";
-    private String preferredPayment = "20";
-    private String preferredHours = "30";
+    private final String name = "Unit";
+    private final String email = "unit@test.com";
+    private final String password = "Test@1234";
+    private final String isEmployee = "y";
+    private final String preferredLocation = "Halifax, Canada";
+    private final String preferredCategory = "Computer Repair";
+    private final String preferredPayment = "20";
+    private final String preferredHours = "30";
 
     @Test
     public void userConstructor1() {

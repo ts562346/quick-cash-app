@@ -24,12 +24,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CreateJobUnitTest extends CreateJob {
-    private String jobTitle = "1234567890";
-    private String location = "Halifax, Nova Scotia";
-    private static String creatorEmail = "espresso@bot.test";
-    private String payment = "15";
-    private String duration = "12";
-    private String category = "Computer Repair";
+    private final String jobTitle = "1234567890";
+    private final String location = "Halifax, Nova Scotia";
+    private static final String creatorEmail = "espresso@bot.test";
+    private final String payment = "15";
+    private final String duration = "12";
+    private final String category = "Computer Repair";
 
     @Test
     public void checkIfJobIsInserted() {

@@ -48,7 +48,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobpreference);
-        category = (Spinner) findViewById(R.id.jobCategory);
+        category = findViewById(R.id.jobCategory);
         location = findViewById(R.id.editTextLocation);
         minPayment = findViewById(R.id.editTextMinPay);
         minHours = findViewById(R.id.editTextMinHours);
@@ -108,7 +108,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
                              */
 
                             Map<String, Object> updates = new HashMap<String, Object>();
-                            updates.put("preferredCategory", (String) category.getSelectedItem());
+                            updates.put("preferredCategory", category.getSelectedItem());
                             updates.put("preferredLocation", location.getText().toString());
                             updates.put("preferredPayment", minPayment.getText().toString());
                             updates.put("preferredHours", minHours.getText().toString());
@@ -144,25 +144,25 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
             case R.id.nav_home: {
                 Intent intent = new Intent(this, EmployerHomeActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_createJob: {
                 Intent intent = new Intent(this, CreateJob.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_preferences: {
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_feedback: {
                 Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_logout: {

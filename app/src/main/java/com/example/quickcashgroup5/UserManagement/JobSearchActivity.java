@@ -57,6 +57,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
@@ -76,8 +77,8 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     private EditText inputSearch;
 
     private SessionManagement sessionManagement;
-    private ArrayList<String> jobLocations;
-    private ArrayList<String> filteredJobLocations;
+    private HashMap<String, JobPosting> allJobs;
+    private HashMap<String, JobPosting> filteredJobs;
     FirebaseDatabase database;
     DatabaseReference jobs;
 
@@ -94,8 +95,8 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
         sessionManagement = new SessionManagement(this);
         inputSearch = findViewById(R.id.input_search);
-        jobLocations = new ArrayList<>();
-        filteredJobLocations = new ArrayList<>();
+        allJobs = new HashMap<>();
+        filteredJobs = new HashMap<>();
 
         sidebar = findViewById(R.id.sidebar);
         drawerLayout = findViewById(R.id.my_drawer_layout);
@@ -113,7 +114,8 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                display();
+                search();
+                getSupportFragmentManager().beginTransaction().replace(R.id.recycleViewContainer, new FragmentJobSearch(sessionManagement, filteredJobs)).commit();
             }
         });
 
@@ -122,7 +124,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         Log.d(TAG, "onCreate: Ends");
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.recycleViewContainer, new FragmentJobSearch(sessionManagement)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.recycleViewContainer, new FragmentJobSearch(sessionManagement, allJobs)).commit();
     }
 
     private void getLocationPermission() {
@@ -185,12 +187,13 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
     private void setJobLocations(){
         jobs.child("JobPosting").addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
                     JobPosting job = adSnapshot.getValue(JobPosting.class);
-                    jobLocations.add(job.getLocation());
+                    if(job.getStatus().equals("New")) {
+                        allJobs.put(adSnapshot.getKey(), job);
+                    }
                 }
             }
 
@@ -204,9 +207,9 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
     private void display() {
         mMap.clear();
-        for (String location : jobLocations) {
-            System.out.println(location);
-            addMarker(location);
+        for (String key: filteredJobs.keySet()) {
+            JobPosting job = filteredJobs.get(key);
+            addMarker(job.getLocation());
         }
     }
 
@@ -229,24 +232,16 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         }
     }
 
-    private void searchInitialize(){
-        inputSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH
-                        || actionId == EditorInfo.IME_ACTION_DONE
-                        || event.getAction() == KeyEvent.ACTION_DOWN
-                        || event.getAction() == KeyEvent.KEYCODE_ENTER){
-                    // perform search
-                    inputSearch.getText().toString();
-                }
-                return false;
+    private void search(){
+        String keyword = inputSearch.getText().toString();
+        filteredJobs.clear();
+        for (String key: allJobs.keySet()) {
+            JobPosting job = allJobs.get(key);
+            if(job.getTitle().matches("^(?i).*"+ keyword + ".*$")) {
+                filteredJobs.put(key, job);
             }
-
-        });
-    }
-
-    public void filter(){
+        }
+        display();
     }
 
     public void getPreferredLocation(){
@@ -358,20 +353,20 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             case R.id.nav_home: {
                 Intent intent = new Intent(this, EmployeeHomeActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_searchJob: {
                 Intent intent = new Intent(this, JobSearchActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_preferences: {
 //                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
-                ((Activity) this).finish();
+                this.finish();
                 break;
             }
             case R.id.nav_feedback: {

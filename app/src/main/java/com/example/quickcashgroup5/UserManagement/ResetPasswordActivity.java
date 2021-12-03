@@ -34,18 +34,18 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
 //        getSupportActionBar().hide();
-        editTextPassword = (EditText) findViewById(R.id.password);
-        editTextConfirmPassword = (EditText) findViewById(R.id.confirmPassword);
-        buttonReset = (Button) findViewById(R.id.resetButton);
+        editTextPassword = findViewById(R.id.password);
+        editTextConfirmPassword = findViewById(R.id.confirmPassword);
+        buttonReset = findViewById(R.id.resetButton);
         buttonReset.setOnClickListener(this);
         Bundle bundle = getIntent().getExtras();
         email = bundle.getString("email");
-        buttonBackToLogin = (Button) findViewById((R.id.backToLogin));
+        buttonBackToLogin = findViewById((R.id.backToLogin));
 
         buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(ResetPasswordActivity.this, LogInActivity.class));
-                ((Activity) ResetPasswordActivity.this).finish();
+                ResetPasswordActivity.this.finish();
             }
         });
     }
@@ -59,7 +59,7 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
             changePassword(password);
             Toast.makeText(this, "Your password has successfully been reset", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LogInActivity.class));
-            ((Activity) this).finish();
+            this.finish();
         } else{
             Toast.makeText(this, "Your password should match the confirm password", Toast.LENGTH_SHORT).show();
         }
@@ -77,7 +77,7 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
                     if (u.getEmail().equals(email)) {
                         try {
                             Map<String, Object> updates = new HashMap<String,Object>();
-                            updates.put("password", aes.encrypt(newPassword));
+                            updates.put("password", AESCrypt.encrypt(newPassword));
                             adSnapshot.getRef().updateChildren(updates);
                         } catch (Exception e) {
                             e.printStackTrace();

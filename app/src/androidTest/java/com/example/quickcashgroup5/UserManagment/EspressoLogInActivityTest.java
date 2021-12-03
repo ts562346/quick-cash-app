@@ -18,8 +18,8 @@ public class EspressoLogInActivityTest {
     @Rule
     public ActivityScenarioRule<LogInActivity> activityTestRule = new ActivityScenarioRule<>(LogInActivity.class);
 
-    private String emailText = "sampletest@gmail.com";
-    private String passwordText = "Sample@123";
+    private final String emailText = "sampletest@gmail.com";
+    private final String passwordText = "Sample@123";
 
 
     @Test
