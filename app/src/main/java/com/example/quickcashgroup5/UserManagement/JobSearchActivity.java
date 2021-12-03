@@ -124,7 +124,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         Log.d(TAG, "onCreate: Ends");
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.recycleViewContainer, new FragmentJobSearch(sessionManagement, allJobs)).commit();
     }
 
     private void getLocationPermission() {
@@ -220,7 +219,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 //        Toast.makeText(this, "Google Map is ready", Toast.LENGTH_SHORT).show();
         if (mLocationPermissionGranted) {
             Log.d(TAG, "onMapReady: getting Device current location!!");
-            getPreferredLocation();
+            getDeviceLocation();
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
@@ -310,8 +309,9 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             LatLng location = new LatLng(address.getLatitude(),address.getLongitude());
             MarkerOptions options = new MarkerOptions()
                     .position(location)
-                    .title(address.toString());
+                    .title(address.getAddressLine(0));
             mMap.addMarker(options);
+            moveCamera(location, DEFAULT_ZOOM, null);
         }
         Log.d(TAG, "GeoLocate: ends");
     }
