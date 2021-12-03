@@ -17,15 +17,3 @@ Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/SessionManagement.
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 i
 9app/src/main/java/com/example/quickcashgroup5/Config.java,9\b\9b0015e74006952c2a3b2fb45ce45d68436eb146
-z
-Japp/src/main/java/com/example/quickcashgroup5/UserManagement/Feedback.java,c\3\c3d2a382d92d2391528829cdc447214f2c5ef1e9
-s
-Capp/src/main/java/com/example/quickcashgroup5/FeedbackFragment.java,a\8\a8679912f376e8c62661475617c6be21e73b26e5
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-{
-Kapp/src/main/java/com/example/quickcashgroup5/UserManagement/CreateJob.java,7\5\75a4ee45494caee695399124de7ed7bbfaaf6c1b
-|
-Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployerHomeActivity.java,2\1\2177d431fd517b9677f9d1100fbe035cb4eeccbf
-|
-Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployeeHomeActivity.java,f\8\f856dcfabc91faea76a136c1e1781cada4bcb3d3

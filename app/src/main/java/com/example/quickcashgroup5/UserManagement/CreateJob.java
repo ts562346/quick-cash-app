@@ -22,7 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateJob extends AppCompatActivity {
+public class CreateJob extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected DrawerLayout drawerLayout;
     protected ActionBarDrawerToggle actionBarDrawerToggle;
@@ -142,13 +142,6 @@ public class CreateJob extends AppCompatActivity {
                 ((Activity) this).finish();
                 break;
             }
-            case R.id.nav_dashboard: {
-                Toast.makeText(this, "Dashboard page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, .class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
-                break;
-            }
             case R.id.nav_createJob: {
                 Intent intent = new Intent(this, CreateJob.class);
                 startActivity(intent);
@@ -156,10 +149,9 @@ public class CreateJob extends AppCompatActivity {
                 break;
             }
             case R.id.nav_preferences: {
-                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, PreferenceActivity.class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
+                Intent intent = new Intent(this, JobPreferenceActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_feedback: {

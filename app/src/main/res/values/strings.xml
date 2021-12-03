@@ -1,18 +1,22 @@
 <resources>
-    <string name="app_name">""</string>
+    <string name="app_name">"Quick Cash"</string>
     <string name="google_maps_key">AIzaSyCAiA83za_0T-7lvyfx2f4dIf2txG4ZNpI</string>
 
-    <string-array name="role">
-        <item>Employee</item>
-        <item>Employer</item>
-    </string-array>
+        <string-array name="role">
+            <item>Employee</item>
+            <item>Employer</item>
+        </string-array>
 
-    <string-array name="category">
-        <item>Teaching</item>
-        <item>Computer Repair</item>
-        <item>Baby Sitter</item>
-        <item>Dog Walker</item>
-    </string-array>
+        <string-array name="category">
+            <item>Teaching</item>
+            <item>Computer Repair</item>
+            <item>Baby Sitter</item>
+            <item>Dog Walker</item>
+        </string-array>
+
+        <string name="nav_open">Open</string>
+        <string name="nav_close">Close</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

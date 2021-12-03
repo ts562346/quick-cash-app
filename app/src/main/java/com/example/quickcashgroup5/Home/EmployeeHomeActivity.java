@@ -3,11 +3,8 @@ package com.example.quickcashgroup5.Home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,14 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.quickcashgroup5.FragmentDashboard;
-import com.example.quickcashgroup5.JobSearchActivity;
 import com.example.quickcashgroup5.R;
-import com.example.quickcashgroup5.UserManagement.CreateJob;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
-import com.example.quickcashgroup5.UserManagement.LogInActivity;
-import com.example.quickcashgroup5.UserManagement.RecoveryAccountActivity;
+import com.example.quickcashgroup5.UserManagement.JobSearchActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
-import com.example.quickcashgroup5.UserManagement.SignUpActivity;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -32,7 +25,7 @@ import com.google.android.material.navigation.NavigationView;
  * Home page for Employee
  */
 
-public class EmployeeHomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class EmployeeHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SessionManagement sessionManagement;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -82,13 +75,6 @@ public class EmployeeHomeActivity extends AppCompatActivity implements View.OnCl
                 ((Activity) this).finish();
                 break;
             }
-            case R.id.nav_dashboard: {
-                Toast.makeText(this, "Dashboard page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, .class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
-                break;
-            }
             case R.id.nav_searchJob: {
                 Intent intent = new Intent(this, JobSearchActivity.class);
                 startActivity(intent);
@@ -96,7 +82,6 @@ public class EmployeeHomeActivity extends AppCompatActivity implements View.OnCl
                 break;
             }
             case R.id.nav_preferences: {
-//                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
                 ((Activity) this).finish();

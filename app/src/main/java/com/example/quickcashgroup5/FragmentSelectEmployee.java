@@ -73,7 +73,7 @@ public class FragmentSelectEmployee extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static FragmentJobSearch newInstance(String param1, String param2) {
-        FragmentJobSearch fragment = new FragmentJobSearch(sessionManagement);
+        FragmentJobSearch fragment = new FragmentJobSearch();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

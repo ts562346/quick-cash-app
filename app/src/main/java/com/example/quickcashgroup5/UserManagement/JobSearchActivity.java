@@ -16,10 +16,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +33,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.quickcashgroup5.FragmentJobSearch;
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -81,6 +85,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
     Button search;
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +120,9 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         Log.d(TAG, "onCreate: Starts");
         getLocationPermission();
         Log.d(TAG, "onCreate: Ends");
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportFragmentManager().beginTransaction().replace(R.id.recycleViewContainer, new FragmentJobSearch(sessionManagement)).commit();
     }
 
     private void getLocationPermission() {
@@ -215,6 +223,9 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
+            mMap.getUiSettings().setScrollGesturesEnabled(false);
+            mMap.getUiSettings().setZoomGesturesEnabled(false);
+            mMap.getUiSettings().setScrollGesturesEnabledDuringRotateOrZoom(false);
         }
     }
 
@@ -348,13 +359,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                 Intent intent = new Intent(this, EmployeeHomeActivity.class);
                 startActivity(intent);
                 ((Activity) this).finish();
-                break;
-            }
-            case R.id.nav_dashboard: {
-                Toast.makeText(this, "Dashboard page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, .class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_searchJob: {
