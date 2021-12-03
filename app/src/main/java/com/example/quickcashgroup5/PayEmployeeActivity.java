@@ -14,6 +14,7 @@ import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.UserManagement.JobPosting;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.UserManagement.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +28,7 @@ public class PayEmployeeActivity extends AppCompatActivity {
     DatabaseReference jobs;
     Button submit;
     SessionManagement user;
+    User employee;
 
     protected void onCreate(Bundle savedInstanceState) {
         user= new SessionManagement(this);
@@ -35,37 +37,27 @@ public class PayEmployeeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("Key");
         initializeDatabase();
-        jobPosting=new JobPosting();
+        jobPosting = new JobPosting();
 
         submit = (Button) findViewById(R.id.apply);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        JobPosting job = dataSnapshot.getValue(JobPosting.class);
-                        job.setStatus("Paid");
-
-                        Intent intent = new Intent(PayEmployeeActivity.this, EmployerHomeActivity.class);
-                        startActivity(intent);
-
-
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                Intent intent = new Intent(PayEmployeeActivity.this, Paypal.class);
+                intent.putExtra("Key", key);
+                intent.putExtra("Name", employee.getName());
+                float totalPayment = Float.parseFloat(jobPosting.getPayment()) * Float.parseFloat(jobPosting.getDuration());
+                intent.putExtra("Payment", String.valueOf(totalPayment));
+                startActivity(intent);
             }
         });
 
 
-        jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+        jobs.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.getValue(JobPosting.class);
+                jobPosting=dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
                 System.out.println(jobPosting.getTitle());
 
                 TextView title = (TextView)findViewById(R.id.jobTitle);
@@ -83,10 +75,17 @@ public class PayEmployeeActivity extends AppCompatActivity {
                 TextView category = (TextView)findViewById(R.id.categoryLabel);
                 category.setText(jobPosting.getCategory());
 
-
                 TextView status = (TextView) findViewById(R.id.employerName);
-                if(!jobPosting.getSelectedApplicantEmail().equals("")) {
-                    status.setText(jobPosting.getSelectedApplicantEmail());
+                String employeeEmail = jobPosting.getSelectedApplicantEmail();
+                DataSnapshot data = dataSnapshot.child("User");
+                for (DataSnapshot ds: data.getChildren()) {
+                    if(ds.child("email").getValue().equals(employeeEmail)){
+                        employee = ds.getValue(User.class);
+                        break;
+                    }
+                }
+                if(!employeeEmail.equals("")) {
+                    status.setText(employeeEmail);
                 }else{
                     status.setText("Pending");
                 }

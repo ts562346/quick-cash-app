@@ -86,6 +86,9 @@
         <activity android:name=".UserManagement.ViewFeedbacksActivity">
 
         </activity>
+        <activity android:name=".Paypal">
+
+        </activity>
 
 
         <meta-data

@@ -76,6 +76,7 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
         String category = spinnerCategory.getSelectedItem().toString();
         String creatorEmail = sessionManagement.getEmail();
 
+        job.setStatus("New");
         job.setTitle(title);
         job.setLocation(location);
         job.setPayment(payment);

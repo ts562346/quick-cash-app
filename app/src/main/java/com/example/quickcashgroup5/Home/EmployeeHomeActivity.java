@@ -1,5 +1,7 @@
 package com.example.quickcashgroup5.Home;
 
+import static android.widget.Toast.LENGTH_LONG;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.quickcashgroup5.FragmentDashboard;
+import com.example.quickcashgroup5.Paypal;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.UserManagement.JobSearchActivity;

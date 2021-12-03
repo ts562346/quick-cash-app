@@ -98,7 +98,7 @@
                             android:background="@drawable/rectangle_background"
                             android:gravity="left"
                             android:padding="10dp"
-                            android:text="Payment/H"
+                            android:text="Status"
                             android:textSize="16dp"
                             android:textStyle="bold" />
 

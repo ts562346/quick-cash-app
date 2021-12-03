@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -23,6 +24,12 @@ import android.widget.Toast;
 
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
+import com.example.quickcashgroup5.UserManagement.JobPosting;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -33,6 +40,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Paypal extends AppCompatActivity {
 
@@ -40,13 +49,15 @@ public class Paypal extends AppCompatActivity {
 
     private static final int PAYPAL_REQUEST_CODE = 555;
     private static PayPalConfiguration config;
+    FirebaseDatabase database;
+    DatabaseReference jobs;
     TextView notice;
     Button btnPayNow;
     Button btnCancel;
-
-    //Temp hard coding get from intent
-    String amount = "50";
-    String payee = "Aks Chunara";
+    Bundle bundle;
+    String key;
+    String payee;
+    String amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,11 @@ public class Paypal extends AppCompatActivity {
         notice = findViewById(R.id.notice);
         btnPayNow = findViewById(R.id.btnPayNow);
         btnCancel = findViewById(R.id.btnCancel);
+
+        bundle = getIntent().getExtras();
+        key = bundle.getString("Key");
+        payee = bundle.getString("Name");
+        amount = bundle.getString("Payment");
 
         getSupportActionBar().hide();
 
@@ -75,8 +91,14 @@ public class Paypal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Intent
+                Intent intent = new Intent(Paypal.this, EmployerHomeActivity.class);
+                startActivity(intent);
             }
         });
+
+        //initialize the database and the two references related to banner ID and email address.
+        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
+        jobs = database.getReference();
     }
 
     private void initialize() {
@@ -94,6 +116,20 @@ public class Paypal extends AppCompatActivity {
                             JSONObject payObj = new JSONObject(paymentDetails);
                             String payID = payObj.getJSONObject("response").getString("id");
                             String state = payObj.getJSONObject("response").getString("state");
+                            if(state.equals("approved")){
+                                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        Map<String, Object> updates = new HashMap<String,Object>();
+                                        updates.put("status", "Paid");
+                                        dataSnapshot.getRef().updateChildren(updates);
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
                             String update = "Your payment has been " + state;
                             Toast.makeText(Paypal.this, update, LENGTH_LONG).show();
                             //Go back
