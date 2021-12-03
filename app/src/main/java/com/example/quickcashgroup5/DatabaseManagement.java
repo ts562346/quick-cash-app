@@ -81,34 +81,4 @@ public class DatabaseManagement {
         });
         return data[0];
     }
-
-    private boolean isAdded(Task<Void> task){
-        AtomicBoolean success = new AtomicBoolean(false);
-
-        task.addOnSuccessListener(suc -> {
-            success.set(true);
-        }).addOnFailureListener(fal -> {
-            success.set(false);
-        });
-
-        return success.get();
-    }
-
-    private boolean add(User user) {
-        DatabaseReference users = database.getReference(User.class.getSimpleName());
-        Task<Void> task = users.push().setValue(user);
-        return isAdded(task);
-    }
-
-    private boolean add(Feedback feedback) {
-        DatabaseReference feedbacks = database.getReference(Feedback.class.getSimpleName());
-        Task<Void> task = feedbacks.push().setValue(feedback);
-        return isAdded(task);
-    }
-
-    private boolean add(JobPosting job) {
-        DatabaseReference jobPostings = database.getReference(JobPosting.class.getSimpleName());
-        Task<Void> task = jobPostings.push().setValue(job);
-        return isAdded(task);
-    }
 }

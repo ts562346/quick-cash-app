@@ -103,6 +103,7 @@ public class FragmentDashboard extends Fragment{
 
 
         if(sessionManagement.getRole().equals("Employer")){
+//            jobs.child("JobPosting").addListenerForSingleValueEvent(new ValueEventListener() {
             jobs.child("JobPosting").addListenerForSingleValueEvent(new ValueEventListener() {
                @Override
                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

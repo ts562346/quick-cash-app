@@ -6,8 +6,6 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
-
 import org.junit.Test;
 
 public class ValidationUnitTest {
@@ -62,6 +60,7 @@ public class ValidationUnitTest {
         assertFalse(validation.emailValidation(invalidEmail));
     }
 
+
     @Test
     public void checkIfPasswordIsEmpty() {
         assertFalse(validation.passwordValidation(""));
@@ -77,100 +76,4 @@ public class ValidationUnitTest {
         assertFalse(validation.passwordValidation(invalidPassword));
     }
 
-    @Test
-    public void checkIfConfirmPasswordIsEmpty() {
-        assertFalse(validation.confirmPasswordValidation("", ""));
-        assertFalse(validation.confirmPasswordValidation("", validPassword));
-        assertFalse(validation.confirmPasswordValidation("", invalidPassword));
-    }
-
-    @Test
-    public void checkIfConfirmPasswordIsValid() {
-        assertTrue(validation.confirmPasswordValidation(validPassword, validPassword));
-    }
-
-    @Test
-    public void checkIfConfirmPasswordIsInvalid() {
-        assertFalse(validation.confirmPasswordValidation(validPassword, invalidPassword));
-    }
-
-    @Test
-    public void checkIfOTPIsEmpty() {
-        assertFalse(validation.otpValidation(""));
-    }
-
-    @Test
-    public void checkIfOTPIsValid() {
-        assertTrue(validation.otpValidation("1234"));
-    }
-
-    @Test
-    public void checkIfOTPIsInvalidLess() {
-        assertFalse(validation.otpValidation("1"));
-    }
-
-    @Test
-    public void checkIfOTPIsInvalidMore() {
-        assertFalse(validation.otpValidation("12345"));
-    }
-
-    @Test
-    public void checkIfJobTitleIsEmpty() {
-        assertFalse(validation.jobTitleValidation(""));
-    }
-
-    @Test
-    public void checkIfJobTitleIsNotEmpty() {
-        assertTrue(validation.jobTitleValidation("Hey there"));
-    }
-
-    @Test
-    public void checkIfWageIsEmpty() {
-        assertFalse(validation.wageValidation(""));
-    }
-
-    @Test
-    public void checkIfWageIsValidDecimal() {
-        assertTrue(validation.wageValidation("12.34"));
-    }
-
-    @Test
-    public void checkIfWageIsValidNumeric() {
-        assertTrue(validation.wageValidation("12"));
-    }
-
-    @Test
-    public void checkIfWageIsInvalidLess() {
-        assertFalse(validation.wageValidation("12."));
-    }
-
-    @Test
-    public void checkIfWageIsInvalidMore() {
-        assertFalse(validation.wageValidation("12.345"));
-    }
-
-    @Test
-    public void checkIfHoursIsEmpty() {
-        assertFalse(validation.hoursValidation(""));
-    }
-
-    @Test
-    public void checkIfHoursIsValidDecimal() {
-        assertTrue(validation.hoursValidation("12.34"));
-    }
-
-    @Test
-    public void checkIfHoursIsValidNumeric() {
-        assertTrue(validation.hoursValidation("12"));
-    }
-
-    @Test
-    public void checkIfHoursIsInvalidLess() {
-        assertFalse(validation.hoursValidation("12."));
-    }
-
-    @Test
-    public void checkIfHoursIsInvalidMore() {
-        assertFalse(validation.hoursValidation("12.345"));
-    }
 }
