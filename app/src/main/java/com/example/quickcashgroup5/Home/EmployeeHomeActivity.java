@@ -18,6 +18,7 @@ import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.UserManagement.JobSearchActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.UserManagement.ViewFeedbacksActivity;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -88,10 +89,9 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             case R.id.nav_feedback: {
-                Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, Feedback.class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
+                Intent intent = new Intent(this, ViewFeedbacksActivity.class);
+                startActivity(intent);
+                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_logout: {

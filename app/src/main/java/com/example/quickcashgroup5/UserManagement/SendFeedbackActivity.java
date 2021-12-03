@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,67 +22,62 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateJob extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SendFeedbackActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    protected DrawerLayout drawerLayout;
-    protected ActionBarDrawerToggle actionBarDrawerToggle;
-    protected NavigationView sidebar;
-    protected EditText editTextTitle;
-    protected Spinner spinnerCategory;
-    protected EditText editTextDuration;
-    protected EditText editTextLocation;
-    protected EditText editTextPayment;
+    protected EditText editTextName;
+    protected EditText editTextUserType;
+    protected EditText editTextFeedback;
+    protected RatingBar starRating;
     protected SessionManagement sessionManagement;
-
     protected Button submit;
-
     protected FirebaseDatabase database;
-    protected DatabaseReference jobPostings;
+    protected DatabaseReference userFeedbacks;
+
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView sidebar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_createjob);
+        setContentView(R.layout.activity_sendfeedback);
+
+        editTextName = findViewById(R.id.editTextName);
+        editTextUserType = findViewById(R.id.editTextUserType);
+        editTextFeedback = findViewById(R.id.editTextFeedback);
+        starRating = findViewById(R.id.rating);
+        submit = findViewById(R.id.submit);
+
         sidebar = findViewById(R.id.sidebar);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        editTextTitle = findViewById(R.id.editTextJobTitle);
-        editTextLocation = findViewById(R.id.editTextLocation);
-        editTextPayment = findViewById(R.id.editTextPayment);
-        editTextDuration = findViewById(R.id.editTextDuration);
-        spinnerCategory = findViewById(R.id.spinnerCategory);
-        submit = findViewById(R.id.submit);
-
         sidebar.setNavigationItemSelectedListener(this);
+
+        editTextName.setText(sessionManagement.getName());
+        editTextUserType.setText(sessionManagement.getRole());
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                insertJob();
+                sendFeedback();
             }
         });
 
         initializeDatabase();
     }
 
-    private boolean createJob(JobPosting job){
-        String title = editTextTitle.getText().toString().trim();
-        String location = editTextLocation.getText().toString().trim();
-        String payment = editTextPayment.getText().toString().trim();
-        String duration = editTextDuration.getText().toString().trim();
-        String category = spinnerCategory.getSelectedItem().toString();
-        String creatorEmail = sessionManagement.getEmail();
+    private boolean createFeedback(Feedback feedback){
+        String name = editTextName.getText().toString().trim();
+        String userType = editTextUserType.getText().toString().trim();
+        String userFeedback = editTextFeedback.getText().toString().trim();
+        int rating = (int) starRating.getRating();
 
-        job.setTitle(title);
-        job.setLocation(location);
-        job.setPayment(payment);
-        job.setDuration(duration);
-        job.setCategory(category);
-        job.setCreatorEmail(creatorEmail);
-        job.setSelectedApplicantEmail("");
+        feedback.setName(name);
+        feedback.setUserType(userType);
+        feedback.setUserFeedback(userFeedback);
+        feedback.setRating(rating);
 
         return true;
     }
@@ -90,23 +85,23 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
     /**
      * Adds JobPosting object to the Firebase Database
      *
-     * @param job
+     * @param feedback
      * @return
      */
-    protected Task<Void> add(JobPosting job) {
-        return jobPostings.push().setValue(job);
+    protected Task<Void> add(Feedback feedback) {
+        return userFeedbacks.push().setValue(feedback);
     }
 
-    protected void insertJob(){
-        JobPosting job = new JobPosting();
+    protected void sendFeedback(){
+        Feedback feedback = new Feedback();
         try {
-            if (createJob(job)) {
-                this.add(job).addOnSuccessListener(suc -> {
-                    Toast.makeText(this, "Successful Job Creation", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, LogInActivity.class);
+            if (createFeedback(feedback)) {
+                this.add(feedback).addOnSuccessListener(suc -> {
+                    Toast.makeText(this, "Successfully sent the feedback", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                     startActivity(intent);
                 }).addOnFailureListener(fal -> {
-                    Toast.makeText(this, "Unsuccessful Job Creation", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Unsuccessfully sent the feedback", Toast.LENGTH_SHORT).show();
                 });
             }
         } catch (Exception e) {
@@ -119,7 +114,7 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
      */
     protected void initializeDatabase() {
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobPostings = database.getReference(JobPosting.class.getSimpleName());
+        userFeedbacks = database.getReference("Feedback");
     }
 
     // To open and close the navigation drawer when the icon is clicked
@@ -128,6 +123,7 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -148,9 +144,10 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
                 break;
             }
             case R.id.nav_preferences: {
-                Intent intent = new Intent(this, JobPreferenceActivity.class);
-                startActivity(intent);
-                ((Activity) this).finish();
+                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(this, PreferenceActivity.class);
+//                startActivity(intent);
+//                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_feedback: {
@@ -167,5 +164,4 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
 
         return true;
     }
-
 }
