@@ -121,9 +121,9 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
                                     new Applicant(u.getEmail(), manager);
                                 }
                             }
-                            String subject = "A new" + job.getCategory() + " job has been created";
-                            String message = "A new" + job.getCategory() + " job has been created. \nThe wage is CAD"
-                                    + job.getPayment() + "per hour and the number of hours you will be working is "
+                            String subject = "A new " + job.getCategory() + " job has been created";
+                            String message = "A new " + job.getCategory() + " job has been created. \nThe wage is CAD "
+                                    + job.getPayment() + " per hour and the number of hours you will be working is "
                                     + job.getDuration() + ". \nThe job will be taking place at " + job.getLocation() + ".";
                             manager.setNotification(subject, message);
                         }

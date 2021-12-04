@@ -86,8 +86,8 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
 
                     String subject = "Congrats you have been selected for a " + jobPosting.getCategory() + " job.";
                     String message = "Congrats you have been selected for a " + jobPosting.getCategory() + " job, "
-                            + jobPosting.getTitle() + ". \nThe wage is CAD" + jobPosting.getPayment()
-                            + "per hour and the number of hours you will be working is "
+                            + jobPosting.getTitle() + ". \nThe wage is CAD " + jobPosting.getPayment()
+                            + " per hour and the number of hours you will be working is "
                             + jobPosting.getDuration() + ". \nThe job will take place at " + jobPosting.getLocation() + ".";
                     new SendNotification(email.get(getAdapterPosition()), subject, message).execute();
 
