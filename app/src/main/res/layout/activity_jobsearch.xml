@@ -73,6 +73,12 @@
                     android:layout_height="wrap_content"
                     android:text="Search" />
 
+                <Button
+                    android:id="@+id/searchByPreferences"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Search by Preferences" />
+
                 <TableLayout
                     :tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"

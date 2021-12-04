@@ -177,11 +177,9 @@ public class SessionManagement {
     /**
      * Logs out the user from the app
      */
-    public void logout() {
+    public void clearSession() {
         this.editor.clear();
         this.editor.apply();
-        Intent intent = new Intent(context, LogInActivity.class);
-        context.startActivity(intent);
-        ((Activity) context).finish();
+
     }
 }

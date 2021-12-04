@@ -157,7 +157,11 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             case R.id.nav_logout: {
-                sessionManagement.logout();
+                sessionManagement.clearSession();
+                Intent intent = new Intent(this, LogInActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                this.finish();
                 break;
             }
         }

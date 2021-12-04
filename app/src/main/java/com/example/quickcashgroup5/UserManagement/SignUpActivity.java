@@ -1,6 +1,7 @@
 package com.example.quickcashgroup5.UserManagement;
 
 import android.app.Activity;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -268,8 +269,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             if (registerUser(user)) {
                 this.add(user).addOnSuccessListener(suc -> {
                     Toast.makeText(this, "Successful SignUp", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, LogInActivity.class);
-                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                    TaskStackBuilder.create(this).addNextIntentWithParentStack(intent).startActivities();
                 }).addOnFailureListener(fal -> {
                     Toast.makeText(this, "Unsuccessful SignUp", Toast.LENGTH_SHORT).show();
                 });

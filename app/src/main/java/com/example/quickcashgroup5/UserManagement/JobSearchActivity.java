@@ -32,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.quickcashgroup5.FragmentJobSearch;
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
@@ -59,6 +60,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
@@ -80,13 +82,17 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     private HashMap<String, JobPosting> allJobs;
     private HashMap<String, JobPosting> filteredJobs;
     FirebaseDatabase database;
-    DatabaseReference jobs;
+    DatabaseReference jobs, users;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
-    Button search;
+    Button search, searchByPreferences;
     ScrollView scrollView;
+    private String preferredLocation;
+    private String preferredCategory;
+    private String preferredPayment;
+    private String preferredHours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,14 +114,37 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         jobs = database.getReference();
+        users = database.getReference();
         setJobLocations();
+        setJobPreferences();
+
+        searchByPreferences = findViewById(R.id.searchByPreferences);
+        searchByPreferences.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!preferredCategory.equals("")){
+                    searchByPreferences();
+                    FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
+                    FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.recycleViewContainer, f, "Job search");
+                    ft.commit();
+                }else{
+                    Toast toast=Toast. makeText(getApplicationContext(),"Your preferences have not been set",Toast. LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        });
+
 
         search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 search();
-                getSupportFragmentManager().beginTransaction().replace(R.id.recycleViewContainer, new FragmentJobSearch(sessionManagement, filteredJobs)).commit();
+                FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
+                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.recycleViewContainer, f, "Job search");
+                ft.commit();
             }
         });
 
@@ -125,6 +154,29 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
+
+    private void setJobPreferences(){
+        users.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
+                    User u = adSnapshot.getValue(User.class);
+                    if(sessionManagement.getEmail().equals(u.getEmail())){
+                        preferredLocation=u.getPreferredLocation();
+                        preferredCategory=u.getPreferredCategory();
+                        preferredPayment=u.getPreferredPayment();
+                        preferredHours=u.getPreferredHours();
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: Something went wrong! Error:" + databaseError.getMessage());
+            }
+        });
+    }
+
 
     private void getLocationPermission() {
         Log.d(TAG, "getLocationPermission : starts");
@@ -240,8 +292,35 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                 filteredJobs.put(key, job);
             }
         }
+        if(filteredJobs.size()==0){
+            System.out.println("LOL");
+           Toast.makeText(getApplicationContext(),"No jobs available right now",Toast. LENGTH_LONG).show();
+        }
         display();
     }
+
+
+    private void searchByPreferences(){
+        filteredJobs.clear();
+        for (String key: allJobs.keySet()) {
+            JobPosting job = allJobs.get(key);
+            System.out.println(job.getLocation());
+            System.out.println(getCity(preferredLocation));
+            boolean isMatchedLocation=getCity(job.getLocation()).equals(getCity(preferredLocation));
+            boolean isMatchedCategory= job.getCategory().equals(preferredCategory);
+            boolean isMatchedHours= Float.parseFloat(job.getDuration()) >= Float.parseFloat((preferredHours));
+            boolean isMatchedPayment= Float.parseFloat(job.getPayment()) >= Float.parseFloat((preferredPayment));
+            if(isMatchedPayment && isMatchedHours && isMatchedCategory && isMatchedLocation) {
+                filteredJobs.put(key, job);
+            }
+        }
+        if(filteredJobs.size()==0){
+            Toast.makeText(getApplicationContext(),"No preferred jobs available right now",Toast. LENGTH_LONG).show();
+        }
+        display();
+    }
+
+
 
     public void getPreferredLocation(){
 //        Location userLocation = sessionManagement.getLocation();
@@ -320,6 +399,25 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
 
     // Check Services are working fine or not
 
+    private String getCity(String location){
+        String address=null;
+        Log.d(TAG, "GeoLocate: starts");
+        Geocoder geocoder = new Geocoder((JobSearchActivity.this));
+        List<Address> addressLists = new ArrayList<>();
+        try {
+            addressLists = geocoder.getFromLocationName(location, 1);
+        }catch (IOException ex){
+            Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
+        }
+        if(addressLists.size() > 0){
+            address = addressLists.get(0).getLocality();
+        }
+        Log.d(TAG, "GeoLocate: ends");
+
+        return address;
+    }
+
+
     public boolean isServicesOK() {
         Log.d(TAG, "isServicesOK: Google Services is working fine");
         int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(JobSearchActivity.this);
@@ -377,7 +475,11 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                 break;
             }
             case R.id.nav_logout: {
-                sessionManagement.logout();
+                sessionManagement.clearSession();
+                Intent intent = new Intent(this, LogInActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                this.finish();
                 break;
             }
         }
