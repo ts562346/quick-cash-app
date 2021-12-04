@@ -28,6 +28,7 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
     DatabaseReference jobs;
     Button submit;
     SessionManagement user;
+    boolean isSelected = false;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,33 +39,12 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         String key = bundle.getString("Key");
         initializeDatabase();
         jobPosting=new JobPosting();
-
-        submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        JobPosting job = dataSnapshot.getValue(JobPosting.class);
-                        job.setStatus("Completed");
-                        dataSnapshot.getRef().child("status").setValue(job.getStatus());
-
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                Intent intent =  new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        System.out.println("lol2"+isSelected);
 
         jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println("lol3"+isSelected);
                 jobPosting=dataSnapshot.getValue(JobPosting.class);
                 System.out.println(jobPosting.getTitle());
 
@@ -91,11 +71,17 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
                 TextView status = findViewById(R.id.statusUpdate);
                 if(jobPosting.getSelectedApplicantEmail()==null || !jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
                     status.setText("Waiting");
+                    isSelected=true;
+                    System.out.println("Lol "+isSelected);
                 }else if(jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
                     status.setText("Ongoing");
+                    isSelected=true;
                 }else if(jobPosting.getStatus().equals("Completed")){
                     status.setText("Completed");
+                    isSelected=true;
+
                 }else{
+                    isSelected=true;
                     status.setText("Paid");
                 }
 
@@ -106,6 +92,46 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
                 // ...
             }
         });
+
+        submit = findViewById(R.id.submit);
+
+        System.out.println("lol1"+isSelected);
+
+        if(isSelected) {
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            JobPosting job = dataSnapshot.getValue(JobPosting.class);
+                            job.setStatus("Completed");
+                            dataSnapshot.getRef().child("status").setValue(job.getStatus());
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else{
+            submit.setText("Back");
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+
+
 
 
     }
