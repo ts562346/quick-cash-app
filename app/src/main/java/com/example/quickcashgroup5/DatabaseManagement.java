@@ -16,9 +16,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DatabaseManagement {
     FirebaseDatabase database;
+    DataSnapshot data;
 
     protected DatabaseManagement() {
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
+        database.getReference().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                data = dataSnapshot;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private boolean isAdded(Task<Void> task){

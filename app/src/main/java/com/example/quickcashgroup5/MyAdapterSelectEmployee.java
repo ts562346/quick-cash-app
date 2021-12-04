@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
+import com.example.quickcashgroup5.NotificationManagement.SendNotification;
 import com.example.quickcashgroup5.UserManagement.JobPosting;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -82,6 +83,14 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
                     dataSnapshot.getRef().child("selectedApplicantEmail").setValue(jobPosting.getSelectedApplicantEmail());
                     jobPosting.setStatus("Ongoing");
                     dataSnapshot.getRef().child("status").setValue(jobPosting.getStatus());
+
+                    String subject = "Congrats you have been selected for a " + jobPosting.getCategory() + " job.";
+                    String message = "Congrats you have been selected for a " + jobPosting.getCategory() + " job, "
+                            + jobPosting.getTitle() + ". \nThe wage is CAD" + jobPosting.getPayment()
+                            + "per hour and the number of hours you will be working is "
+                            + jobPosting.getDuration() + ". \nThe job will take place at " + jobPosting.getLocation() + ".";
+                    new SendNotification(email.get(getAdapterPosition()), subject, message).execute();
+
                     Intent intent =  new Intent(context, EmployerHomeActivity.class);
                     context.startActivity(intent);
                 }

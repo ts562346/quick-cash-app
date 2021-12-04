@@ -16,11 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
+import com.example.quickcashgroup5.NotificationManagement.Applicant;
+import com.example.quickcashgroup5.NotificationManagement.EmailNotificationManager;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CreateJob extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,6 +43,8 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
 
     protected FirebaseDatabase database;
     protected DatabaseReference jobPostings;
+
+    EmailNotificationManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,8 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
                 insertJob();
             }
         });
+
+        manager = new EmailNotificationManager();
 
         initializeDatabase();
     }
@@ -103,6 +112,26 @@ public class CreateJob extends AppCompatActivity implements NavigationView.OnNav
         try {
             if (createJob(job)) {
                 this.add(job).addOnSuccessListener(suc -> {
+                    database.getReference("User").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot data: snapshot.getChildren()) {
+                                User u = data.getValue(User.class);
+                                if(u.getIsEmployee().equals("yes")) {
+                                    new Applicant(u.getEmail(), manager);
+                                }
+                            }
+                            String subject = "A new" + job.getCategory() + " job has been created";
+                            String message = "A new" + job.getCategory() + " job has been created. \nThe wage is CAD"
+                                    + job.getPayment() + "per hour and the number of hours you will be working is "
+                                    + job.getDuration() + ". \nThe job will be taking place at " + job.getLocation() + ".";
+                            manager.setNotification(subject, message);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                     Toast.makeText(this, "Successful Job Creation", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, LogInActivity.class);
                     startActivity(intent);

@@ -9,7 +9,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String isEmployee; //if its y then yes(employee), otherwise no(employer)
+    private String isEmployee; //if its yes then yes(employee), otherwise no(employer)
     private String preferredLocation;
     private String preferredCategory;
     private String preferredPayment;

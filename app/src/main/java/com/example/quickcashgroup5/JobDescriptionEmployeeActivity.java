@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.NotificationManagement.SendNotification;
 import com.example.quickcashgroup5.UserManagement.JobPosting;
 import com.example.quickcashgroup5.UserManagement.JobSearchActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
@@ -51,11 +52,15 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
                                 if(!job.getAppliedApplicants().contains(user.getEmail())) {
                                     job.addAppliedApplicants(user.getEmail());
                                     dataSnapshot.getRef().child("appliedApplicants").setValue(job.getAppliedApplicants());
+                                    String subject = user.getName() + " has applied to your " + job.getCategory() + " job.";
+                                    String message = user.getName() + " has applied to your " + job.getCategory() + " job, "
+                                            + job.getTitle() + ".";
+                                    new SendNotification(job.getCreatorEmail(), subject, message).execute();
                                     Toast toast=Toast. makeText(getApplicationContext(),"Applied Successfully",Toast. LENGTH_LONG);
-                                    toast. show();
+                                    toast.show();
                                 }else{
                                     Toast toast=Toast. makeText(getApplicationContext(),"Already applied to this job",Toast. LENGTH_LONG);
-                                    toast. show();
+                                    toast.show();
                                 }
                                 Intent intent = new Intent(JobDescriptionEmployeeActivity.this, JobSearchActivity.class);
                                 startActivity(intent);
