@@ -147,6 +147,12 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
                 this.finish();
                 break;
             }
+            case R.id.nav_searchJob: {
+                Intent intent = new Intent(this, JobSearchActivity.class);
+                startActivity(intent);
+                this.finish();
+                break;
+            }
             case R.id.nav_createJob: {
                 Intent intent = new Intent(this, CreateJob.class);
                 startActivity(intent);

@@ -66,8 +66,6 @@ Wapp/src/main/java/com/example/quickcashgroup5/UserManagement/ViewFeedbacksActiv
 Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
 o
 ?app/src/test/java/com/example/quickcashgroup5/UserUnitTest.java,7\5\75cea6336c3ecc53971d1e8f9a7f8e2b1b29b0dd
-‡
-Wapp/src/main/java/com/example/quickcashgroup5/UserManagement/JobPreferenceActivity.java,b\e\be478d3318b7a435ab65e1dafe3e6d507e442143
 †
 Vapp/src/main/java/com/example/quickcashgroup5/UserManagement/SendFeedbackActivity.java,9\c\9c16d44b9ddbbd372870cf49211a8a48f4d8fd16
 z
