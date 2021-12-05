@@ -180,6 +180,5 @@ public class SessionManagement {
     public void clearSession() {
         this.editor.clear();
         this.editor.apply();
-
     }
 }

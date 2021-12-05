@@ -43,7 +43,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("LoginActivitySessionManagment");
         sessionManagement = new SessionManagement(this);
-        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
         System.out.println("LoginActivity");
         System.out.println(savedInstanceState);

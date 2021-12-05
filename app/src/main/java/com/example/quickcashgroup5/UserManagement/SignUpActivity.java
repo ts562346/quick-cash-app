@@ -44,7 +44,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
-        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_signup);
@@ -268,6 +267,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         try {
             if (registerUser(user)) {
                 this.add(user).addOnSuccessListener(suc -> {
+                    sessionManagement.clearSession();
                     Toast.makeText(this, "Successful SignUp", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                     TaskStackBuilder.create(this).addNextIntentWithParentStack(intent).startActivities();

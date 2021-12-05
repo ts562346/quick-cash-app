@@ -9,14 +9,6 @@ eapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoRese
 mapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoPasswordResetCodeActivityTest.java,8\6\86d904081fd99a903253f0eeb1b268cc61bd3f3b
 š
 japp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoRecoverAccountActivityTest.java,9\8\98a524970a3d05a3392f943d51fbb9d7e653094a
-x
-Happ/src/test/java/com/example/quickcashgroup5/LogInActivityUnitTest.java,d\9\d982177f337c23de4b3d169b0440ae2186335a1d
-x
-Happ/src/test/java/com/example/quickcashgroup5/SessionManagementTest.java,e\f\effa15bfa56dd791af61bf97ca51564d7f16973d
-y
-Iapp/src/test/java/com/example/quickcashgroup5/SignUpActivityUnitTest.java,4\1\41024f7d21b0b3d3b09c7384cb831069d69aade1
-|
-Lapp/src/test/java/com/example/quickcashgroup5/JobPreferenceActivityTest.java,2\a\2a7c2fbca8dbb5d79850d2e4ccb4c1f271cf9b47
 
 Oapp/src/main/java/com/example/quickcashgroup5/DesignElements/MyRadioButton.java,a\3\a3b0430afcb4e2b215609d231bb00b3393cc4fd3
 t
@@ -50,8 +42,6 @@ u
 Eapp/src/main/java/com/example/quickcashgroup5/DataModelDashboard.java,2\4\245456f5f7b378e7c0410f27c2f4d19b61ff8373
 z
 Japp/src/main/java/com/example/quickcashgroup5/UserManagement/AESCrypt.java,7\5\753595917b574e75727126503c1e08e6fec1d2af
-ƒ
-Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/SessionManagement.java,b\7\b70a70eb541ecf3cbc0168bf165550071180adb8
 t
 Dapp/src/main/java/com/example/quickcashgroup5/FragmentDashboard.java,e\b\eb4417d7563769cee8538ffa8f41c2572f35512f
 ‘

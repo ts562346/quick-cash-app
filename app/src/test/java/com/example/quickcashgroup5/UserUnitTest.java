@@ -12,7 +12,7 @@ public class UserUnitTest {
     private final String name = "Unit";
     private final String email = "unit@test.com";
     private final String password = "Test@1234";
-    private final String isEmployee = "y";
+    private final String isEmployee = "yes";
     private final String preferredLocation = "Halifax, Canada";
     private final String preferredCategory = "Computer Repair";
     private final String preferredPayment = "20";

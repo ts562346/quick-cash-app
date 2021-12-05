@@ -1,4 +1,5 @@
 package com.example.quickcashgroup5;
+import com.example.quickcashgroup5.DataValidation.Validation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
