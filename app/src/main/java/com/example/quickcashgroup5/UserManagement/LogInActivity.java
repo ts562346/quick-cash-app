@@ -26,7 +26,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     Button loginButton, forgotPassword, notRegisteredUserLabel;
     EditText emailEditText, passwordEditText;
     Database database;
-    Validation validator;
     SessionManagement sessionManagement;
 
     /**
@@ -50,7 +49,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         loginButton = findViewById(R.id.loginButton);
 
         database = new Database();
-        validator = new Validation();
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -69,8 +67,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void authenticateUser(String email, String password) {
-        AESCrypt aes = new AESCrypt();
-
         User u = database.findUser(email);
         if (u == null) {
             Toast.makeText(getApplicationContext(), "Unsuccessful Login", Toast.LENGTH_SHORT).show();
@@ -104,10 +100,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     public void onClick(View view) {
-        String email = validator.sanitize(emailEditText.getText().toString());
-        String password = validator.sanitize(passwordEditText.getText().toString());
-        if (validator.emailValidation(email)) {
-            if (validator.passwordValidation(password)) {
+        String email = Validation.sanitize(emailEditText.getText().toString());
+        String password = Validation.sanitize(passwordEditText.getText().toString());
+        if (Validation.emailValidation(email)) {
+            if (Validation.passwordValidation(password)) {
                 authenticateUser(email, password);
             } else {
                 Toast.makeText(getApplicationContext(), "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();

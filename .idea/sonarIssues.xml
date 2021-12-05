@@ -78,6 +78,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/DatabaseManagement/IDatabase.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/FragmentJobSearch.java">
           <value>
             <set />

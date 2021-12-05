@@ -27,7 +27,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Button registerButton, registeredUserLabel;
     EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     Database database;
-    Validation validator;
     Spinner dropDown;
     SessionManagement sessionManagement;
     boolean userExists;
@@ -54,7 +53,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         userExists = false;
 
         database = new Database();
-        validator = new Validation();
 
         registeredUserLabel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -73,10 +71,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @throws Exception
      */
     private Task<Void> registerUser(User user) throws Exception {
-        String username = validator.sanitize(nameEditText.getText().toString());
-        String email = validator.sanitize(emailEditText.getText().toString());
-        String password = validator.sanitize(passwordEditText.getText().toString());
-        String confirmPassword = validator.sanitize(confirmPasswordEditText.getText().toString());
+        String username = Validation.sanitize(nameEditText.getText().toString());
+        String email = Validation.sanitize(emailEditText.getText().toString());
+        String password = Validation.sanitize(passwordEditText.getText().toString());
+        String confirmPassword = Validation.sanitize(confirmPasswordEditText.getText().toString());
 
         AESCrypt aes = new AESCrypt();
 
@@ -87,7 +85,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         //Validate username
-        if (validator.fullNameValidation(username)) {
+        if (Validation.fullNameValidation(username)) {
             user.setName(username);
         } else {
             Toast.makeText(getApplicationContext(), "Username can only contain letters and whitespace", Toast.LENGTH_SHORT).show();
@@ -95,7 +93,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         //Validate email
-        if (validator.emailValidation(email)) {
+        if (Validation.emailValidation(email)) {
             user.setEmail(email);
         } else {
             Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
@@ -103,9 +101,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         //Validate confirmPassword
-        if (validator.confirmPasswordValidation(password, confirmPassword)) {
+        if (Validation.confirmPasswordValidation(password, confirmPassword)) {
             //Validate password
-            if (validator.passwordValidation(password)) {
+            if (Validation.passwordValidation(password)) {
                 user.setPassword(AESCrypt.encrypt(password));
             } else {
                 Toast.makeText(getApplicationContext(), "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();
