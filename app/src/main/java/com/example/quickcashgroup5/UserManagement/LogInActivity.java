@@ -32,7 +32,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     EditText emailEditText, passwordEditText;
     FirebaseDatabase database;
     DatabaseReference users;
-    SessionManagement sessionManagement;
+    ISessionManagement sessionManagement;
 
     /**
      * Method that runs when activity created
@@ -41,36 +41,39 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("LoginActivitySessionManagment");
-        sessionManagement = new SessionManagement(this);
+        IUserManagementAbstractFactory userManagementAbstractFactory =
+                UserManagementInjector.getInstance().getUserAbstractFactory();
+        sessionManagement = userManagementAbstractFactory.
+                getSessionManagementInstance(this);
+        sessionManagement.accessControl();
         super.onCreate(savedInstanceState);
-        System.out.println("LoginActivity");
-        System.out.println(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+        initializeActivity(userManagementAbstractFactory);
+
+    }
+
+    private void initializeActivity(IUserManagementAbstractFactory
+                                            userManagementAbstractFactory) {
+        getSupportActionBar().hide();
         emailEditText = findViewById(R.id.editTextTextEmailAddress);
         passwordEditText = findViewById(R.id.editTextTextPassword);
         notRegisteredUserLabel = findViewById(R.id.notRegisteredUserLabel);
         forgotPassword = findViewById(R.id.forgotPass);
         loginButton = findViewById(R.id.loginButton);
-
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, RecoveryAccountActivity.class));
-            }
+        forgotPassword.setOnClickListener(v -> startActivity(userManagementAbstractFactory.
+                getIntentInstance(LogInActivity.this,
+                        RecoveryAccountActivity.class)));
+        notRegisteredUserLabel.setOnClickListener(v -> {
+            startActivity(userManagementAbstractFactory.
+                    getIntentInstance(LogInActivity.this,
+                            SignUpActivity.class));
+            LogInActivity.this.finish();
         });
-
-        notRegisteredUserLabel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, SignUpActivity.class));
-                LogInActivity.this.finish();
-            }
-        });
-
         loginButton.setOnClickListener(this);
-
         initializeDatabase();
     }
+
+
 
     /**
      * Sanitizes string input
@@ -126,7 +129,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                     User u = adSnapshot.getValue(User.class);
                     if (u.getEmail().equals(email)) {
                         try {
-                            if (u.getPassword().equals(AESCrypt.encrypt(password))) {
+                            if (u.getPassword().equals(aes.encrypt(password))) {
                                 if (u.getIsEmployee().equals("yes")) {
                                     sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
                                 } else {

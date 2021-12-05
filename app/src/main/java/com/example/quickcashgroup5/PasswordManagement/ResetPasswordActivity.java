@@ -80,7 +80,7 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
                     if (u.getEmail().equals(email)) {
                         try {
                             Map<String, Object> updates = new HashMap<String,Object>();
-                            updates.put("password", AESCrypt.encrypt(newPassword));
+                            updates.put("password", aes.encrypt(newPassword));
                             adSnapshot.getRef().updateChildren(updates);
                         } catch (Exception e) {
                             e.printStackTrace();

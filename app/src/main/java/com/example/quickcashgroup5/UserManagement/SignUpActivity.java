@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcashgroup5.PasswordManagement.AESCrypt;
+import com.example.quickcashgroup5.PasswordManagement.IAESCrypt;
+import com.example.quickcashgroup5.PasswordManagement.IPasswordManagementAbstractFactory;
+import com.example.quickcashgroup5.PasswordManagement.PasswordManagementInjector;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +36,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://quick-cash-group-project-default-rtdb.firebaseio.com/");
     DatabaseReference users = database.getReference(User.class.getSimpleName());
     Spinner dropDown;
-    SessionManagement sessionManagement;
+    ISessionManagement sessionManagement;
+
     boolean userExists;
 
     /**
@@ -143,20 +147,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    /**
-     * Registers the user based on the inputs
-     *
-     * @param user
-     * @return
-     * @throws Exception
-     */
-    private boolean registerUser(User user) throws Exception {
+    private boolean registerUser(IUser user) throws Exception {
+        IUserManagementAbstractFactory userManagementAbstractFactory = UserManagementInjector.
+                getInstance().getUserAbstractFactory();
+        IPasswordManagementAbstractFactory passwordManagementAbstractFactory =
+                PasswordManagementInjector.getInstance().getPasswordManagementAbstractFactory();
         String username = sanitize(nameEditText.getText().toString());
         String email = sanitize(emailEditText.getText().toString());
         String password = sanitize(passwordEditText.getText().toString());
         String confirmPassword = sanitize(confirmPasswordEditText.getText().toString());
+        IAESCrypt aes = passwordManagementAbstractFactory.getAesCryptInstance();
 
-        AESCrypt aes = new AESCrypt();
+
+
 
         //Check if email is already used
         if (isPreviousUser(email)) {
@@ -184,7 +187,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if (confirmPasswordValidation(password, confirmPassword)) {
             //Validate password
             if (passwordValidation(password)) {
-                user.setPassword(AESCrypt.encrypt(password));
+                user.setPassword(aes.encrypt(password));
             } else {
                 Toast.makeText(getApplicationContext(), "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();
                 return false;

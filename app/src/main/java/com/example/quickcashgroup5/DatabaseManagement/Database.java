@@ -12,13 +12,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
-public class Database {
+public class Database implements IDatabase {
     FirebaseDatabase database;
     DataSnapshot data;
 
-    protected Database() {
+    public Database() {
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         database.getReference().addValueEventListener(new ValueEventListener() {
             @Override
@@ -28,69 +26,45 @@ public class Database {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                System.out.println("Database Error: " + error);
             }
         });
     }
 
-    private boolean isAdded(Task<Void> task){
-        AtomicBoolean success = new AtomicBoolean(false);
-
-        task.addOnSuccessListener(suc -> {
-            success.set(true);
-        }).addOnFailureListener(fal -> {
-            success.set(false);
-        });
-
-        return success.get();
-    }
-
-    private boolean add(User user) {
+    @Override
+    public Task<Void> addUser(User user) {
         DatabaseReference users = database.getReference(User.class.getSimpleName());
         Task<Void> task = users.push().setValue(user);
-        return isAdded(task);
+        return task;
     }
 
-    private boolean add(Feedback feedback) {
+    @Override
+    public Task<Void> addFeedback(Feedback feedback) {
         DatabaseReference feedbacks = database.getReference(Feedback.class.getSimpleName());
         Task<Void> task = feedbacks.push().setValue(feedback);
-        return isAdded(task);
+        return task;
     }
 
-    private boolean add(JobPosting job) {
+    @Override
+    public Task<Void> addJobPosting(JobPosting job) {
         DatabaseReference jobPostings = database.getReference(JobPosting.class.getSimpleName());
         Task<Void> task = jobPostings.push().setValue(job);
-        return isAdded(task);
+        return task;
     }
 
+    @Override
     public User findUser(String email) {
         User user = null;
 
-        DataSnapshot dataSnapshot = getDataSnapshot(User.class.getSimpleName());
+        DataSnapshot dataSnapshot = data.child(User.class.getSimpleName());
         for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
             User u = adSnapshot.getValue(User.class);
             if(u.getEmail().equals(email)){
                 user = u;
+                break;
             }
         }
 
         return user;
-    }
-
-    private DataSnapshot getDataSnapshot(String reference){
-        DatabaseReference ref = database.getReference(reference);
-        final DataSnapshot[] data = {null};
-        ref.child("Feedback").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                data[0] = dataSnapshot;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return data[0];
     }
 }

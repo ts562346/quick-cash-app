@@ -18,7 +18,7 @@ import com.example.quickcashgroup5.UserManagement.LogInActivity;
  */
 
 //Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
-public class SessionManagement {
+public class SessionManagement implements  ISessionManagement{
     private static final String preferencesName = "Session";
     private final SharedPreferences sharedPreferences;
     private final Context context;
