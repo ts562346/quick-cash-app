@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Map;
+
 public class Database implements IDatabase {
     FirebaseDatabase database;
     DataSnapshot data;
@@ -49,6 +51,12 @@ public class Database implements IDatabase {
         return task;
     }
 
+    public Task<Void> updatePreferences(Map<String, Object> updates) {
+        DatabaseReference users = getUserDataSnapshot((String) updates.get("email")).getRef();
+        Task<Void> task = users.updateChildren(updates);
+        return task;
+    }
+
     public User findUser(String email) {
         User user = null;
 
@@ -57,6 +65,21 @@ public class Database implements IDatabase {
             User u = adSnapshot.getValue(User.class);
             if(u.getEmail().equals(email)){
                 user = u;
+                break;
+            }
+        }
+
+        return user;
+    }
+
+    public DataSnapshot getUserDataSnapshot(String email) {
+        DataSnapshot user = null;
+
+        DataSnapshot dataSnapshot = data.child(User.class.getSimpleName());
+        for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
+            User u = adSnapshot.getValue(User.class);
+            if(u.getEmail().equals(email)){
+                user = adSnapshot;
                 break;
             }
         }

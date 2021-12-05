@@ -108,9 +108,8 @@ public class Validation {
                 addressLists = geocoder.getFromLocationName("location", 1);
             }catch (IOException ex){
                 Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
-                return false;
             }
-            return addressLists.size() > 0;
+            return true;
         } else {
             return false;
         }

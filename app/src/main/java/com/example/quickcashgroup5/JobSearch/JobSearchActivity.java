@@ -315,18 +315,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         display();
     }
 
-
-
-    public void getPreferredLocation(){
-//        Location userLocation = sessionManagement.getLocation();
-        //Temp hard coding
-        Location userLocation = new Location("Preferred Location");
-        userLocation.setLatitude(44.64065436548407);
-        userLocation.setLongitude(-63.5783925261504);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(userLocation.getLatitude(), userLocation.getLongitude()), DEFAULT_ZOOM));
-    }
-
     public void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: starts");
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
