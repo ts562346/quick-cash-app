@@ -29,6 +29,7 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
     Button submit;
     SessionManagement user;
     boolean isSelected = false;
+    String key;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobstatusemployee);
         Bundle bundle = getIntent().getExtras();
-        String key = bundle.getString("Key");
+        key = bundle.getString("Key");
         initializeDatabase();
         jobPosting=new JobPosting();
         System.out.println("lol2"+isSelected);
@@ -69,21 +70,25 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
 
 
                 TextView status = findViewById(R.id.statusUpdate);
-                if(jobPosting.getSelectedApplicantEmail()==null || !jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
+                if(jobPosting.getSelectedApplicantEmail()==null) {
                     status.setText("Waiting");
-                    isSelected=true;
+                    isSelected=false;
                     System.out.println("Lol "+isSelected);
                 }else if(jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
                     status.setText("Ongoing");
                     isSelected=true;
+                }else if(!jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
+                    status.setText("Rejected");
+                    isSelected=true;
                 }else if(jobPosting.getStatus().equals("Completed")){
                     status.setText("Completed");
-                    isSelected=true;
+                    isSelected=false;
 
                 }else{
-                    isSelected=true;
+                    isSelected=false;
                     status.setText("Paid");
                 }
+                isSelected(isSelected);
 
             }
 
@@ -96,8 +101,19 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);
 
         System.out.println("lol1"+isSelected);
+    }
 
-        if(isSelected) {
+
+    protected void initializeDatabase() {
+        //initialize the database and the two references related to banner ID and email address.
+        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
+        jobs = database.getReference();
+    }
+
+
+
+    private void isSelected( boolean isSelected) {
+        if (isSelected) {
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -119,7 +135,7 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-        }else{
+        } else {
             submit.setText("Back");
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,14 +146,5 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
             });
         }
 
-
-
-
-
-    }
-    protected void initializeDatabase() {
-        //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobs = database.getReference();
     }
 }

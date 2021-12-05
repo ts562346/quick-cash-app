@@ -69,7 +69,18 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
 
         public void showPopupMenu (View view){
             PopupMenu popupMenu = new PopupMenu(view.getContext(),view);
+            TextView status = itemView.findViewById(R.id.locationLabel);
+            String statusFetch = status.getText().toString();
             popupMenu.inflate((R.menu.mymenu_employerdashboard));
+
+            if (statusFetch.equals("New")) {
+                popupMenu.getMenu().removeItem(R.id.pay);
+            } else if (statusFetch.equals("Pay") || statusFetch.equals("Ongoing")) {
+                popupMenu.getMenu().removeItem(R.id.select);
+            } else {
+                popupMenu.getMenu().removeItem(R.id.pay);
+                popupMenu.getMenu().removeItem(R.id.select);
+            }
             popupMenu.setOnMenuItemClickListener(this);
             popupMenu.show();
         }

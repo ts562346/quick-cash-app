@@ -33,24 +33,27 @@
                 app:srcCompat="@drawable/quick_cash_icon" />
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register"
-                android:textColor="#000000"
-                android:textSize="34sp"
+                android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="130dp" />
+                android:id="@+id/title"
+                tools:layout_editor_absoluteY="130dp"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#000000"
+                android:text="Register"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
-                android:id="@+id/title2"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create your account"
-                android:textColor="#000000"
-                android:textSize="16sp"
+                android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="130dp" />
+                android:id="@+id/title2"
+                tools:layout_editor_absoluteY="130dp"
+                android:textSize="16sp"
+                android:textColor="#788190"
+                android:text="Create your account"
+                android:layout_marginBottom="30dp"/>
 
             <TextView
                 android:id="@+id/username"

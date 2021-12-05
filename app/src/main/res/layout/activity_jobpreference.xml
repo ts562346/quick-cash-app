@@ -46,14 +46,25 @@
 
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Job Preference"
-                android:textColor="#000000"
-                android:textSize="34sp"
+                android:layout_width="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="130dp" />
+                tools:layout_editor_absoluteY="130dp"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#000000"
+                android:text="Job Preference"
+                android:id="@+id/title"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="130dp"
+                android:textSize="16sp"
+                android:textColor="#788190"
+                android:text="Enter job description" />
 
             <TextView
                 android:id="@+id/username"
@@ -61,12 +72,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="Category"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
 
             <Spinner
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:theme="@style/SpinnerScrollBar"
                 android:layout_height="wrap_content"
                 android:id="@+id/jobCategory"
                 android:layout_margin="15dp"
@@ -79,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Location"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -89,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_text"
+                android:textColor="@color/black"
                 android:drawablePadding="15dp"
                 android:drawableStart="@drawable/location"
                 android:padding="15dp"
@@ -107,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Minimum Payment"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
@@ -132,6 +148,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Minimum Hours"
+                android:textColor="@color/black"
+
                 android:textSize="16sp" />
 
             <EditText
