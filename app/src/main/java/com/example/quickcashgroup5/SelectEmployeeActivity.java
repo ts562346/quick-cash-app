@@ -31,6 +31,7 @@ public class SelectEmployeeActivity extends AppCompatActivity{
     DatabaseReference jobs;
     Button refresh;
     SessionManagement user;
+    String key;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,24 +39,29 @@ public class SelectEmployeeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectemployee);
 
-
         Bundle bundle = getIntent().getExtras();
-        String key = bundle.getString("Key");
+        key = bundle.getString("Key");
         initializeDatabase();
         jobPosting=new JobPosting();
 
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user,key)).commit();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user,key)).commit();
+
+        refresh = findViewById(R.id.refresh_button);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         FragmentSelectEmployee f = new FragmentSelectEmployee(user,key);
         FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.selectEmployeeRecycle, f, "Select employee");
         ft.commit();
 
-
-
-
     }
+
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");

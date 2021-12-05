@@ -71,6 +71,33 @@
                 android:text="Accept or reject employee"
                 android:layout_marginBottom="60dp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.5"
+                    android:text="Applicants"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/refresh_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/refresh_button">
+
+                </Button>
+            </LinearLayout>
+
             <TableLayout
                 :tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"

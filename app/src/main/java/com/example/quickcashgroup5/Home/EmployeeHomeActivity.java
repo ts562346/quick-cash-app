@@ -6,7 +6,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,8 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.quickcashgroup5.FragmentDashboard;
+import com.example.quickcashgroup5.FragmentSelectEmployee;
 import com.example.quickcashgroup5.Paypal;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
@@ -36,6 +40,7 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
     TextView title;
+    Button refresh;
 
     /**
      * Method that runs when activity is created
@@ -59,6 +64,14 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportFragmentManager().beginTransaction().replace(R.id.mainContainerEmployee, new FragmentDashboard()).commit();
+
+        refresh = findViewById(R.id.refresh_button);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     // To open and close the navigation drawer when the icon is clicked

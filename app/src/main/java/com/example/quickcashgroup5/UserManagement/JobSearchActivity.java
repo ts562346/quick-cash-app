@@ -142,7 +142,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             public void onClick(View view) {
                 search();
                 FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
-                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.recycleViewContainer, f, "Job search");
                 ft.commit();
             }

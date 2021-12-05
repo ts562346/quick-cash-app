@@ -43,8 +43,6 @@ H
 .gitlab-ci.yml,5\8\587d266bb27a4dc3022bbed44dfa19849df3044c
 7
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 ?
@@ -70,8 +68,6 @@ o
 Vapp/src/main/java/com/example/quickcashgroup5/UserManagement/SendFeedbackActivity.java,9\c\9c16d44b9ddbbd372870cf49211a8a48f4d8fd16
 z
 Japp/src/main/java/com/example/quickcashgroup5/UserManagement/AESCrypt.java,7\5\753595917b574e75727126503c1e08e6fec1d2af
-|
-Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployeeHomeActivity.java,f\8\f856dcfabc91faea76a136c1e1781cada4bcb3d3
 |
 Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployerHomeActivity.java,2\1\2177d431fd517b9677f9d1100fbe035cb4eeccbf
 Ä
@@ -104,8 +100,6 @@ Wapp/src/main/java/com/example/quickcashgroup5/UserManagement/ResetPasswordActiv
 [app/src/main/java/com/example/quickcashgroup5/UserManagement/PasswordResetCodeActivity.java,a\5\a5dd173c5971f2843382c7b183d3eb1a302bfbb0
 â
 Yapp/src/main/java/com/example/quickcashgroup5/UserManagement/RecoveryAccountActivity.java,4\f\4ff2f4cdaba3da24ad381d869dc5c13ee2f5279f
-y
-Iapp/src/main/java/com/example/quickcashgroup5/SelectEmployeeActivity.java,0\a\0ab595932aa4b66d5f31aa6b2a87b14b90ef20c2
 |
 Lapp/src/main/java/com/example/quickcashgroup5/JobStatusEmployeeActivity.java,b\4\b4bf4b7bdfff3913fb3db61b22f0123c91cbf2c8
 Å
