@@ -72,6 +72,13 @@ public class Database implements IDatabase {
         return user;
     }
 
+    public JobPosting findJobPosting(String key) {
+        DataSnapshot dataSnapshot = data.child(JobPosting.class.getSimpleName());
+        JobPosting job = dataSnapshot.child(key).getValue(JobPosting.class);
+
+        return job;
+    }
+
     public DataSnapshot getUserDataSnapshot(String email) {
         DataSnapshot user = null;
 
