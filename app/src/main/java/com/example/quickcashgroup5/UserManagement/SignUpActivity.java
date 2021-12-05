@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         user.setPreferredLocation("");
         user.setPreferredPayment("");
 
-        return database.add(user);
+        return database.addUser(user);
     }
 
     /**

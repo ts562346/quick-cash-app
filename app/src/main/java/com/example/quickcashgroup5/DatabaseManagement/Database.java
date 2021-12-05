@@ -12,8 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class Database {
     FirebaseDatabase database;
     DataSnapshot data;
@@ -33,31 +31,19 @@ public class Database {
         });
     }
 
-    private boolean isAdded(Task<Void> task){
-        AtomicBoolean success = new AtomicBoolean(false);
-
-        task.addOnSuccessListener(suc -> {
-            success.set(true);
-        }).addOnFailureListener(fal -> {
-            success.set(false);
-        });
-
-        return success.get();
-    }
-
-    public Task<Void> add(User user) {
+    public Task<Void> addUser(User user) {
         DatabaseReference users = database.getReference(User.class.getSimpleName());
         Task<Void> task = users.push().setValue(user);
         return task;
     }
 
-    public Task<Void> add(Feedback feedback) {
+    public Task<Void> addFeedback(Feedback feedback) {
         DatabaseReference feedbacks = database.getReference(Feedback.class.getSimpleName());
         Task<Void> task = feedbacks.push().setValue(feedback);
         return task;
     }
 
-    public Task<Void> add(JobPosting job) {
+    public Task<Void> addJobPosting(JobPosting job) {
         DatabaseReference jobPostings = database.getReference(JobPosting.class.getSimpleName());
         Task<Void> task = jobPostings.push().setValue(job);
         return task;
