@@ -155,7 +155,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-
     private void setJobPreferences(){
         users.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -176,7 +175,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             }
         });
     }
-
 
     private void getLocationPermission() {
         Log.d(TAG, "getLocationPermission : starts");
@@ -222,7 +220,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                     initMap();
                 }
             }
-
         }
     }
 

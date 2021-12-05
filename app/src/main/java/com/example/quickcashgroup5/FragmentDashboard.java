@@ -21,11 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentDashboard#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentDashboard extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
@@ -37,7 +33,7 @@ public class FragmentDashboard extends Fragment{
     private String mParam1;
     private String mParam2;
     ArrayList<DataModelDashboard> dataModelDashboard;
-    private static SessionManagement sessionManagement;
+
 
     FirebaseDatabase database;
     DatabaseReference jobs;
@@ -46,10 +42,6 @@ public class FragmentDashboard extends Fragment{
     }
 
 
-    public FragmentDashboard(SessionManagement sessionManagement) {
-        // Required empty public constructor
-        FragmentDashboard.sessionManagement = sessionManagement;
-    }
 
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
@@ -58,23 +50,6 @@ public class FragmentDashboard extends Fragment{
     }
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentDashboard newInstance(String param1, String param2) {
-        FragmentDashboard fragment = new FragmentDashboard(sessionManagement);
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,8 +67,9 @@ public class FragmentDashboard extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        SessionManagement sessionManagement = new SessionManagement(this.getContext());
         System.out.println("Check2");
-
+        FragmentDashboard fragment = new FragmentDashboard();
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.rec_view);
@@ -103,7 +79,6 @@ public class FragmentDashboard extends Fragment{
 
 
         if(sessionManagement.getRole().equals("Employer")){
-//            jobs.child("JobPosting").addListenerForSingleValueEvent(new ValueEventListener() {
             jobs.child("JobPosting").addListenerForSingleValueEvent(new ValueEventListener() {
                @Override
                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

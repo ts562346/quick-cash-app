@@ -11,7 +11,11 @@
             <item>Teaching</item>
             <item>Computer Repair</item>
             <item>Baby Sitter</item>
-            <item>Dog Walker</item>
+            <item>Pet Walker</item>
+            <item>Hair Dresser</item>
+            <item>Grocery Delivery</item>
+            <item>Car Maintenance</item>
+            <item>Home Maker</item>
         </string-array>
 
         <string name="nav_open">Open</string>

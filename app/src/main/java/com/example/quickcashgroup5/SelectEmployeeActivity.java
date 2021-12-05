@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.UserManagement.JobPosting;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.UserManagement.ViewFeedbacksActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +29,7 @@ public class SelectEmployeeActivity extends AppCompatActivity{
     private JobPosting jobPosting;
     FirebaseDatabase database;
     DatabaseReference jobs;
-    Button submit;
+    Button refresh;
     SessionManagement user;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +44,13 @@ public class SelectEmployeeActivity extends AppCompatActivity{
         initializeDatabase();
         jobPosting=new JobPosting();
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user,key)).commit();
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user,key)).commit();
+
+        FragmentSelectEmployee f = new FragmentSelectEmployee(user,key);
+        FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.selectEmployeeRecycle, f, "Select employee");
+        ft.commit();
 
 
 

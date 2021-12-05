@@ -29,6 +29,7 @@
                 android:id="@+id/locationLabel"
                 android:layout_column="2"
                 android:gravity="left"
+                android:layout_width="100dp"
                 android:padding="10dp"
                 android:text="Status"
                 android:textSize="16dp"

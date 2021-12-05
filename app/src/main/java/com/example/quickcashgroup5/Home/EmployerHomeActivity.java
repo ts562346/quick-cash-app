@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,13 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.quickcashgroup5.FragmentDashboard;
+import com.example.quickcashgroup5.FragmentSelectEmployee;
+import com.example.quickcashgroup5.MainActivity;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.CreateJob;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.UserManagement.SignUpActivity;
 import com.example.quickcashgroup5.UserManagement.ViewFeedbacksActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -53,7 +59,22 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
         title.setText(sessionManagement.getName());
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, new FragmentDashboard(sessionManagement)).commit();
+
+        FragmentDashboard f = new FragmentDashboard();
+        FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainContainer, f, "employer dashboard");
+        ft.commit();
+
+        Button refresh = findViewById(R.id.refresh_button);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                FragmentDashboard f = new FragmentDashboard();
+                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.mainContainer, f, "employer dashboard");
+                ft.commit();
+            }
+        });
     }
 
     // To open and close the navigation drawer when the icon is clicked

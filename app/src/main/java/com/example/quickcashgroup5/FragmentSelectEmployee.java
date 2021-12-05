@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -64,8 +65,6 @@ public class FragmentSelectEmployee extends Fragment {
 
 
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +76,8 @@ public class FragmentSelectEmployee extends Fragment {
         }
 
 
-
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,7 +99,6 @@ public class FragmentSelectEmployee extends Fragment {
                 for (int i=0; i<jobPosting.getAppliedApplicants().size(); i++){
                     System.out.println(jobPosting.getAppliedApplicants().get(i));
                     DataModelSelectEmployee name= new DataModelSelectEmployee(key, jobPosting.getAppliedApplicants().get(i));
-
                     selectEmployeeDataModel.add(name);
                 }
 

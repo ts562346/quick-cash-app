@@ -30,18 +30,7 @@ public class FragmentJobSearch extends Fragment {
         // Required empty public constructor
         this.jobPostings = jobPostings;
     }
-//
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        System.out.println("Test 2");
-//        super.onCreate(savedInstanceState);
-//        System.out.println("Check");
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,8 +53,8 @@ public class FragmentJobSearch extends Fragment {
         }
 
 
-            MyAdapterJobSearch myAdapterJobSearch = new MyAdapterJobSearch(dataModelJobSearch);
-            recyclerView.setAdapter(myAdapterJobSearch);
+        MyAdapterJobSearch myAdapterJobSearch = new MyAdapterJobSearch(dataModelJobSearch);
+        recyclerView.setAdapter(myAdapterJobSearch);
 
 
         return view;

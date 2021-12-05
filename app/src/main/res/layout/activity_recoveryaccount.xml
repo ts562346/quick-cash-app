@@ -99,7 +99,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/notRegisteredUserLabel"
+                android:id="@+id/backToLogin"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_light"
                 android:text="Back to login"

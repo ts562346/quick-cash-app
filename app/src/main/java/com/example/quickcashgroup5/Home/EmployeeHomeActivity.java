@@ -58,7 +58,7 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
         title.setText(sessionManagement.getName());
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainerEmployee, new FragmentDashboard(sessionManagement)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainerEmployee, new FragmentDashboard()).commit();
     }
 
     // To open and close the navigation drawer when the icon is clicked

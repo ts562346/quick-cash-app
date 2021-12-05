@@ -78,7 +78,8 @@
                 tools:layout_editor_absoluteY="206dp" />
 
             <Spinner
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:theme="@style/SpinnerScrollBar"
                 android:layout_height="wrap_content"
                 android:id="@+id/jobCategory"
                 android:layout_margin="15dp"
