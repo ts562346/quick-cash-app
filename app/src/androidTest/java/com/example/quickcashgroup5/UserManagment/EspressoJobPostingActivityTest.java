@@ -17,18 +17,17 @@ import static org.hamcrest.core.AllOf.allOf;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import com.example.quickcashgroup5.R;
-import com.example.quickcashgroup5.UserManagement.CreateJob;
+import com.example.quickcashgroup5.JobCreation.CreateJobActivity;
 import org.junit.Rule;
 import org.junit.Test;
 
 public class EspressoJobPostingActivityTest {
 
     @Rule
-    public ActivityScenarioRule<CreateJob> activityTestRule = new ActivityScenarioRule<>(CreateJob.class);
+    public ActivityScenarioRule<CreateJobActivity> activityTestRule = new ActivityScenarioRule<>(CreateJobActivity.class);
 
     private final String jobTitle= "Sample Test";
     private final String location= "Halifax, Nova Scotia";

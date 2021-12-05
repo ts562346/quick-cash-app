@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.example.quickcashgroup5.DataValidation.Validation;
+
 import org.junit.Test;
 
 public class ValidationUnitTest {

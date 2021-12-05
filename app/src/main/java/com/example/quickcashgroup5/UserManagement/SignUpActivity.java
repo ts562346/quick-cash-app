@@ -1,6 +1,5 @@
 package com.example.quickcashgroup5.UserManagement;
 
-import android.app.Activity;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.PasswordManagement.AESCrypt;
 import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

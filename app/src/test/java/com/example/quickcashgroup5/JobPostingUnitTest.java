@@ -4,7 +4,7 @@
 //import static org.junit.Assert.assertNotNull;
 //import static org.junit.Assert.assertNull;
 //
-//import com.example.quickcashgroup5.UserManagement.JobPosting;
+//import com.example.quickcashgroup5.JobCreation.JobPosting;
 //
 //import org.junit.Test;
 //

@@ -1,7 +1,5 @@
 package com.example.quickcashgroup5;
 
-import static org.hamcrest.core.IsInstanceOf.instanceOf;
-import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,20 +8,15 @@ import androidx.annotation.NonNull;
 //import androidx.test.espresso.action.ViewActions;
 //import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.quickcashgroup5.UserManagement.CreateJob;
-import com.example.quickcashgroup5.UserManagement.JobPosting;
-import com.example.quickcashgroup5.UserManagement.LogInActivity;
-import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.JobCreation.CreateJobActivity;
+import com.example.quickcashgroup5.JobCreation.JobPosting;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CreateJobUnitTest extends CreateJob {
+public class CreateJobUnitTest extends CreateJobActivity {
     private final String jobTitle = "1234567890";
     private final String location = "Halifax, Nova Scotia";
     private static final String creatorEmail = "espresso@bot.test";

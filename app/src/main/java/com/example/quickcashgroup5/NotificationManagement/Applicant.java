@@ -1,5 +1,7 @@
 package com.example.quickcashgroup5.NotificationManagement;
 
+import com.example.quickcashgroup5.EmailManagement.SendNotification;
+
 /**
  * User class to store input data of users
  */

@@ -13,8 +13,6 @@ x
 Happ/src/test/java/com/example/quickcashgroup5/LogInActivityUnitTest.java,d\9\d982177f337c23de4b3d169b0440ae2186335a1d
 x
 Happ/src/test/java/com/example/quickcashgroup5/SessionManagementTest.java,e\f\effa15bfa56dd791af61bf97ca51564d7f16973d
-u
-Eapp/src/test/java/com/example/quickcashgroup5/JobPostingUnitTest.java,5\4\54ff887a74c782eaf9abf0a3318b1f26d3533cc6
 y
 Iapp/src/test/java/com/example/quickcashgroup5/SignUpActivityUnitTest.java,4\1\41024f7d21b0b3d3b09c7384cb831069d69aade1
 |
@@ -27,8 +25,6 @@ u
 Eapp/src/main/java/com/example/quickcashgroup5/MyAdapterJobSearch.java,f\c\fcc0ce62e4ce8ee94f843da0c19b237c13e7d074
 t
 Dapp/src/main/java/com/example/quickcashgroup5/MyAdapterEmployee.java,d\a\da55128c5b3e8144d2a7f515a22a2a63c6ec3847
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 ;
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 @
@@ -50,32 +46,12 @@ A
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-m
-=app/src/main/java/com/example/quickcashgroup5/Validation.java,8\d\8d81fb6be83e4f37af80c0b810ff11eb6a7040e5
 u
 Eapp/src/main/java/com/example/quickcashgroup5/DataModelDashboard.java,2\4\245456f5f7b378e7c0410f27c2f4d19b61ff8373
-u
-Eapp/src/test/java/com/example/quickcashgroup5/ValidationUnitTest.java,3\8\38acac3331343705ac8acf20d0330277ad1f1592
-t
-Dapp/src/test/java/com/example/quickcashgroup5/CreateJobUnitTest.java,b\4\b48c0f1a418e63ea36bef018cb055b5b323e01b6
-á
-Wapp/src/main/java/com/example/quickcashgroup5/UserManagement/ViewFeedbacksActivity.java,c\a\caf12f556b545dd0f48dca294ce201040652bca8
-
-Oapp/src/main/java/com/example/quickcashgroup5/UserManagement/LogInActivity.java,0\d\0de16a881506d02f53ff6dd42b364dcb5c5be32f
-o
-?app/src/test/java/com/example/quickcashgroup5/UserUnitTest.java,7\5\75cea6336c3ecc53971d1e8f9a7f8e2b1b29b0dd
-Ü
-Vapp/src/main/java/com/example/quickcashgroup5/UserManagement/SendFeedbackActivity.java,9\c\9c16d44b9ddbbd372870cf49211a8a48f4d8fd16
 z
 Japp/src/main/java/com/example/quickcashgroup5/UserManagement/AESCrypt.java,7\5\753595917b574e75727126503c1e08e6fec1d2af
-|
-Lapp/src/main/java/com/example/quickcashgroup5/Home/EmployerHomeActivity.java,2\1\2177d431fd517b9677f9d1100fbe035cb4eeccbf
-Ä
-Papp/src/main/java/com/example/quickcashgroup5/UserManagement/SignUpActivity.java,2\1\212caaf192850f96d806bda1085b9b71e7d81ef3
 É
 Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/SessionManagement.java,b\7\b70a70eb541ecf3cbc0168bf165550071180adb8
-ñ
-fapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoJobPostingActivityTest.java,5\1\51e6323f8fc7f4fc4b60bb1c29d658e4c4301dfb
 t
 Dapp/src/main/java/com/example/quickcashgroup5/FragmentDashboard.java,e\b\eb4417d7563769cee8538ffa8f41c2572f35512f
 ë
@@ -88,8 +64,6 @@ Qapp/src/main/java/com/example/quickcashgroup5/JobDescriptionEmployerActivity.ja
 bapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoSignUpActivityTest.java,c\0\c00c45a5f78b117314a14836dd22ef78d94a13b4
 i
 9app/src/main/java/com/example/quickcashgroup5/Paypal.java,a\e\ae31e0893c87a7850de19e72a3f2a3adb21498df
-k
-;app/src/main/java/com/example/quickcashgroup5/SendMail.java,1\6\1644ee6acb81cc1f3dbd36683abd9942dce01837
 t
 Dapp/src/main/java/com/example/quickcashgroup5/FragmentJobSearch.java,f\9\f9439b090fc78f78d0f2fdc0a9858ba992e4f364
 |
@@ -104,13 +78,13 @@ Yapp/src/main/java/com/example/quickcashgroup5/UserManagement/RecoveryAccountAct
 Lapp/src/main/java/com/example/quickcashgroup5/JobStatusEmployeeActivity.java,b\4\b4bf4b7bdfff3913fb3db61b22f0123c91cbf2c8
 Å
 Qapp/src/main/java/com/example/quickcashgroup5/JobDescriptionEmployeeActivity.java,e\b\ebc1328467df595de1b7f7ea3367db304831d7d0
-u
-Eapp/src/main/java/com/example/quickcashgroup5/DatabaseManagement.java,e\7\e7b684d0621f45b5c301b033b14e1d9336870e9f
-ä
-Zapp/src/main/java/com/example/quickcashgroup5/NotificationManagement/SendNotification.java,c\9\c9de546c8e88396ce33bead8ce002ba171dcf71a
 Ç
 Rapp/src/main/java/com/example/quickcashgroup5/NotificationManagement/ISubject.java,e\8\e84dc177df184bb7cb66ed2e8fd4f295a935ae12
 Ç
 Rapp/src/main/java/com/example/quickcashgroup5/NotificationManagement/Observer.java,6\7\67f838c0ea6108c60897e6b0f8a7afe3d5b07f73
 v
 Fapp/src/main/java/com/example/quickcashgroup5/UserManagement/User.java,4\8\484f646195b0e96fefb7e747208ab58b66f4fd7b
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+É
+Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/JobSearchActivity.java,5\6\563f8b23f7347ff578be9d1c33832462797dfe12

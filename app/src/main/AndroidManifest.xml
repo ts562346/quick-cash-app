@@ -34,13 +34,13 @@
         <activity android:name=".UserManagement.LogInActivity">
 
         </activity>
-        <activity android:name=".UserManagement.PasswordResetCodeActivity">
+        <activity android:name=".PasswordManagement.PasswordResetCodeActivity">
 
         </activity>
-        <activity android:name=".UserManagement.RecoveryAccountActivity">
+        <activity android:name=".PasswordManagement.RecoveryAccountActivity">
 
         </activity>
-        <activity android:name=".UserManagement.ResetPasswordActivity">
+        <activity android:name=".PasswordManagement.ResetPasswordActivity">
 
         </activity>
         <activity android:name=".UserManagement.SignUpActivity">
@@ -52,41 +52,41 @@
         <activity android:name=".Home.EmployeeHomeActivity">
 
         </activity>
-        <activity android:name=".UserManagement.JobSearchActivity">
+        <activity android:name=".JobSearch.JobSearchActivity">
 
         </activity>
         <activity android:name=".UserManagement.JobPreferenceActivity">
 
         </activity>
-        <activity android:name=".UserManagement.CreateJob">
+        <activity android:name=".JobCreation.CreateJobActivity">
 
         </activity>
 
-        <activity android:name=".JobDescriptionEmployeeActivity">
+        <activity android:name=".JobDetails.JobDescriptionEmployeeActivity">
 
         </activity>
-        <activity android:name=".JobDescriptionEmployerActivity">
-
-        </activity>
-
-        <activity android:name=".SelectEmployeeActivity">
+        <activity android:name=".JobDetails.JobDescriptionEmployerActivity">
 
         </activity>
 
-        <activity android:name=".JobStatusEmployeeActivity">
+        <activity android:name=".EmployeeSelection.SelectEmployeeActivity">
 
         </activity>
 
-        <activity android:name=".PayEmployeeActivity">
+        <activity android:name=".JobDetails.JobStatusEmployeeActivity">
 
         </activity>
-        <activity android:name=".UserManagement.SendFeedbackActivity">
+
+        <activity android:name=".PaymentManagement.PayEmployeeActivity">
 
         </activity>
-        <activity android:name=".UserManagement.ViewFeedbacksActivity">
+        <activity android:name=".FeedbackManagement.SendFeedbackActivity">
 
         </activity>
-        <activity android:name=".Paypal">
+        <activity android:name=".FeedbackManagement.ViewFeedbacksActivity">
+
+        </activity>
+        <activity android:name=".PaymentManagement.Paypal">
 
         </activity>
 

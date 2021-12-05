@@ -2,7 +2,6 @@ package com.example.quickcashgroup5.UserManagement;
 
 import static android.content.ContentValues.TAG;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.PasswordManagement.AESCrypt;
+import com.example.quickcashgroup5.PasswordManagement.RecoveryAccountActivity;
 import com.example.quickcashgroup5.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

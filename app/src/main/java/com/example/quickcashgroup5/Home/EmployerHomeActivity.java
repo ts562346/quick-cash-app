@@ -1,6 +1,5 @@
 package com.example.quickcashgroup5.Home;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,16 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.quickcashgroup5.FragmentDashboard;
-import com.example.quickcashgroup5.FragmentSelectEmployee;
-import com.example.quickcashgroup5.MainActivity;
 import com.example.quickcashgroup5.R;
-import com.example.quickcashgroup5.UserManagement.CreateJob;
+import com.example.quickcashgroup5.JobCreation.CreateJobActivity;
 import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
-import com.example.quickcashgroup5.UserManagement.SignUpActivity;
-import com.example.quickcashgroup5.UserManagement.ViewFeedbacksActivity;
+import com.example.quickcashgroup5.FeedbackManagement.ViewFeedbacksActivity;
 import com.google.android.material.navigation.NavigationView;
 
 /**
@@ -97,7 +91,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             case R.id.nav_createJob: {
-                Intent intent = new Intent(this, CreateJob.class);
+                Intent intent = new Intent(this, CreateJobActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;
