@@ -18,7 +18,7 @@ public class Validation {
      * @param value
      * @return
      */
-    protected String sanitize(String value) {
+    public String sanitize(String value) {
         return value.trim().replaceAll("\b", "");
     }
 
