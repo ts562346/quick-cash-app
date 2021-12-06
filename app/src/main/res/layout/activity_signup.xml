@@ -41,7 +41,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="#000000"
-                android:text="Register"
+                android:text="@string/register"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Your Email"
+                android:text="@string/your_email"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Password"
+                android:text="@string/password"
                 android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -152,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Confirm Password"
+                android:text="@string/confirm_password"
                 android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Select your role"
+                android:text="@string/select_your_role"
                 android:textSize="16sp" />
 
 
@@ -205,7 +205,7 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:insetTop="150dp"
-                android:text="I have an account"
+                android:text="@string/i_have_an_account"
                 android:textColor="@android:color/holo_red_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:text="Register" />
+                android:text="@string/register" />
 
         </LinearLayout>
     </ScrollView>

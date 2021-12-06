@@ -64,14 +64,14 @@
                 tools:layout_editor_absoluteY="130dp"
                 android:textSize="16sp"
                 android:textColor="#788190"
-                android:text="Enter job description" />
+                android:text="@string/job_description" />
 
             <TextView
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Category"
+                android:text="@string/category"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Location"
+                android:text="@string/locationStr"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Minimum Payment"
+                android:text="@string/minimum_payment"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Minimum Hours"
+                android:text="@string/minimum_hours"
                 android:textColor="@color/black"
 
                 android:textSize="16sp" />
@@ -175,7 +175,7 @@
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/submit"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"

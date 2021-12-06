@@ -47,7 +47,7 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Job"
+                android:text="@string/create_job"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
                 android:id="@+id/title2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Enter Job Description"
+                android:text="@string/enter_job_description"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Title"
+                android:text="@string/title"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Location"
+                android:text="@string/locationStr"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Payment"
+                android:text="@string/payment"
                 android:textSize="16sp" />
 
             <EditText
@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Duration"
+                android:text="@string/duration"
                 android:textSize="16sp" />
 
             <EditText
@@ -171,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Category"
+                android:text="@string/category"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -187,7 +187,7 @@
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/submit"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"

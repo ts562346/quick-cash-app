@@ -46,7 +46,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:textColor="#000000"
-                android:text="Account recovery"
+                android:text="@string/account_recovery"
                 />
 
             <TextView
@@ -68,7 +68,7 @@
                 tools:layout_editor_absoluteY="206dp"
                 android:textSize="14sp"
                 android:textColor="#121515"
-                android:text="Your Email"
+                android:text="@string/your_email"
                 android:layout_marginTop="40dp"
                 tools:layout_editor_absoluteX="0dp"
                 android:layout_marginBottom="10dp"
@@ -102,7 +102,7 @@
                 android:id="@+id/backToLogin"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_light"
-                android:text="Back to login"
+                android:text="@string/back_to_login"
                 android:insetTop="200dp"
                 android:layout_margin="10dp"
                 style="?android:attr/buttonBarButtonStyle"
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:id="@+id/sendButton"
-                android:text="Send"
+                android:text="@string/send"
                 android:insetTop="1dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"

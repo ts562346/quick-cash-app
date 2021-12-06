@@ -20,7 +20,7 @@
                 android:background="@drawable/rectangle_underlined"
                 android:gravity="left"
                 android:padding="10dp"
-                android:text="Job Title"
+                android:text="@string/job_title"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
                 android:background="@drawable/rectangle_underlined"
                 android:gravity="left"
                 android:padding="10dp"
-                android:text="Payment"
+                android:text="@string/payment"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
