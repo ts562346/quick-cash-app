@@ -7,24 +7,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.quickcashgroup5.DataValidation.Validation;
+import com.example.quickcashgroup5.DatabaseManagement.Database;
 import com.example.quickcashgroup5.FeedbackManagement.ViewFeedbacksActivity;
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.JobCreation.CreateJobActivity;
 import com.example.quickcashgroup5.JobSearch.JobSearchActivity;
 import com.example.quickcashgroup5.R;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +37,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,63 +67,55 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updatePreference(); // calls method to update DB with required fields
-                // once submit button is clicked, redirect to EmployeeHomeActivity
-                startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
-            }
-        });
-
-
-    }
-
-    public static boolean locationValidation(String name) {
-        if (!name.isEmpty()) {
-            //Location can only contain letters and whitespace
-            return name.matches("^[A-Za-z\\s]+$");
-        } else {
-            return false;
-        }
-    }
-
-    public void updatePreference() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        DatabaseReference users = database.getReference();
-        users.child("User").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
-                    User u = adSnapshot.getValue(User.class);
-
-                    String userEmail = u.getEmail();
-                    String sessionEmail = sessionManagement.getEmail();
-
-
-                    if (userEmail.equals(sessionEmail)) {
-                        try {
-                            /**
-                             * Added location, minPayment and minHours to
-                             * the database of user.
-                             */
-
-                            Map<String, Object> updates = new HashMap<String, Object>();
-                            updates.put("preferredCategory", category.getSelectedItem());
-                            updates.put("preferredLocation", location.getText().toString());
-                            updates.put("preferredPayment", minPayment.getText().toString());
-                            updates.put("preferredHours", minHours.getText().toString());
-                            adSnapshot.getRef().updateChildren(updates);
-                            break;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            break;
-                        }
-                    }
+                Task<Void> task = updatePreference();
+                if (task != null) {
+                    task.addOnSuccessListener(suc -> {
+                        Toast.makeText(getApplicationContext(), "Job preferences have been updated", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
+                    }).addOnFailureListener(fal -> {
+                        Toast.makeText(getApplicationContext(), "There was an error updating your preferences", Toast.LENGTH_SHORT).show();
+                    });
+                } else {
+                    System.out.println("Validation failed");
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("HELLO");
-            }
         });
+
+        database = new Database();
+    }
+
+    public Task<Void> updatePreference() {
+        String email = sessionManagement.getEmail();
+        String selectedCategory = (String) category.getSelectedItem();
+
+        String selectedLocation = Validation.sanitize(location.getText().toString());
+        if(!Validation.locationValidation(selectedLocation, this)){
+            Toast.makeText(this, "Location is not valid", Toast.LENGTH_LONG);
+            return null;
+        }
+
+        String wage = Validation.sanitize(minPayment.getText().toString());
+        String duration = Validation.sanitize(minHours.getText().toString());
+        if(!Validation.wageValidation(wage) || !Validation.wageValidation(duration)){
+            Toast.makeText(this, "Wage or Hours not valid\n"
+                    + "Please make sure you enter maximum of 2 decimal places", Toast.LENGTH_LONG);
+            return null;
+        }
+
+        User u = database.findUser(sessionManagement.getEmail());
+        if(u != null) {
+            Map<String, Object> updates = new HashMap<String, Object>();
+            updates.put("email", email);
+            updates.put("preferredCategory", selectedCategory);
+            updates.put("preferredLocation", selectedLocation);
+            updates.put("preferredPayment", wage);
+            updates.put("preferredHours", duration);
+            return database.updatePreferences(updates);
+        } else {
+            System.out.println("Signed in user is not in database");
+            Toast.makeText(this, "There was an error updating your preferences", Toast.LENGTH_LONG).show();
+            return null;
+        }
     }
 
     // To open and close the navigation drawer when the icon is clicked

@@ -6,34 +6,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.DatabaseManagement.Database;
 import com.example.quickcashgroup5.JobCreation.JobPosting;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 import com.example.quickcashgroup5.UserManagement.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PayEmployeeActivity extends AppCompatActivity {
 
     private JobPosting jobPosting;
-    FirebaseDatabase database;
-    DatabaseReference jobs;
+    Database database;
     Button submit;
     SessionManagement user;
     User employee;
 
     protected void onCreate(Bundle savedInstanceState) {
-        user= new SessionManagement(this);
+        user = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payemployee);
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("Key");
-        initializeDatabase();
         jobPosting = new JobPosting();
 
         submit = findViewById(R.id.apply);
@@ -41,20 +40,23 @@ public class PayEmployeeActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PayEmployeeActivity.this, Paypal.class);
-                intent.putExtra("Key", key);
-                intent.putExtra("Name", employee.getName());
-                float totalPayment = Float.parseFloat(jobPosting.getPayment()) * Float.parseFloat(jobPosting.getDuration());
-                intent.putExtra("Payment", String.valueOf(totalPayment));
-                startActivity(intent);
+                if(employee != null) {
+                    Intent intent = new Intent(PayEmployeeActivity.this, Paypal.class);
+                    intent.putExtra("Key", key);
+                    intent.putExtra("Name", employee.getName());
+                    float totalPayment = Float.parseFloat(jobPosting.getPayment()) * Float.parseFloat(jobPosting.getDuration());
+                    intent.putExtra("Payment", String.valueOf(totalPayment));
+                    startActivity(intent);
+                }
             }
         });
 
-
-        jobs.addListenerForSingleValueEvent(new ValueEventListener() {
+        database = new Database();
+        FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/").getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                jobPosting = dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
+                System.out.println(key);
                 System.out.println(jobPosting.getTitle());
 
                 TextView title = findViewById(R.id.jobTitle);
@@ -74,32 +76,21 @@ public class PayEmployeeActivity extends AppCompatActivity {
 
                 TextView status = findViewById(R.id.employerName);
                 String employeeEmail = jobPosting.getSelectedApplicantEmail();
-                DataSnapshot data = dataSnapshot.child("User");
-                for (DataSnapshot ds: data.getChildren()) {
-                    if(ds.child("email").getValue().equals(employeeEmail)){
-                        employee = ds.getValue(User.class);
-                        break;
-                    }
-                }
+
+                employee = null;
                 if(!employeeEmail.equals("")) {
-                    status.setText(employeeEmail);
+                    employee = database.findUser(employeeEmail);
+                    status.setText(employee.getName());
                 }else{
                     status.setText("Pending");
                 }
-
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // ...
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Database Error: " + error);
             }
         });
 
-
-    }
-    protected void initializeDatabase() {
-        //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobs = database.getReference();
     }
 }

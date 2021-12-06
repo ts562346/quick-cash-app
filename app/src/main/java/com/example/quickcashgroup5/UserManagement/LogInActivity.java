@@ -1,26 +1,21 @@
 package com.example.quickcashgroup5.UserManagement;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.DataValidation.Validation;
+import com.example.quickcashgroup5.DatabaseManagement.Database;
+import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
+import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.PasswordManagement.AESCrypt;
 import com.example.quickcashgroup5.PasswordManagement.RecoveryAccountActivity;
 import com.example.quickcashgroup5.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 /**
  * Activity for logging in user
@@ -30,8 +25,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     //Initializing Variables
     Button loginButton, forgotPassword, notRegisteredUserLabel;
     EditText emailEditText, passwordEditText;
-    FirebaseDatabase database;
-    DatabaseReference users;
+    Database database;
     ISessionManagement sessionManagement;
 
     /**
@@ -41,15 +35,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
         IUserManagementAbstractFactory userManagementAbstractFactory =
                 UserManagementInjector.getInstance().getUserAbstractFactory();
         sessionManagement = userManagementAbstractFactory.
                 getSessionManagementInstance(this);
-        sessionManagement.accessControl();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initializeActivity(userManagementAbstractFactory);
 
+        initializeActivity(userManagementAbstractFactory);
     }
 
     private void initializeActivity(IUserManagementAbstractFactory
@@ -60,6 +54,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         notRegisteredUserLabel = findViewById(R.id.notRegisteredUserLabel);
         forgotPassword = findViewById(R.id.forgotPass);
         loginButton = findViewById(R.id.loginButton);
+
+        database = new Database();
+
         forgotPassword.setOnClickListener(v -> startActivity(userManagementAbstractFactory.
                 getIntentInstance(LogInActivity.this,
                         RecoveryAccountActivity.class)));
@@ -70,95 +67,34 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             LogInActivity.this.finish();
         });
         loginButton.setOnClickListener(this);
-        initializeDatabase();
     }
 
 
-
-    /**
-     * Sanitizes string input
-     *
-     * @param value
-     * @return
-     */
-    public String sanitize(String value) {
-        return value.trim().replaceAll("\b", "");
-    }
-
-    /**
-     * Validates email
-     *
-     * @param email
-     * @return
-     */
-    public boolean emailValidation(String email) {
-        return !email.isEmpty();
-    }
-
-    /**
-     * Validates password
-     *
-     * @param password
-     * @return
-     */
-    public static boolean passwordValidation(String password) {
-        return !password.isEmpty();
-    }
-
-    /**
-     * Initializes Database
-     */
-    protected void initializeDatabase() {
-        //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        users = database.getReference();
-    }
-
-    /**
-     * Logs in the user if he/she has an account
-     *
-     * @param email
-     * @param password
-     */
     public void authenticateUser(String email, String password) {
-        AESCrypt aes = new AESCrypt();
-        users.child("User").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
-                    User u = adSnapshot.getValue(User.class);
-                    if (u.getEmail().equals(email)) {
-                        try {
-                            if (u.getPassword().equals(aes.encrypt(password))) {
-                                if (u.getIsEmployee().equals("yes")) {
-                                    sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
-                                } else {
-                                    sessionManagement.createSession(u.getName(), u.getEmail(), "Employer");
-                                }
-                            } else {
-                                //Unsuccessful Login
-                                Toast.makeText(getApplicationContext(), "Unsuccessful Login", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
+        User u = database.findUser(email);
+        if (u == null) {
+            Toast.makeText(getApplicationContext(), "Unsuccessful Login", Toast.LENGTH_SHORT).show();
+        } else {
+            try {
+                if (u.getPassword().equals(AESCrypt.encrypt(password))) {
+                    Intent i;
+                    if (u.getIsEmployee().equals("yes")) {
+                        sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
+                        i = new Intent(this, EmployeeHomeActivity.class);
+                    } else {
+                        sessionManagement.createSession(u.getName(), u.getEmail(), "Employer");
+                        i = new Intent(this, EmployerHomeActivity.class);
                     }
-                }
-                if (!sessionManagement.isLoggedIn()) {
-                    //Unsuccessful Login
-                    Toast.makeText(getApplicationContext(), "Unsuccessful Login", Toast.LENGTH_SHORT).show();
+                    startActivity(i);
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                 } else {
-                    sessionManagement.accessControl();
+                    //Unsuccessful Login
+                    Toast.makeText(getApplicationContext(), "Your email or password don't match", Toast.LENGTH_SHORT).show();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Email does not exist", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "onCancelled: Something went wrong! Error:" + databaseError.getMessage());
-            }
-        });
+        }
     }
 
     /**
@@ -168,18 +104,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     public void onClick(View view) {
-        String email = sanitize(emailEditText.getText().toString());
-        String password = sanitize(passwordEditText.getText().toString());
-        if (emailValidation(email)) {
-            if (passwordValidation(password)) {
+        String email = Validation.sanitize(emailEditText.getText().toString());
+        String password = Validation.sanitize(passwordEditText.getText().toString());
+        if (Validation.emailValidation(email)) {
+            if (Validation.passwordValidation(password)) {
                 authenticateUser(email, password);
             } else {
-                Toast.makeText(getApplicationContext(), "Password field is empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(getApplicationContext(), "Email field is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
         }
-
+        authenticateUser(email, password);
     }
 
 

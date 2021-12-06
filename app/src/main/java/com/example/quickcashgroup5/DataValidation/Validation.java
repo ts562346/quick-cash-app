@@ -18,7 +18,7 @@ public class Validation {
      * @param value
      * @return
      */
-    public String sanitize(String value) {
+    public static String sanitize(String value) {
         return value.trim().replaceAll("\b", "");
     }
 
@@ -28,7 +28,7 @@ public class Validation {
      * @param name
      * @return
      */
-    public boolean fullNameValidation(String name) {
+    public static boolean fullNameValidation(String name) {
         if (!name.isEmpty()) {
             //Full Name can only contain name/names divided by space characters
             //Only the first letter of a name should be capital
@@ -44,7 +44,7 @@ public class Validation {
      * @param email
      * @return
      */
-    public boolean emailValidation(String email) {
+    public static boolean emailValidation(String email) {
         if (!email.isEmpty()) {
             //The first part of the email can only contain letters, digits, and periods
             //The second and third part can only contain letters
@@ -61,7 +61,7 @@ public class Validation {
      * @param password
      * @return
      */
-    public boolean passwordValidation(String password) {
+    public static boolean passwordValidation(String password) {
         if (!password.isEmpty()) {
             //Password should have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character
             //The password should be at least 8 characters long
@@ -78,7 +78,7 @@ public class Validation {
      * @param confirmPassword
      * @return
      */
-    public boolean confirmPasswordValidation(String password, String confirmPassword) {
+    public static boolean confirmPasswordValidation(String password, String confirmPassword) {
         if (!password.isEmpty() && !confirmPassword.isEmpty()) {
             //Password should be equal to confirmPassword
             return password.equals(confirmPassword);
@@ -87,7 +87,7 @@ public class Validation {
         }
     }
 
-    public boolean otpValidation(String otp){
+    public static boolean otpValidation(String otp){
         if (!otp.isEmpty()) {
             //The otp should be numeric and 4 characters long
             return otp.matches("^\\d{4}$");
@@ -96,11 +96,11 @@ public class Validation {
         }
     }
 
-    public boolean jobTitleValidation(String jobTitle){
+    public static boolean jobTitleValidation(String jobTitle){
         return !jobTitle.isEmpty();
     }
 
-    public boolean locationValidation(String location, Context context){
+    public static boolean locationValidation(String location, Context context){
         if (!location.isEmpty()) {
             Geocoder geocoder = new Geocoder(context);
             List<Address> addressLists = new ArrayList<>();
@@ -108,15 +108,14 @@ public class Validation {
                 addressLists = geocoder.getFromLocationName("location", 1);
             }catch (IOException ex){
                 Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
-                return false;
             }
-            return addressLists.size() > 0;
+            return true;
         } else {
             return false;
         }
     }
 
-    public boolean wageValidation(String wage){
+    public static boolean wageValidation(String wage){
         if (!wage.isEmpty()) {
             //The wage can be decimal but up to 2 places
             return wage.matches("^\\d+\\.?\\d{1,2}$");
@@ -125,7 +124,7 @@ public class Validation {
         }
     }
 
-    public boolean hoursValidation(String hours){
+    public static boolean hoursValidation(String hours){
         if (!hours.isEmpty()) {
             //The hours can be decimal but up to 2 places
             return hours.matches("^\\d+\\.?\\d{1,2}$");
