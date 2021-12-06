@@ -1,7 +1,6 @@
 package com.example.quickcashgroup5.employeeselection;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
@@ -30,6 +29,7 @@ public class SelectEmployeeActivity extends AppCompatActivity {
      *
      * @param savedInstanceState
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         user = new SessionManagement(this);
@@ -45,11 +45,8 @@ public class SelectEmployeeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user, key)).commit();
 
         refresh = findViewById(R.id.refresh_button);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        refresh.setOnClickListener(view -> {
 
-            }
         });
 
         FragmentSelectEmployee f = new FragmentSelectEmployee(user, key);

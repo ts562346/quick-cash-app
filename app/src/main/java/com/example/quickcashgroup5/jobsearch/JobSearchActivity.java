@@ -5,6 +5,7 @@ package com.example.quickcashgroup5.jobsearch;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,7 +15,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,10 +28,11 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
+import com.example.quickcashgroup5.feedbackmanagement.Feedback;
 import com.example.quickcashgroup5.home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.jobcreation.JobPosting;
-import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.usermanagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
@@ -46,7 +47,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -81,7 +81,8 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
-    Button search, searchByPreferences;
+    Button search;
+    Button searchByPreferences;
     private String preferredLocation;
     private String preferredCategory;
     private String preferredPayment;
@@ -113,33 +114,27 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         setJobPreferences();
 
         searchByPreferences = findViewById(R.id.searchByPreferences);
-        searchByPreferences.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!preferredCategory.equals("")){
-                    searchByPreferences();
-                    FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
-                    FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.recycleViewContainer, f, "Job search");
-                    ft.commit();
-                }else{
-                    Toast toast=Toast. makeText(getApplicationContext(),"Your preferences have not been set",Toast. LENGTH_LONG);
-                    toast.show();
-                }
+        searchByPreferences.setOnClickListener(view -> {
+            if(!preferredCategory.equals("")){
+                searchByPreferences();
+                FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
+                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.recycleViewContainer, f, "Job search");
+                ft.commit();
+            }else{
+                Toast toast=Toast. makeText(getApplicationContext(),"Your preferences have not been set",Toast. LENGTH_LONG);
+                toast.show();
             }
         });
 
 
         search = findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                search();
-                FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.recycleViewContainer, f, "Job search");
-                ft.commit();
-            }
+        search.setOnClickListener(view -> {
+            search();
+            FragmentJobSearch f = new FragmentJobSearch(filteredJobs);
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.recycleViewContainer, f, "Job search");
+            ft.commit();
         });
 
         Log.d(TAG, "onCreate: Starts");
@@ -194,27 +189,25 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         Log.d(TAG, "getLocationPermission :  ends");
     }
 
-    @Override
+    @Deprecated
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         Log.d(TAG, "onRequestPermissionsResult: Requesting for permissions");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mLocationPermissionGranted = false;
-        switch (requestCode) {
-            case LOCATION_PERMISSION_REQUEST_CODE: {
-                if (grantResults.length > 0) {
-                    for (int i = 0; i < grantResults.length; i++) {
-                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                            mLocationPermissionGranted = false;
-                            return;
-                        }
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && grantResults.length > 0) {
+                for (int i = 0; i < grantResults.length; i++) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        mLocationPermissionGranted = false;
+                        return;
                     }
-                    mLocationPermissionGranted = true;
-                    Log.d(TAG, "onRequestPermissionsResult: permissions given by user");
-                    //initialize our map
-                    initMap();
                 }
-            }
+                mLocationPermissionGranted = true;
+                Log.d(TAG, "onRequestPermissionsResult: permissions given by user");
+                //initialize our map
+                initMap();
         }
+        Log.d(TAG, "Error save me");
+
     }
 
     private void initMap() {
@@ -259,7 +252,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: starts");
         mMap = googleMap;
-        if (mLocationPermissionGranted) {
+        if (Boolean.TRUE.equals(mLocationPermissionGranted)) {
             Log.d(TAG, "onMapReady: getting Device current location!!");
             getDeviceLocation();
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -293,8 +286,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         filteredJobs.clear();
         for (String key: allJobs.keySet()) {
             JobPosting job = allJobs.get(key);
-            System.out.println(job.getLocation());
-            System.out.println(getCity(preferredLocation));
             boolean isMatchedLocation=getCity(job.getLocation()).equals(getCity(preferredLocation));
             boolean isMatchedCategory= job.getCategory().equals(preferredCategory);
             boolean isMatchedHours= Float.parseFloat(job.getDuration()) >= Float.parseFloat((preferredHours));
@@ -313,25 +304,22 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         Log.d(TAG, "getDeviceLocation: starts");
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         try{
-            if(mLocationPermissionGranted){
+            if(Boolean.TRUE.equals(mLocationPermissionGranted)){
                 Task location = mFusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if(task.isSuccessful()){
-                            Log.d(TAG, "getDeviceLocation: onComplete: found location");
-                            Location currentLocation = (Location) task.getResult();
-                            if(currentLocation != null) {
-                                Log.d(TAG, "getDeviceLocation: currentLocation Lattitude: " + currentLocation.getLatitude());
-                                Log.d(TAG, "getDeviceLocation: currentLocation Longitude: " + currentLocation.getLongitude());
-                                moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                        DEFAULT_ZOOM,"current location");
-                            }else
-                                Log.d(TAG, "getDeviceLocation: Current location is null");
-                        }else {
+                location.addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Log.d(TAG, "getDeviceLocation: onComplete: found location");
+                        Location currentLocation = (Location) task.getResult();
+                        if(currentLocation != null) {
+                            Log.d(TAG, "getDeviceLocation: currentLocation Lattitude: " + currentLocation.getLatitude());
+                            Log.d(TAG, "getDeviceLocation: currentLocation Longitude: " + currentLocation.getLongitude());
+                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                    DEFAULT_ZOOM,"current location");
+                        }else
                             Log.d(TAG, "getDeviceLocation: Current location is null");
-                            Toast.makeText(JobSearchActivity.this, "Unable to get curent location", Toast.LENGTH_SHORT).show();
-                        }
+                    }else {
+                        Log.d(TAG, "getDeviceLocation: Current location is null");
+                        Toast.makeText(JobSearchActivity.this, "Unable to get curent location", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -342,7 +330,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     public void moveCamera(LatLng latlng, float zoom, String title){
-        Log.d(TAG, "moveCamera: starts with latitude: "+ latlng.latitude + " and Longitude: " + latlng.longitude);
+        Log.d(TAG, title + ", moveCamera: starts with latitude: "+ latlng.latitude + " and Longitude: " + latlng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,zoom));
     }
 
@@ -358,7 +346,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
         }
 
-        if(addressLists.size() > 0){
+        if(!addressLists.isEmpty()){
             Address address = addressLists.get(0);
 
             Log.d(TAG, "GeoLocate: Found a location" + address.toString());
@@ -386,7 +374,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         }catch (IOException ex){
             Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
         }
-        if(addressLists.size() > 0){
+        if(!addressLists.isEmpty()){
             address = addressLists.get(0).getLocality();
         }
         Log.d(TAG, "GeoLocate: ends");
@@ -438,17 +426,15 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                 break;
             }
             case R.id.nav_preferences: {
-//                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, JobPreferenceActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;
             }
             case R.id.nav_feedback: {
-                Toast.makeText(this, "Feedback page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, Feedback.class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
+                Intent intent = new Intent(this, Feedback.class);
+                startActivity(intent);
+                ((Activity) this).finish();
                 break;
             }
             case R.id.nav_logout: {
@@ -458,6 +444,9 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
                 startActivity(intent);
                 this.finish();
                 break;
+            }
+            default: {
+                Log.d(TAG, "Sidebar error");
             }
         }
 

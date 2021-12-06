@@ -25,6 +25,7 @@ import javax.mail.internet.MimeMessage;
 /**
  * Class to send OTP to the user
  */
+@Deprecated
 public class SendOTP extends AsyncTask<Void, Void, Void> {
     private final Context context;
     private Session session;
@@ -52,6 +53,7 @@ public class SendOTP extends AsyncTask<Void, Void, Void> {
      * Method that runs before the class is executed
      */
     @Override
+    @Deprecated
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = ProgressDialog.show(context, "Sending OTP", "Please wait...", false, false);
@@ -63,6 +65,7 @@ public class SendOTP extends AsyncTask<Void, Void, Void> {
      * @param aVoid
      */
     @Override
+    @Deprecated
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         progressDialog.dismiss();
@@ -88,6 +91,7 @@ public class SendOTP extends AsyncTask<Void, Void, Void> {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
         session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
             }

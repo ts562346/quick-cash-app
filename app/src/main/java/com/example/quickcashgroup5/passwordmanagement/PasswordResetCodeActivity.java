@@ -30,17 +30,13 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
         buttonBackToLogin = findViewById((R.id.backToLogin));
         buttonCodeNotReceived = findViewById((R.id.codeNotReceived));
 
-        buttonCodeNotReceived.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(PasswordResetCodeActivity.this, RecoveryAccountActivity.class));
-                PasswordResetCodeActivity.this.finish();
-            }
+        buttonCodeNotReceived.setOnClickListener(v -> {
+            startActivity(new Intent(PasswordResetCodeActivity.this, RecoveryAccountActivity.class));
+            PasswordResetCodeActivity.this.finish();
         });
-        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(PasswordResetCodeActivity.this, LogInActivity.class));
-                PasswordResetCodeActivity.this.finish();
-            }
+        buttonBackToLogin.setOnClickListener(v -> {
+            startActivity(new Intent(PasswordResetCodeActivity.this, LogInActivity.class));
+            PasswordResetCodeActivity.this.finish();
         });
         buttonSend.setOnClickListener(this);
     }

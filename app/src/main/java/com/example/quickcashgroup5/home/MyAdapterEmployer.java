@@ -25,8 +25,8 @@ import java.util.ArrayList;
 public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.MyViewHolderEmployer>  {
 
     ArrayList<DataModelDashboard> dataHolder;
-    String TAG = "MyViewHolder";
-    ArrayList<String> key = new ArrayList<String>();
+    String tag = "MyViewHolder";
+    ArrayList<String> key = new ArrayList<>();
 
 
     public MyAdapterEmployer(ArrayList<DataModelDashboard> dataHolder) {
@@ -54,7 +54,8 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
     }
 
     class MyViewHolderEmployer extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-        TextView title, payment;
+        TextView title;
+        TextView payment;
         ImageButton imageButton;
         Context context;
         public MyViewHolderEmployer(@NonNull View itemView) {
@@ -99,7 +100,7 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()){
                 case R.id.details:
-                    Log.d(TAG, "onMenuItemClick: details" + getAdapterPosition());
+                    Log.d(tag, "onMenuItemClick: details" + getAdapterPosition());
                     Intent intent =  new Intent(context, JobDescriptionEmployerActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("Key", key.get(getAdapterPosition()));
@@ -107,7 +108,7 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     context.startActivity(intent);
                     return true;
                 case R.id.select:
-                    Log.d(TAG, "onMenuItemClick: select" + getAdapterPosition());
+                    Log.d(tag, "onMenuItemClick: select" + getAdapterPosition());
                     intent =  new Intent(context, SelectEmployeeActivity.class);
                     bundle = new Bundle();
                     bundle.putString("Key", key.get(getAdapterPosition()));
@@ -115,15 +116,17 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     context.startActivity(intent);
                     return true;
                 case R.id.pay:
-                    Log.d(TAG, "onMenuItemClick: pay" + getAdapterPosition());
+                    Log.d(tag, "onMenuItemClick: pay" + getAdapterPosition());
                     intent =  new Intent(context, PayEmployeeActivity.class);
                     bundle = new Bundle();
                     bundle.putString("Key", key.get(getAdapterPosition()));
                     intent.putExtras(bundle);
                     context.startActivity(intent);
                     return true;
+                default:
+                    Log.d(tag, "Menu error");
+                    return false;
             }
-            return false;
         }
     }
 }

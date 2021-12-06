@@ -35,18 +35,17 @@ public class RecoveryAccountActivity extends AppCompatActivity implements View.O
         buttonSend = findViewById(R.id.sendButton);
         buttonBackToLogin = findViewById((R.id.backToLogin));
 
-        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(RecoveryAccountActivity.this, LogInActivity.class));
-                RecoveryAccountActivity.this.finish();
-            }
+        buttonBackToLogin.setOnClickListener(v -> {
+            startActivity(new Intent(RecoveryAccountActivity.this, LogInActivity.class));
+            RecoveryAccountActivity.this.finish();
         });
         buttonSend.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        final int resetCode = (new Random().nextInt(8888) + 1111);
+        Random rand = new Random();
+        final int resetCode = (rand.nextInt(8888) + 1111);
         sessionManagement.setOTP(resetCode);
         String email = Validation.sanitize(editTextEmail.getText().toString());
         if(Validation.emailValidation(email)) {

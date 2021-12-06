@@ -5,7 +5,6 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,11 +12,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
 import com.example.quickcashgroup5.emailmanagement.SendNotification;
 import com.example.quickcashgroup5.jobcreation.JobPosting;
 import com.example.quickcashgroup5.jobsearch.JobSearchActivity;
-import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -70,8 +69,7 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onCancelled(DatabaseError error) {
                 Log.d(TAG, "Database Error: " + error);
             }
         });

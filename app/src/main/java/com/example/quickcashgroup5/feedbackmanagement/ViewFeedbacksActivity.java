@@ -1,11 +1,13 @@
 package com.example.quickcashgroup5.feedbackmanagement;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -13,8 +15,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.R;
+import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.jobcreation.CreateJobActivity;
 import com.example.quickcashgroup5.usermanagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
@@ -58,11 +60,9 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         sidebar.setNavigationItemSelectedListener(this);
 
         submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(ViewFeedbacksActivity.this, SendFeedbackActivity.class));
-                ViewFeedbacksActivity.this.finish();
-            }
+        submit.setOnClickListener(v -> {
+            startActivity(new Intent(ViewFeedbacksActivity.this, SendFeedbackActivity.class));
+            ViewFeedbacksActivity.this.finish();
         });
 
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
@@ -87,6 +87,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+                Log.d(TAG, "onMenuItemClick: details");
             }
         });
     }
@@ -157,6 +158,9 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
                 startActivity(intent);
                 this.finish();
                 break;
+            }
+            default: {
+                Log.d(TAG, "Asyncronous method canceled");
             }
         }
 

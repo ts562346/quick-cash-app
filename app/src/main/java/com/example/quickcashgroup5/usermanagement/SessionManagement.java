@@ -17,7 +17,7 @@ import com.example.quickcashgroup5.home.EmployerHomeActivity;
 
 //Referred to https://www.tutorialspoint.com/android/android_shared_preferences.htm
 public class SessionManagement implements ISessionManagement {
-    private static final String preferencesName = "Session";
+    private static final String PREFERENCES_NAME = "Session";
     private final SharedPreferences sharedPreferences;
     private final Context context;
     SharedPreferences.Editor editor;
@@ -30,7 +30,7 @@ public class SessionManagement implements ISessionManagement {
      */
     public SessionManagement(Context context) {
         this.context = context;
-        this.sharedPreferences = this.context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+        this.sharedPreferences = this.context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
     }
 
@@ -159,12 +159,9 @@ public class SessionManagement implements ISessionManagement {
     public void accessControl() {
         Intent i;
         if (isLoggedIn()) {
-            System.out.println("good");
             if (getRole().equals("Employee")) {
-                System.out.println("Employee");
                 i = new Intent(context, EmployeeHomeActivity.class);
             } else {
-                System.out.println("Employer");
                 i = new Intent(context, EmployerHomeActivity.class);
             }
             context.startActivity(i);

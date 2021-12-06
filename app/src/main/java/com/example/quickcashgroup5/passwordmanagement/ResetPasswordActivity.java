@@ -31,7 +31,6 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         sessionManagement = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resetpassword);
-//        getSupportActionBar().hide();
         editTextPassword = findViewById(R.id.password);
         editTextConfirmPassword = findViewById(R.id.confirmPassword);
         buttonReset = findViewById(R.id.resetButton);
@@ -40,11 +39,9 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
         email = bundle.getString("email");
         buttonBackToLogin = findViewById((R.id.backToLogin));
 
-        buttonBackToLogin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(ResetPasswordActivity.this, LogInActivity.class));
-                ResetPasswordActivity.this.finish();
-            }
+        buttonBackToLogin.setOnClickListener(v -> {
+            startActivity(new Intent(ResetPasswordActivity.this, LogInActivity.class));
+            ResetPasswordActivity.this.finish();
         });
     }
 
@@ -70,7 +67,7 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
     public void changePassword(String newPassword){
         AESCrypt aes = new AESCrypt();
         try {
-            Map<String, Object> updates = new HashMap<String,Object>();
+            Map<String, Object> updates = new HashMap<>();
             updates.put("email", aes.encrypt(newPassword));
             updates.put("password", aes.encrypt(newPassword));
             database.updateUser(updates);

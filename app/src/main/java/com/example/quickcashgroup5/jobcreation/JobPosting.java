@@ -35,7 +35,7 @@ public class JobPosting implements IJobPosting {
     }
 
     public JobPosting(){
-        this.appliedApplicants = new ArrayList<String>();
+        this.appliedApplicants = new ArrayList<>();
     }
 
     @Override

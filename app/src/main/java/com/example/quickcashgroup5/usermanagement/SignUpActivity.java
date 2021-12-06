@@ -26,8 +26,12 @@ import com.google.android.gms.tasks.Task;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     //Initializes the variables
-    Button registerButton, registeredUserLabel;
-    EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
+    Button registerButton;
+    Button registeredUserLabel;
+    EditText nameEditText;
+    EditText emailEditText;
+    EditText passwordEditText;
+    EditText confirmPasswordEditText;
     Database database;
     Spinner dropDown;
     SessionManagement sessionManagement;
@@ -54,11 +58,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         database = new Database();
 
-        registeredUserLabel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
-                SignUpActivity.this.finish();
-            }
+        registeredUserLabel.setOnClickListener(v -> {
+            startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+            SignUpActivity.this.finish();
         });
         registerButton.setOnClickListener(this);
     }
@@ -151,9 +153,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(this, "Successful SignUp", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                     TaskStackBuilder.create(this).addNextIntentWithParentStack(intent).startActivities();
-                }).addOnFailureListener(fal -> {
-                    Toast.makeText(this, "Unsuccessful SignUp", Toast.LENGTH_SHORT).show();
-                });
+                }).addOnFailureListener(fal ->
+                    Toast.makeText(this, "Unsuccessful SignUp", Toast.LENGTH_SHORT).show()
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();

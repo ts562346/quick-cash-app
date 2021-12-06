@@ -1,17 +1,19 @@
 package com.example.quickcashgroup5.jobdetails;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.jobcreation.JobPosting;
-import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +30,7 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
     boolean isSelected = false;
     String key;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         user= new SessionManagement(this);
         super.onCreate(savedInstanceState);
@@ -37,14 +39,11 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         key = bundle.getString("Key");
         initializeDatabase();
         jobPosting=new JobPosting();
-        System.out.println("lol2"+isSelected);
 
         jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("lol3"+isSelected);
                 jobPosting=dataSnapshot.getValue(JobPosting.class);
-                System.out.println(jobPosting.getTitle());
 
                 TextView title = findViewById(R.id.jobTitle);
                 title.setText(jobPosting.getTitle());
@@ -70,7 +69,6 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
                 if(jobPosting.getSelectedApplicantEmail()==null) {
                     status.setText("Waiting");
                     isSelected=false;
-                    System.out.println("Lol "+isSelected);
                 }else if(jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
                     status.setText("Ongoing");
                     isSelected=true;
@@ -96,8 +94,6 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         });
 
         submit = findViewById(R.id.submit);
-
-        System.out.println("lol1"+isSelected);
     }
 
 
@@ -111,35 +107,30 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
 
     private void isSelected( boolean isSelected) {
         if (isSelected) {
-            submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            JobPosting job = dataSnapshot.getValue(JobPosting.class);
-                            job.setStatus("Completed");
-                            dataSnapshot.getRef().child("status").setValue(job.getStatus());
+            submit.setOnClickListener(view -> {
+                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        JobPosting job = dataSnapshot.getValue(JobPosting.class);
+                        job.setStatus("Completed");
+                        dataSnapshot.getRef().child("status").setValue(job.getStatus());
 
-                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
-                    Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
-                    startActivity(intent);
-                }
+                        Log.d(TAG, "Database Error: " + error);
+                    }
+                });
+                Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
+                startActivity(intent);
             });
         } else {
             submit.setText("Back");
-            submit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
-                    startActivity(intent);
-                }
+            submit.setOnClickListener(view -> {
+                Intent intent = new Intent(JobStatusEmployeeActivity.this, EmployeeHomeActivity.class);
+                startActivity(intent);
             });
         }
 

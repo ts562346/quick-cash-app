@@ -2,7 +2,6 @@ package com.example.quickcashgroup5.designelements;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.CompoundButton;
 
 import androidx.appcompat.widget.AppCompatRadioButton;
 
@@ -65,13 +64,10 @@ public class MyRadioButton extends AppCompatRadioButton {
      * Sets OnCheckedChangeListener
      */
     private void setOwnOnCheckedChangeListener() {
-        setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (onCheckedChangeListener != null) {
-                    //this is called when we have set our listener
-                    onCheckedChangeListener.onCheckedChanged(buttonView, isChecked);
-                }
+        setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (onCheckedChangeListener != null) {
+                //this is called when we have set our listener
+                onCheckedChangeListener.onCheckedChanged(buttonView, isChecked);
             }
         });
     }

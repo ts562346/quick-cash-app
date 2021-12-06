@@ -1,9 +1,11 @@
 package com.example.quickcashgroup5.feedbackmanagement;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -14,8 +16,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.R;
+import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.jobcreation.CreateJobActivity;
 import com.example.quickcashgroup5.usermanagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
@@ -69,11 +71,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
 
         editTextName.setText(sessionManagement.getName());
         editTextUserType.setText(sessionManagement.getRole());
-        submit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                sendFeedback();
-            }
-        });
+        submit.setOnClickListener(v -> sendFeedback());
 
         initializeDatabase();
     }
@@ -113,15 +111,14 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
     protected void sendFeedback(){
         Feedback feedback = new Feedback();
         try {
-            if (createFeedback(feedback)) {
-                this.add(feedback).addOnSuccessListener(suc -> {
-                    Toast.makeText(this, "Successfully sent the feedback", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, ViewFeedbacksActivity.class);
-                    startActivity(intent);
-                }).addOnFailureListener(fal -> {
-                    Toast.makeText(this, "Unsuccessfully sent the feedback", Toast.LENGTH_SHORT).show();
-                });
-            }
+            createFeedback(feedback);
+            this.add(feedback).addOnSuccessListener(suc -> {
+                Toast.makeText(this, "Successfully sent the feedback", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, ViewFeedbacksActivity.class);
+                startActivity(intent);
+            }).addOnFailureListener(fal ->
+                Toast.makeText(this, "Unsuccessfully sent the feedback", Toast.LENGTH_SHORT).show()
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,6 +184,9 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
                 startActivity(intent);
                 this.finish();
                 break;
+            }
+            default: {
+                Log.d(TAG, "Sidebar error");
             }
         }
 

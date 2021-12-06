@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class MyAdapterEmployee extends RecyclerView.Adapter<MyAdapterEmployee.MyViewHolderEmployee> {
 
     ArrayList<DataModelDashboard> dataHolder;
-    String TAG = "MyViewHolder";
-    ArrayList<String> key = new ArrayList<String>();
+    String tag = "MyViewHolder";
+    ArrayList<String> key = new ArrayList<>();
 
 
     public MyAdapterEmployee(ArrayList<DataModelDashboard> dataHolder) {
@@ -52,7 +52,8 @@ public class MyAdapterEmployee extends RecyclerView.Adapter<MyAdapterEmployee.My
     }
 
     class MyViewHolderEmployee extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-        TextView payment, title;
+        TextView payment;
+        TextView title;
         ImageButton imageButton;
         Context context;
         public MyViewHolderEmployee(@NonNull View itemView) {
@@ -80,17 +81,17 @@ public class MyAdapterEmployee extends RecyclerView.Adapter<MyAdapterEmployee.My
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()){
-                case R.id.status:
-                    Log.d(TAG, "onMenuItemClick: details" + getAdapterPosition());
+            if (menuItem.getItemId() == R.id.status) {
+                Log.d(tag, "onMenuItemClick: details" + getAdapterPosition());
 
-                    Intent intent = new Intent(context, JobStatusEmployeeActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Key", key.get(getAdapterPosition()));
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                    return true;
-
+                Intent intent = new Intent(context, JobStatusEmployeeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Key", key.get(getAdapterPosition()));
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+                return true;
+            } else {
+                Log.d(tag, "onMenuItemClick: details");
             }
             return false;
         }

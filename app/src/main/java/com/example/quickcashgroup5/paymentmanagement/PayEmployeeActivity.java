@@ -1,17 +1,19 @@
 package com.example.quickcashgroup5.paymentmanagement;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
 import com.example.quickcashgroup5.jobcreation.JobPosting;
-import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
 import com.example.quickcashgroup5.usermanagement.User;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +29,7 @@ public class PayEmployeeActivity extends AppCompatActivity {
     SessionManagement user;
     User employee;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         user = new SessionManagement(this);
         super.onCreate(savedInstanceState);
@@ -37,17 +40,14 @@ public class PayEmployeeActivity extends AppCompatActivity {
 
         submit = findViewById(R.id.apply);
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(employee != null) {
-                    Intent intent = new Intent(PayEmployeeActivity.this, Paypal.class);
-                    intent.putExtra("Key", key);
-                    intent.putExtra("Name", employee.getName());
-                    float totalPayment = Float.parseFloat(jobPosting.getPayment()) * Float.parseFloat(jobPosting.getDuration());
-                    intent.putExtra("Payment", String.valueOf(totalPayment));
-                    startActivity(intent);
-                }
+        submit.setOnClickListener(view -> {
+            if(employee != null) {
+                Intent intent = new Intent(PayEmployeeActivity.this, Paypal.class);
+                intent.putExtra("Key", key);
+                intent.putExtra("Name", employee.getName());
+                float totalPayment = Float.parseFloat(jobPosting.getPayment()) * Float.parseFloat(jobPosting.getDuration());
+                intent.putExtra("Payment", String.valueOf(totalPayment));
+                startActivity(intent);
             }
         });
 
@@ -56,8 +56,6 @@ public class PayEmployeeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 jobPosting = dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
-                System.out.println(key);
-                System.out.println(jobPosting.getTitle());
 
                 TextView title = findViewById(R.id.jobTitle);
                 title.setText(jobPosting.getTitle());
@@ -88,7 +86,8 @@ public class PayEmployeeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("Database Error: " + error);
+
+                Log.d(TAG, "Database Error: " + error);
             }
         });
 

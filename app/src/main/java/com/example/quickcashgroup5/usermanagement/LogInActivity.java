@@ -23,8 +23,11 @@ import com.example.quickcashgroup5.R;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     //Initializing Variables
-    Button loginButton, forgotPassword, notRegisteredUserLabel;
-    EditText emailEditText, passwordEditText;
+    Button loginButton;
+    Button forgotPassword;
+    Button notRegisteredUserLabel;
+    EditText emailEditText;
+    EditText passwordEditText;
     Database database;
     ISessionManagement sessionManagement;
 

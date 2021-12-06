@@ -28,8 +28,6 @@ import java.util.ArrayList;
  */
 public class FragmentSelectEmployee extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     String key;
     ArrayList<DataModelSelectEmployee> selectEmployeeDataModel;
     private static SessionManagement sessionManagement;

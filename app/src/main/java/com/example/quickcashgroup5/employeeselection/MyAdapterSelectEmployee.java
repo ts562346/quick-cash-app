@@ -29,9 +29,9 @@ import java.util.ArrayList;
 public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelectEmployee.MyViewHolderSelectEmployee> {
 
     ArrayList<DataModelSelectEmployee> dataHolder;
-    String TAG = "MyViewHolder";
-    ArrayList<String> key = new ArrayList<String>();
-    ArrayList<String> email = new ArrayList<String>();
+    String tag = "MyViewHolder";
+    ArrayList<String> key = new ArrayList<>();
+    ArrayList<String> email = new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference jobs;
     private JobPosting jobPosting;

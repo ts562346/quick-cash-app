@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.MyViewHolderJobSearch>  {
 
     ArrayList<DataModelDashboard> dataHolder;
-    ArrayList<String> key = new ArrayList<String>();
-    String TAG = "MyViewHolder";
+    ArrayList<String> key = new ArrayList<>();
+    String tag = "MyViewHolder";
 
 
 
@@ -32,7 +32,6 @@ public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.
     @NonNull
     @Override
     public MyViewHolderJobSearch onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        System.out.println("Test 2");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow_jobsearch, parent, false);
         return new MyViewHolderJobSearch(view);
 
@@ -40,9 +39,7 @@ public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderJobSearch holder, int position) {
-        System.out.println(dataHolder.get(position).getKey());
         key.add(dataHolder.get(position).getKey());
-        System.out.println("Initial "+key);
         holder.payment.setText(dataHolder.get(position).getStatus());
         holder.title.setText(dataHolder.get(position).getJobTitle());
     }
@@ -55,7 +52,8 @@ public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.
     class MyViewHolderJobSearch extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
-        TextView title, payment;
+        TextView title;
+        TextView payment;
         Context context;
 
         public MyViewHolderJobSearch(@NonNull View itemView) {

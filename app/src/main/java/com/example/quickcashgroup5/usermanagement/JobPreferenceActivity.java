@@ -1,9 +1,11 @@
 package com.example.quickcashgroup5.usermanagement;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -14,14 +16,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.quickcashgroup5.datavalidation.Validation;
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
+import com.example.quickcashgroup5.datavalidation.Validation;
 import com.example.quickcashgroup5.feedbackmanagement.ViewFeedbacksActivity;
 import com.example.quickcashgroup5.home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.jobcreation.CreateJobActivity;
 import com.example.quickcashgroup5.jobsearch.JobSearchActivity;
-import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,7 +34,9 @@ import java.util.Map;
 public class JobPreferenceActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SessionManagement sessionManagement;
     Spinner category;
-    EditText location, minPayment, minHours;
+    EditText location;
+    EditText minPayment;
+    EditText minHours;
     Button submit;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -64,20 +68,18 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
         sidebar.setNavigationItemSelectedListener(this);
 
         submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Task<Void> task = updatePreference();
-                if (task != null) {
-                    task.addOnSuccessListener(suc -> {
-                        Toast.makeText(getApplicationContext(), "Job preferences have been updated", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
-                    }).addOnFailureListener(fal -> {
-                        Toast.makeText(getApplicationContext(), "There was an error updating your preferences", Toast.LENGTH_SHORT).show();
-                    });
-                } else {
-                    System.out.println("Validation failed");
-                }
+        submit.setOnClickListener(view -> {
+            Task<Void> task = updatePreference();
+            if (task != null) {
+                task.addOnSuccessListener(suc -> {
+                    Toast.makeText(getApplicationContext(), "Job preferences have been updated", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
+                }).addOnFailureListener(fal ->
+                    Toast.makeText(getApplicationContext(), "There was an error updating your preferences", Toast.LENGTH_SHORT).show()
+                );
+            } else {
+
+                Log.d(TAG, "Validation failed");
             }
         });
 
@@ -104,7 +106,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
 
         User u = database.findUser(sessionManagement.getEmail());
         if(u != null) {
-            Map<String, Object> updates = new HashMap<String, Object>();
+            Map<String, Object> updates = new HashMap<>();
             updates.put("email", email);
             updates.put("preferredCategory", selectedCategory);
             updates.put("preferredLocation", selectedLocation);
@@ -112,7 +114,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
             updates.put("preferredHours", duration);
             return database.updateUser(updates);
         } else {
-            System.out.println("Signed in user is not in database");
+                Log.d(TAG, "Signed in user is not in database");
             Toast.makeText(this, "There was an error updating your preferences", Toast.LENGTH_LONG).show();
             return null;
         }
@@ -168,6 +170,9 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
                 startActivity(intent);
                 this.finish();
                 break;
+            }
+            default: {
+                Log.d(TAG, "Asyncronous method canceled");
             }
         }
 

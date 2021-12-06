@@ -1,17 +1,19 @@
 package com.example.quickcashgroup5.jobdetails;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
 import com.example.quickcashgroup5.home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.jobcreation.JobPosting;
-import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
 import com.example.quickcashgroup5.usermanagement.User;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,7 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
     Button submit;
     SessionManagement user;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         user= new SessionManagement(this);
         super.onCreate(savedInstanceState);
@@ -34,12 +37,9 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
         jobPosting=new JobPosting();
 
         submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(JobDescriptionEmployerActivity.this, EmployeeHomeActivity.class);
-                startActivity(intent);
-            }
+        submit.setOnClickListener(view -> {
+            Intent intent = new Intent(JobDescriptionEmployerActivity.this, EmployeeHomeActivity.class);
+            startActivity(intent);
         });
 
 
@@ -47,7 +47,6 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 jobPosting=dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
-                System.out.println(jobPosting.getTitle());
 
                 TextView title = findViewById(R.id.jobTitle);
                 title.setText(jobPosting.getTitle());
@@ -84,8 +83,9 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(DatabaseError error) {
 
+                Log.d(TAG, "Database Error: " + error);
             }
         });
 

@@ -38,23 +38,14 @@ public class SendNotification extends AsyncTask<Void, Void, Void> {
     }
 
     /**
-     * Method that runs before the class is executed
-     */
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        System.out.println("Notification for" + email + " in progress");
-    }
-
-    /**
      * Method that runs after the class is executed
      *
      * @param aVoid
      */
     @Override
+    @Deprecated
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        System.out.println(email + "has been notified.");
     }
 
     /**
@@ -72,6 +63,7 @@ public class SendNotification extends AsyncTask<Void, Void, Void> {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
         session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(Config.EMAIL, Config.PASSWORD);
             }
@@ -85,7 +77,6 @@ public class SendNotification extends AsyncTask<Void, Void, Void> {
             Transport.send(mm);
         } catch (MessagingException e) {
             e.printStackTrace();
-            System.out.println("Notification not send");
         }
         return null;
     }
