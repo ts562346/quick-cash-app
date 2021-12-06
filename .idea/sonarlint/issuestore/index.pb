@@ -68,8 +68,6 @@ Sapp/src/main/java/com/example/quickcashgroup5/emailmanagement/SendNotification.
 [app/src/main/java/com/example/quickcashgroup5/employeeselection/FragmentSelectEmployee.java,1\6\16659f3573929bfb6964d100ec0671ab98f3250f
 ã
 [app/src/main/java/com/example/quickcashgroup5/employeeselection/SelectEmployeeActivity.java,9\0\90febc6103489b1818c68dc756ea8c4ddfd5704e
-~
-Napp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/Feedback.java,e\8\e86a6eba7f1ff1e23811af33f73c51d4f5deb86e
 ç
 ]app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/FeedbackAbstractFactory.java,b\a\ba2293e0bcb2ff95de2ab08c104fef71da3a1a96
 Ü
@@ -78,8 +76,6 @@ Vapp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/FeedbackInject
 Oapp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/IFeedback.java,6\8\68e0cd1a3afd1d751f4c8265e241ab5fd6a849fd
 é
 ^app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/IFeedbackAbstractFactory.java,4\2\424731203c47c3409b8731152baa6db5a6a06d1d
-ã
-[app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/ViewFeedbacksActivity.java,c\3\c3d08dccd7994bead37cf5e010191e76dccac45d
 Ü
 Vapp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/FeedbackFragment.java,7\8\78d55eadf019c586b731de754dddf94309e55e3a
 y
@@ -100,8 +96,6 @@ Iapp/src/main/java/com/example/quickcashgroup5/home/MyAdapterEmployer.java,4\b\
 \app/src/main/java/com/example/quickcashgroup5/employeeselection/MyAdapterSelectEmployee.java,7\a\7a57b83df315ad63fec1b6a99ab99c9d1ae40088
 Ä
 Papp/src/main/java/com/example/quickcashgroup5/jobcreation/CreateJobActivity.java,9\7\970ad50f9a72a2098a3f04dea73cc99bac3617f6
-ä
-Zapp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/SendFeedbackActivity.java,7\0\70770f85c6841ad39aacb382a01f86bbd2e0d60e
 z
 Japp/src/main/java/com/example/quickcashgroup5/jobcreation/IJobPosting.java,3\0\30e8ca0db9c87175744a871872100686219740c9
 o
@@ -146,8 +140,6 @@ Tapp/src/main/java/com/example/quickcashgroup5/usermanagement/ISessionManagement
 `app/src/main/java/com/example/quickcashgroup5/usermanagement/IUserManagementAbstractFactory.java,9\7\97962b6e3427559a136cdb2bba12cb391efc19ce
 ~
 Napp/src/main/java/com/example/quickcashgroup5/jobsearch/JobSearchActivity.java,4\9\49b9c54ac3c73d156d93bd0c272e63b4d0bc9bde
-á
-Wapp/src/main/java/com/example/quickcashgroup5/usermanagement/JobPreferenceActivity.java,2\b\2b4f9496bed569c9df5b57ffd64dd5d1e6e5eade
 
 Oapp/src/main/java/com/example/quickcashgroup5/jobsearch/MyAdapterJobSearch.java,0\d\0d6bf4928909dff041c73e8f3a497e6e7d842695
 å

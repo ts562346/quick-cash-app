@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.jobcreation.CreateJobActivity;
+import com.example.quickcashgroup5.jobsearch.JobSearchActivity;
 import com.example.quickcashgroup5.usermanagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
@@ -58,6 +59,11 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (sessionManagement.getRole().equals("Employee")) {
+            sidebar.inflateMenu(R.menu.navigation_menu_employee);
+        } else {
+            sidebar.inflateMenu(R.menu.navigation_menu_employer);
+        }
         sidebar.setNavigationItemSelectedListener(this);
 
         submit = findViewById(R.id.submit);
@@ -134,6 +140,12 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         switch (item.getItemId()) {
             case R.id.nav_home: {
                 Intent intent = new Intent(this, EmployerHomeActivity.class);
+                startActivity(intent);
+                this.finish();
+                break;
+            }
+            case R.id.nav_searchJob: {
+                Intent intent = new Intent(this, JobSearchActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;

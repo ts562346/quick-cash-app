@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.jobcreation.CreateJobActivity;
+import com.example.quickcashgroup5.jobsearch.JobSearchActivity;
 import com.example.quickcashgroup5.usermanagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
@@ -68,6 +69,11 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (sessionManagement.getRole().equals("Employee")) {
+            sidebar.inflateMenu(R.menu.navigation_menu_employee);
+        } else {
+            sidebar.inflateMenu(R.menu.navigation_menu_employer);
+        }
         sidebar.setNavigationItemSelectedListener(this);
 
         editTextName.setText(sessionManagement.getName());
@@ -163,6 +169,12 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
                 this.finish();
                 break;
             }
+            case R.id.nav_searchJob: {
+                Intent intent = new Intent(this, JobSearchActivity.class);
+                startActivity(intent);
+                this.finish();
+                break;
+            }
             case R.id.nav_createJob: {
                 Intent intent = new Intent(this, CreateJobActivity.class);
                 startActivity(intent);
@@ -190,7 +202,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             default: {
-                Log.d(TAG, "Sidebar error");
+                Log.d(TAG, "Asyncronous method canceled");
             }
         }
 
