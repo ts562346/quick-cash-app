@@ -44,6 +44,8 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
         String key = bundle.getString("Key");
         jobPosting = new JobPosting();
 
+        database = new Database();
+
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(view -> {
             Intent intent = new Intent(JobDescriptionEmployerActivity.this, EmployeeHomeActivity.class);
