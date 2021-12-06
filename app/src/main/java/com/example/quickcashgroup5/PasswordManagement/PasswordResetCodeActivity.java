@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.quickcashgroup5.DataValidation.Validation;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
@@ -47,17 +48,22 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        int inputCode = Integer.parseInt(editTextCode.getText().toString().trim());
-        int resetCode = sessionManagement.getOTP();
-        if(inputCode == resetCode){
-            Bundle bundle = getIntent().getExtras();
-            String email = bundle.getString("email");
-            Intent intent = new Intent(PasswordResetCodeActivity.this, ResetPasswordActivity.class);
-            intent.putExtra("email", email);
-            startActivity(intent);
-            this.finish();
-        } else{
-            Toast.makeText(this,"The OTP you have entered is not valid",Toast.LENGTH_LONG).show();
+        String input = Validation.sanitize(editTextCode.getText().toString());
+        if(Validation.otpValidation(input)) {
+            int inputCode = Integer.parseInt(input);
+            int resetCode = sessionManagement.getOTP();
+            if (inputCode == resetCode) {
+                Bundle bundle = getIntent().getExtras();
+                String email = bundle.getString("email");
+                Intent intent = new Intent(PasswordResetCodeActivity.this, ResetPasswordActivity.class);
+                intent.putExtra("email", email);
+                startActivity(intent);
+                this.finish();
+            } else {
+                Toast.makeText(this, "The OTP you have entered is not valid", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "The OTP should be exact 4 numbers", Toast.LENGTH_LONG);
         }
     }
 }

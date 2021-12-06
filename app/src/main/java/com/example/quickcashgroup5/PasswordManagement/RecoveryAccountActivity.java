@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.DataValidation.Validation;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.EmailManagement.SendOTP;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
@@ -46,11 +48,15 @@ public class RecoveryAccountActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         final int resetCode = (new Random().nextInt(8888) + 1111);
         sessionManagement.setOTP(resetCode);
-        String email = editTextEmail.getText().toString().trim();
-        String subject = "QuickCash password reset code";
-        String message = "You password reset code is " + resetCode;
-        SendOTP sm = new SendOTP(this, email, subject, message);
-        sm.execute();
+        String email = Validation.sanitize(editTextEmail.getText().toString());
+        if(Validation.emailValidation(email)) {
+            String subject = "QuickCash password reset code";
+            String message = "You password reset code is " + resetCode;
+            SendOTP sm = new SendOTP(this, email, subject, message);
+            sm.execute();
+        } else {
+            Toast.makeText(getApplicationContext(), "Your email is invalid", Toast.LENGTH_LONG).show();
+        }
     }
 
 }

@@ -8,17 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
+import com.example.quickcashgroup5.DataValidation.Validation;
+import com.example.quickcashgroup5.DatabaseManagement.Database;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
-import com.example.quickcashgroup5.UserManagement.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +24,7 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
     private Button buttonBackToLogin;
     SessionManagement sessionManagement;
     String email;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,45 +50,33 @@ public class ResetPasswordActivity extends Activity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String password = editTextPassword.getText().toString().trim();
-        String confirmPassword = editTextConfirmPassword.getText().toString().trim();
+        String password = Validation.sanitize(editTextPassword.getText().toString());
+        String confirmPassword = Validation.sanitize(editTextConfirmPassword.getText().toString());
 
-        if(password.equals(confirmPassword)){
-            changePassword(password);
-            Toast.makeText(this, "Your password has successfully been reset", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LogInActivity.class));
-            this.finish();
+        if(Validation.confirmPasswordValidation(password, confirmPassword)){
+            if(Validation.passwordValidation(password)) {
+                changePassword(password);
+                Toast.makeText(this, "Your password has successfully been reset", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LogInActivity.class));
+                this.finish();
+            } else {
+                Toast.makeText(this, "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();
+            }
         } else{
             Toast.makeText(this, "Your password should match the confirm password", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void changePassword(String newPassword){
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        DatabaseReference users = database.getReference();
         AESCrypt aes = new AESCrypt();
-        users.child("User").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
-                    User u = adSnapshot.getValue(User.class);
-                    if (u.getEmail().equals(email)) {
-                        try {
-                            Map<String, Object> updates = new HashMap<String,Object>();
-                            updates.put("password", aes.encrypt(newPassword));
-                            adSnapshot.getRef().updateChildren(updates);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        try {
+            Map<String, Object> updates = new HashMap<String,Object>();
+            updates.put("email", aes.encrypt(newPassword));
+            updates.put("password", aes.encrypt(newPassword));
+            database.updateUser(updates);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

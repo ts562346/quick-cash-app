@@ -110,7 +110,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
             updates.put("preferredLocation", selectedLocation);
             updates.put("preferredPayment", wage);
             updates.put("preferredHours", duration);
-            return database.updatePreferences(updates);
+            return database.updateUser(updates);
         } else {
             System.out.println("Signed in user is not in database");
             Toast.makeText(this, "There was an error updating your preferences", Toast.LENGTH_LONG).show();

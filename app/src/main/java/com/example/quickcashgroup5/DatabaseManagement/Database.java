@@ -52,7 +52,7 @@ public class Database implements IDatabase {
         return task;
     }
 
-    public Task<Void> updatePreferences(Map<String, Object> updates) {
+    public Task<Void> updateUser(Map<String, Object> updates) {
         DatabaseReference users = getUserDataSnapshot((String) updates.get("email")).getRef();
         Task<Void> task = users.updateChildren(updates);
         return task;

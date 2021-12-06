@@ -16,7 +16,7 @@ public interface IDatabase {
 
     Task<Void> addJobPosting(JobPosting job);
 
-    Task<Void> updatePreferences(Map<String, Object> updates);
+    Task<Void> updateUser(Map<String, Object> updates);
 
     User findUser(String email);
 
