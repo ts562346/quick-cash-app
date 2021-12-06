@@ -94,8 +94,6 @@ y
 Iapp/src/main/java/com/example/quickcashgroup5/home/MyAdapterEmployer.java,4\b\4becbef3bed2c09a3d11a83e289d0a2c2bd8e5a6
 å
 \app/src/main/java/com/example/quickcashgroup5/employeeselection/MyAdapterSelectEmployee.java,7\a\7a57b83df315ad63fec1b6a99ab99c9d1ae40088
-Ä
-Papp/src/main/java/com/example/quickcashgroup5/jobcreation/CreateJobActivity.java,9\7\970ad50f9a72a2098a3f04dea73cc99bac3617f6
 z
 Japp/src/main/java/com/example/quickcashgroup5/jobcreation/IJobPosting.java,3\0\30e8ca0db9c87175744a871872100686219740c9
 o
@@ -154,3 +152,17 @@ v
 Fapp/src/main/java/com/example/quickcashgroup5/usermanagement/User.java,1\1\11c5b92c156aadeee4fa1e7f0e2a3291ea186af9
 ã
 [app/src/main/java/com/example/quickcashgroup5/passwordmanagement/ResetPasswordActivity.java,5\d\5d7f21a466a44a424b75197b0701e4de44deac8b
+~
+Napp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/Feedback.java,e\8\e86a6eba7f1ff1e23811af33f73c51d4f5deb86e
+Ä
+Papp/src/main/java/com/example/quickcashgroup5/usermanagement/SignUpActivity.java,8\a\8a5b578948ebb78f024ff39a801348ccf5c8dd94
+ç
+]app/src/main/java/com/example/quickcashgroup5/passwordmanagement/RecoveryAccountActivity.java,8\c\8cf01276e0ebc27ad94f636e54df9a0f2f3a1e37
+
+Oapp/src/main/java/com/example/quickcashgroup5/usermanagement/LogInActivity.java,3\a\3affdbc35e9c6880ff4196999bd7a4777c3ed210
+á
+Wapp/src/main/java/com/example/quickcashgroup5/usermanagement/JobPreferenceActivity.java,2\b\2b4f9496bed569c9df5b57ffd64dd5d1e6e5eade
+ã
+[app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/ViewFeedbacksActivity.java,c\3\c3d08dccd7994bead37cf5e010191e76dccac45d
+ä
+Zapp/src/main/java/com/example/quickcashgroup5/feedbackmanagement/SendFeedbackActivity.java,7\0\70770f85c6841ad39aacb382a01f86bbd2e0d60e

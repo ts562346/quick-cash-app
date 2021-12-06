@@ -158,7 +158,7 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
                     }
                 });
                 Toast.makeText(this, "Successful Job Creation", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, LogInActivity.class);
+                Intent intent = new Intent(this, EmployerHomeActivity.class);
                 startActivity(intent);
             }).addOnFailureListener(fal ->
                     Toast.makeText(this, "Unsuccessful Job Creation", Toast.LENGTH_SHORT).show()
