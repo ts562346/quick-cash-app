@@ -6,25 +6,43 @@ import android.widget.CompoundButton;
 
 import androidx.appcompat.widget.AppCompatRadioButton;
 
+/**
+ * Radio Button design element
+ */
 public class MyRadioButton extends AppCompatRadioButton {
-
 
     private OnCheckedChangeListener onCheckedChangeListener;
 
-
+    /**
+     * The constructor of Radio Button class
+     *
+     * @param context
+     */
     public MyRadioButton(Context context) {
         super(context);
     }
 
+    /**
+     * The constructor of Radio Button class
+     *
+     * @param context
+     */
     public MyRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
+    /**
+     * The constructor of Radio Button class
+     *
+     * @param context
+     */
     public MyRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-
+    /**
+     * Overrides the onAttachedToWindow() method
+     */
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -34,12 +52,18 @@ public class MyRadioButton extends AppCompatRadioButton {
 
     }
 
-
-
+    /**
+     * Sets OnCheckedChangeListener
+     *
+     * @param onCheckedChangeListener
+     */
     public void setOwnOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
+    /**
+     * Sets OnCheckedChangeListener
+     */
     private void setOwnOnCheckedChangeListener() {
         setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override

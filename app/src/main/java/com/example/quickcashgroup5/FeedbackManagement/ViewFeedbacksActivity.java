@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * The activity to view the Feedbacks
+ */
 public class ViewFeedbacksActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseDatabase database;
     DatabaseReference feedbacks;
@@ -36,6 +39,10 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     public ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
 
+    /**
+     * Runs when the class is created
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +71,9 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         find();
     }
 
+    /**
+     * Finds the feedbacks and adds to the layout
+     */
     protected void find(){
         feedbacks.child("Feedback").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -82,6 +92,10 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     }
 
     //https://www.c-sharpcorner.com/UploadFile/1e5156/dynamically-add-fragment-in-android-studio/
+    /**
+     * Adds the feedback fragments to the feedback
+     * @param feedback
+     */
     protected void addToLayout(Feedback feedback){
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -91,7 +105,9 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
         fragmentTransaction.commit();
     }
 
-    // To open and close the navigation drawer when the icon is clicked
+    /**
+     * To open and close the navigation drawer when the icon is clicked
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -102,6 +118,11 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+    /**
+     * The onclick of the Sidebar
+     * @param item
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

@@ -20,47 +20,57 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * The class for fragment of SelectEmployee
+ */
 public class FragmentSelectEmployee extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     String key;
-
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     ArrayList<DataModelSelectEmployee> selectEmployeeDataModel;
     private static SessionManagement sessionManagement;
+    private JobPosting jobPosting;
+    FirebaseDatabase database;
+    DatabaseReference jobs;
 
+    /**
+     * Sets the JobPosting
+     *
+     * @param jobPosting
+     */
     public void setJobPosting(JobPosting jobPosting) {
         this.jobPosting = jobPosting;
     }
 
-    private JobPosting jobPosting;
-    FirebaseDatabase database;
-    DatabaseReference jobs;
-    public FragmentSelectEmployee(){
-
-    }
-
-
-
+    /**
+     * The constructor of this class
+     *
+     * @param sessionManagement
+     * @param key
+     */
     public FragmentSelectEmployee(SessionManagement sessionManagement, String key) {
         // Required empty public constructor
-        this.key=key;
+        this.key = key;
         FragmentSelectEmployee.sessionManagement = sessionManagement;
     }
 
+    /**
+     * Initializes the database
+     */
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         jobs = database.getReference();
     }
 
-
-
+    /**
+     * Runs when fragment is created
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +84,14 @@ public class FragmentSelectEmployee extends Fragment {
 
     }
 
-
+    /**
+     * Runs when view is created
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,10 +108,10 @@ public class FragmentSelectEmployee extends Fragment {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.getValue(JobPosting.class);
-                for (int i=0; i<jobPosting.getAppliedApplicants().size(); i++){
+                jobPosting = dataSnapshot.getValue(JobPosting.class);
+                for (int i = 0; i < jobPosting.getAppliedApplicants().size(); i++) {
                     System.out.println(jobPosting.getAppliedApplicants().get(i));
-                    DataModelSelectEmployee name= new DataModelSelectEmployee(key, jobPosting.getAppliedApplicants().get(i));
+                    DataModelSelectEmployee name = new DataModelSelectEmployee(key, jobPosting.getAppliedApplicants().get(i));
                     selectEmployeeDataModel.add(name);
                 }
 

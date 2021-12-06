@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class for the validation of all the data to be inputted
+ */
 public class Validation {
     /**
      * Sanitizes string inputs
@@ -87,7 +90,13 @@ public class Validation {
         }
     }
 
-    public static boolean otpValidation(String otp){
+    /**
+     * Validates the otp
+     *
+     * @param otp
+     * @return
+     */
+    public static boolean otpValidation(String otp) {
         if (!otp.isEmpty()) {
             //The otp should be numeric and 4 characters long
             return otp.matches("^\\d{4}$");
@@ -96,17 +105,30 @@ public class Validation {
         }
     }
 
-    public static boolean jobTitleValidation(String jobTitle){
+    /**
+     * Validates the JobTitle
+     *
+     * @param jobTitle
+     * @return
+     */
+    public static boolean jobTitleValidation(String jobTitle) {
         return !jobTitle.isEmpty();
     }
 
-    public static boolean locationValidation(String location, Context context){
+    /**
+     * Validates the location
+     *
+     * @param location
+     * @param context
+     * @return
+     */
+    public static boolean locationValidation(String location, Context context) {
         if (!location.isEmpty()) {
             Geocoder geocoder = new Geocoder(context);
             List<Address> addressLists = new ArrayList<>();
             try {
                 addressLists = geocoder.getFromLocationName("location", 1);
-            }catch (IOException ex){
+            } catch (IOException ex) {
                 Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
             }
             return true;
@@ -115,7 +137,13 @@ public class Validation {
         }
     }
 
-    public static boolean wageValidation(String wage){
+    /**
+     * Validates the wage
+     *
+     * @param wage
+     * @return
+     */
+    public static boolean wageValidation(String wage) {
         if (!wage.isEmpty()) {
             //The wage can be decimal but up to 2 places
             return wage.matches("^\\d+\\.?\\d{1,2}$");
@@ -124,7 +152,13 @@ public class Validation {
         }
     }
 
-    public static boolean hoursValidation(String hours){
+    /**
+     * Validates the hours
+     *
+     * @param hours
+     * @return
+     */
+    public static boolean hoursValidation(String hours) {
         if (!hours.isEmpty()) {
             //The hours can be decimal but up to 2 places
             return hours.matches("^\\d+\\.?\\d{1,2}$");

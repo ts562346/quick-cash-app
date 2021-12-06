@@ -14,7 +14,10 @@ import com.example.quickcashgroup5.UserManagement.SessionManagement;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SelectEmployeeActivity extends AppCompatActivity{
+/**
+ * The Activity for selecting employee
+ */
+public class SelectEmployeeActivity extends AppCompatActivity {
     private JobPosting jobPosting;
     FirebaseDatabase database;
     DatabaseReference jobs;
@@ -22,19 +25,24 @@ public class SelectEmployeeActivity extends AppCompatActivity{
     SessionManagement user;
     String key;
 
+    /**
+     * OnCreate method
+     *
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
 
-        user= new SessionManagement(this);
+        user = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectemployee);
 
         Bundle bundle = getIntent().getExtras();
         key = bundle.getString("Key");
         initializeDatabase();
-        jobPosting=new JobPosting();
+        jobPosting = new JobPosting();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user,key)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user, key)).commit();
 
         refresh = findViewById(R.id.refresh_button);
         refresh.setOnClickListener(new View.OnClickListener() {
@@ -44,13 +52,16 @@ public class SelectEmployeeActivity extends AppCompatActivity{
             }
         });
 
-        FragmentSelectEmployee f = new FragmentSelectEmployee(user,key);
-        FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+        FragmentSelectEmployee f = new FragmentSelectEmployee(user, key);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.selectEmployeeRecycle, f, "Select employee");
         ft.commit();
 
     }
 
+    /**
+     * Initializes the database
+     */
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");

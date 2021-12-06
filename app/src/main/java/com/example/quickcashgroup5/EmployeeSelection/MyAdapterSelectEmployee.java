@@ -23,7 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelectEmployee.MyViewHolderSelectEmployee>  {
+/**
+ * The adapter for SelectEmployee
+ **/
+public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelectEmployee.MyViewHolderSelectEmployee> {
 
     ArrayList<DataModelSelectEmployee> dataHolder;
     String TAG = "MyViewHolder";
@@ -33,10 +36,22 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
     DatabaseReference jobs;
     private JobPosting jobPosting;
 
+    /**
+     * The constructor for this class
+     *
+     * @param dataHolder
+     */
     public MyAdapterSelectEmployee(ArrayList<DataModelSelectEmployee> dataHolder) {
         this.dataHolder = dataHolder;
     }
 
+    /**
+     * Runs when ViewHolder is created
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolderSelectEmployee onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +59,12 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
         return new MyViewHolderSelectEmployee(view);
     }
 
+    /**
+     * Runs when ViewHolder is binded
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderSelectEmployee holder, int position) {
         key.add(dataHolder.get(position).getKey());
@@ -51,15 +72,29 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
         holder.name.setText(dataHolder.get(position).getName());
     }
 
+    /**
+     * Gets the size of the data holder
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return dataHolder.size();
     }
 
+    /**
+     * The Class RecyclerView ViewHolderSelectEmployee
+     */
     class MyViewHolderSelectEmployee extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name;
         ImageButton accept;
         Context context;
+
+        /**
+         * The constructor of the class
+         *
+         * @param itemView
+         */
         public MyViewHolderSelectEmployee(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
@@ -68,6 +103,11 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
             accept.setOnClickListener(this);
         }
 
+        /**
+         * onClick method
+         *
+         * @param view
+         */
         @Override
         public void onClick(View view) {
             database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
@@ -75,7 +115,7 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
             jobs.child("JobPosting").child(key.get(getAdapterPosition())).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    jobPosting=dataSnapshot.getValue(JobPosting.class);
+                    jobPosting = dataSnapshot.getValue(JobPosting.class);
                     jobPosting.setSelectedApplicantEmail(email.get(getAdapterPosition()));
                     dataSnapshot.getRef().child("selectedApplicantEmail").setValue(jobPosting.getSelectedApplicantEmail());
                     jobPosting.setStatus("Ongoing");
@@ -88,9 +128,10 @@ public class MyAdapterSelectEmployee extends RecyclerView.Adapter<MyAdapterSelec
                             + jobPosting.getDuration() + ". \nThe job will take place at " + jobPosting.getLocation() + ".";
                     new SendNotification(email.get(getAdapterPosition()), subject, message).execute();
 
-                    Intent intent =  new Intent(context, EmployerHomeActivity.class);
+                    Intent intent = new Intent(context, EmployerHomeActivity.class);
                     context.startActivity(intent);
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     // ...

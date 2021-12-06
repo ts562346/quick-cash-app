@@ -13,16 +13,30 @@ import android.widget.TextView;
 import com.example.quickcashgroup5.R;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+/**
+ * The fragment class for the Feedback
+ */
 public class FeedbackFragment extends Fragment {
     Feedback feedback;
     TextView name;
     RatingBar rating;
     TextView userFeedback;
 
+    /**
+     * Sets the feedback
+     * @param feedback
+     */
     public void setFeedback(Feedback feedback) {
         this.feedback = feedback;
     }
 
+    /**
+     * Runs when the view is created
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_feedback, null);

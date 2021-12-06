@@ -25,6 +25,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Class to Send Feedback of the app
+ */
 public class SendFeedbackActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected EditText editTextName;
@@ -40,6 +43,10 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
     public ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
 
+    /**
+     * Runs when the activity is created
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
@@ -71,6 +78,11 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
         initializeDatabase();
     }
 
+    /**
+     * Creates Feedback
+     * @param feedback
+     * @return
+     */
     private boolean createFeedback(Feedback feedback){
         String name = editTextName.getText().toString().trim();
         String userType = editTextUserType.getText().toString().trim();
@@ -95,6 +107,9 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
         return userFeedbacks.push().setValue(feedback);
     }
 
+    /**
+     * Sends the feedback
+     */
     protected void sendFeedback(){
         Feedback feedback = new Feedback();
         try {
@@ -120,7 +135,9 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
         userFeedbacks = database.getReference("Feedback");
     }
 
-    // To open and close the navigation drawer when the icon is clicked
+    /**
+        To open and close the navigation drawer when the icon is clicked
+     **/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -131,6 +148,11 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+    /**
+     * The onclick of the Sidebar
+     * @param item
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
