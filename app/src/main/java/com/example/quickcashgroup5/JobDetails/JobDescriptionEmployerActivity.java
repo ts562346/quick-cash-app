@@ -6,24 +6,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quickcashgroup5.DatabaseManagement.Database;
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.JobCreation.JobPosting;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.UserManagement.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class JobDescriptionEmployerActivity extends AppCompatActivity {
 
     private JobPosting jobPosting;
-    FirebaseDatabase database;
-    DatabaseReference jobs;
+    Database database;
     Button submit;
     SessionManagement user;
 
@@ -33,33 +31,22 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jobdescriptionemployer);
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("Key");
-        initializeDatabase();
         jobPosting=new JobPosting();
 
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Intent intent = new Intent(JobDescriptionEmployerActivity.this, EmployeeHomeActivity.class);
-                        startActivity(intent);
-
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                Intent intent = new Intent(JobDescriptionEmployerActivity.this, EmployeeHomeActivity.class);
+                startActivity(intent);
             }
         });
 
 
-        jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+        database.getDatabase().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.getValue(JobPosting.class);
+                jobPosting=dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
                 System.out.println(jobPosting.getTitle());
 
                 TextView title = findViewById(R.id.jobTitle);
@@ -80,7 +67,16 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
 
                 TextView status = findViewById(R.id.employerName);
                 if(!jobPosting.getSelectedApplicantEmail().equals("")) {
-                    status.setText(jobPosting.getSelectedApplicantEmail());
+                    String employeeName = null;
+                    for (DataSnapshot ad: dataSnapshot.child("User").getChildren()) {
+                        User u = ad.getValue(User.class);
+                        if(u.getEmail().equals(jobPosting.getSelectedApplicantEmail())) {
+                            employeeName = u.getName();
+                        }
+                    }
+                    if(employeeName == null) {
+                        status.setText("Invalid employee was selected");
+                    }
                 }else{
                     status.setText("Pending");
                 }
@@ -89,15 +85,9 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // ...
+
             }
         });
 
-
-    }
-    protected void initializeDatabase() {
-        //initialize the database and the two references related to banner ID and email address.
-        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobs = database.getReference();
     }
 }

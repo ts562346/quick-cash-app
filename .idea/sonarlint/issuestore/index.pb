@@ -1,6 +1,4 @@
 
-X
-(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 ï
 eapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoJobPreferenceActivity.java,a\6\a69e9db33784e391cb20df430eb46b682c823cf3
 ï
@@ -9,35 +7,12 @@ eapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoRese
 mapp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoPasswordResetCodeActivityTest.java,8\6\86d904081fd99a903253f0eeb1b268cc61bd3f3b
 ö
 japp/src/androidTest/java/com/example/quickcashgroup5/UserManagment/EspressoRecoverAccountActivityTest.java,9\8\98a524970a3d05a3392f943d51fbb9d7e653094a
-
-Oapp/src/main/java/com/example/quickcashgroup5/DesignElements/MyRadioButton.java,a\3\a3b0430afcb4e2b215609d231bb00b3393cc4fd3
 t
 Dapp/src/main/java/com/example/quickcashgroup5/MyAdapterEmployer.java,b\f\bf0594558cf8565a5acb34213325a584d7d87bf7
 u
 Eapp/src/main/java/com/example/quickcashgroup5/MyAdapterJobSearch.java,f\c\fcc0ce62e4ce8ee94f843da0c19b237c13e7d074
 t
 Dapp/src/main/java/com/example/quickcashgroup5/MyAdapterEmployee.java,d\a\da55128c5b3e8144d2a7f515a22a2a63c6ec3847
-;
-gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-F
-app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
-H
-app/google-services.json,f\d\fd8d34b142d02ec743a8efefefd2c097961666e9
->
-.gitlab-ci.yml,5\8\587d266bb27a4dc3022bbed44dfa19849df3044c
-7
-gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
-A
-gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
-?
-settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 u
 Eapp/src/main/java/com/example/quickcashgroup5/DataModelDashboard.java,2\4\245456f5f7b378e7c0410f27c2f4d19b61ff8373
 z
@@ -68,9 +43,5 @@ Yapp/src/main/java/com/example/quickcashgroup5/UserManagement/RecoveryAccountAct
 Lapp/src/main/java/com/example/quickcashgroup5/JobStatusEmployeeActivity.java,b\4\b4bf4b7bdfff3913fb3db61b22f0123c91cbf2c8
 Å
 Qapp/src/main/java/com/example/quickcashgroup5/JobDescriptionEmployeeActivity.java,e\b\ebc1328467df595de1b7f7ea3367db304831d7d0
-Ç
-Rapp/src/main/java/com/example/quickcashgroup5/NotificationManagement/ISubject.java,e\8\e84dc177df184bb7cb66ed2e8fd4f295a935ae12
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 É
 Sapp/src/main/java/com/example/quickcashgroup5/UserManagement/JobSearchActivity.java,5\6\563f8b23f7347ff578be9d1c33832462797dfe12
