@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcashgroup5.DatabaseManagement.Database;
@@ -13,6 +14,10 @@ import com.example.quickcashgroup5.JobCreation.JobPosting;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 import com.example.quickcashgroup5.UserManagement.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PayEmployeeActivity extends AppCompatActivity {
 
@@ -47,35 +52,45 @@ public class PayEmployeeActivity extends AppCompatActivity {
         });
 
         database = new Database();
+        FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/").getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                jobPosting = dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
+                System.out.println(key);
+                System.out.println(jobPosting.getTitle());
 
-        jobPosting= database.findJobPosting(key);
-        System.out.println(jobPosting.getTitle());
+                TextView title = findViewById(R.id.jobTitle);
+                title.setText(jobPosting.getTitle());
 
-        TextView title = findViewById(R.id.jobTitle);
-        title.setText(jobPosting.getTitle());
+                TextView location = findViewById(R.id.locationLabel);
+                location.setText(jobPosting.getLocation());
 
-        TextView location = findViewById(R.id.locationLabel);
-        location.setText(jobPosting.getLocation());
+                TextView payment = findViewById(R.id.payment);
+                payment.setText(jobPosting.getPayment());
 
-        TextView payment = findViewById(R.id.payment);
-        payment.setText(jobPosting.getPayment());
+                TextView hours = findViewById(R.id.hours);
+                hours.setText(jobPosting.getDuration());
 
-        TextView hours = findViewById(R.id.hours);
-        hours.setText(jobPosting.getDuration());
+                TextView category = findViewById(R.id.categoryLabel);
+                category.setText(jobPosting.getCategory());
 
-        TextView category = findViewById(R.id.categoryLabel);
-        category.setText(jobPosting.getCategory());
+                TextView status = findViewById(R.id.employerName);
+                String employeeEmail = jobPosting.getSelectedApplicantEmail();
 
-        TextView status = findViewById(R.id.employerName);
-        String employeeEmail = jobPosting.getSelectedApplicantEmail();
+                employee = null;
+                if(!employeeEmail.equals("")) {
+                    employee = database.findUser(employeeEmail);
+                    status.setText(employee.getName());
+                }else{
+                    status.setText("Pending");
+                }
+            }
 
-        employee = null;
-        if(!employeeEmail.equals("")) {
-            employee = database.findUser(employeeEmail);
-            status.setText(employee.getName());
-        }else{
-            status.setText("Pending");
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Database Error: " + error);
+            }
+        });
 
     }
 }

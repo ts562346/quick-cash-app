@@ -4,7 +4,7 @@ package com.example.quickcashgroup5.UserManagement;
  * User class to store input data of users
  */
 
-public class User {
+public class User implements IUser {
     //Initialize variables
     private String name;
     private String email;

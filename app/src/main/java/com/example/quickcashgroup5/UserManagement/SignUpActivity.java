@@ -29,7 +29,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Database database;
     Spinner dropDown;
     SessionManagement sessionManagement;
-    boolean userExists;
 
     /**
      * Method runs when activity is created
@@ -50,7 +49,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         passwordEditText = findViewById(R.id.editTextTextPassword);
         confirmPasswordEditText = findViewById(R.id.editTextTextConfirmPassword);
         dropDown = findViewById(R.id.spin);
-        userExists = false;
 
         database = new Database();
 
@@ -70,11 +68,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
      * @return
      * @throws Exception
      */
-    private Task<Void> registerUser(User user) throws Exception {
+    private Task<Void> registerUser(IUser user) throws Exception {
+        IUserManagementAbstractFactory userManagementAbstractFactory = UserManagementInjector.
+                getInstance().getUserAbstractFactory();
+//        IPasswordManagementAbstractFactory passwordManagementAbstractFactory =
+//                PasswordManagementInjector.getInstance().getPasswordManagementAbstractFactory();
+
         String username = Validation.sanitize(nameEditText.getText().toString());
         String email = Validation.sanitize(emailEditText.getText().toString());
         String password = Validation.sanitize(passwordEditText.getText().toString());
         String confirmPassword = Validation.sanitize(confirmPasswordEditText.getText().toString());
+
+//        IAESCrypt aes = passwordManagementAbstractFactory.getAesCryptInstance();
 
         AESCrypt aes = new AESCrypt();
 

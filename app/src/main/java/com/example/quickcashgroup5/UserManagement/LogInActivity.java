@@ -26,7 +26,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     Button loginButton, forgotPassword, notRegisteredUserLabel;
     EditText emailEditText, passwordEditText;
     Database database;
-    SessionManagement sessionManagement;
+    ISessionManagement sessionManagement;
 
     /**
      * Method that runs when activity created
@@ -35,13 +35,20 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("LoginActivitySessionManagment");
-        sessionManagement = new SessionManagement(this);
         super.onCreate(savedInstanceState);
-        System.out.println("LoginActivity");
-        System.out.println(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
+
+        IUserManagementAbstractFactory userManagementAbstractFactory =
+                UserManagementInjector.getInstance().getUserAbstractFactory();
+        sessionManagement = userManagementAbstractFactory.
+                getSessionManagementInstance(this);
+
+        initializeActivity(userManagementAbstractFactory);
+    }
+
+    private void initializeActivity(IUserManagementAbstractFactory
+                                            userManagementAbstractFactory) {
+        getSupportActionBar().hide();
         emailEditText = findViewById(R.id.editTextTextEmailAddress);
         passwordEditText = findViewById(R.id.editTextTextPassword);
         notRegisteredUserLabel = findViewById(R.id.notRegisteredUserLabel);
@@ -50,21 +57,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
         database = new Database();
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, RecoveryAccountActivity.class));
-            }
+        forgotPassword.setOnClickListener(v -> startActivity(userManagementAbstractFactory.
+                getIntentInstance(LogInActivity.this,
+                        RecoveryAccountActivity.class)));
+        notRegisteredUserLabel.setOnClickListener(v -> {
+            startActivity(userManagementAbstractFactory.
+                    getIntentInstance(LogInActivity.this,
+                            SignUpActivity.class));
+            LogInActivity.this.finish();
         });
-
-        notRegisteredUserLabel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(LogInActivity.this, SignUpActivity.class));
-                LogInActivity.this.finish();
-            }
-        });
-
         loginButton.setOnClickListener(this);
     }
+
 
     public void authenticateUser(String email, String password) {
         User u = database.findUser(email);

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.quickcashgroup5.FeedbackManagement.Feedback;
 import com.example.quickcashgroup5.JobCreation.JobPosting;
+import com.example.quickcashgroup5.UserManagement.IUser;
 import com.example.quickcashgroup5.UserManagement.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +21,7 @@ public class Database implements IDatabase {
 
     public Database() {
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        database.getReference().addValueEventListener(new ValueEventListener() {
+        database.getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 data = dataSnapshot;
@@ -33,7 +34,7 @@ public class Database implements IDatabase {
         });
     }
 
-    public Task<Void> addUser(User user) {
+    public Task<Void> addUser(IUser user) {
         DatabaseReference users = database.getReference(User.class.getSimpleName());
         Task<Void> task = users.push().setValue(user);
         return task;
@@ -92,5 +93,9 @@ public class Database implements IDatabase {
         }
 
         return user;
+    }
+
+    public FirebaseDatabase getDatabase() {
+        return database;
     }
 }

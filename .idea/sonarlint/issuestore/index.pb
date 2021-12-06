@@ -70,8 +70,6 @@ Lapp/src/main/java/com/example/quickcashgroup5/JobStatusEmployeeActivity.java,b
 Qapp/src/main/java/com/example/quickcashgroup5/JobDescriptionEmployeeActivity.java,e\b\ebc1328467df595de1b7f7ea3367db304831d7d0
 ‚
 Rapp/src/main/java/com/example/quickcashgroup5/NotificationManagement/ISubject.java,e\8\e84dc177df184bb7cb66ed2e8fd4f295a935ae12
-v
-Fapp/src/main/java/com/example/quickcashgroup5/UserManagement/User.java,4\8\484f646195b0e96fefb7e747208ab58b66f4fd7b
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ƒ
