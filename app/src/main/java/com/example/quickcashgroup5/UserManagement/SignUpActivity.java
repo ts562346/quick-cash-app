@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quickcashgroup5.DataValidation.Validation;
 import com.example.quickcashgroup5.DatabaseManagement.Database;
-import com.example.quickcashgroup5.PasswordManagement.AESCrypt;
 import com.example.quickcashgroup5.PasswordManagement.IAESCrypt;
 import com.example.quickcashgroup5.PasswordManagement.IPasswordManagementAbstractFactory;
 import com.example.quickcashgroup5.PasswordManagement.PasswordManagementInjector;
@@ -74,15 +73,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private Task<Void> registerUser(IUser user) throws Exception {
         IUserManagementAbstractFactory userManagementAbstractFactory = UserManagementInjector.
                 getInstance().getUserAbstractFactory();
-//        IPasswordManagementAbstractFactory passwordManagementAbstractFactory =
-//                PasswordManagementInjector.getInstance().getPasswordManagementAbstractFactory();
+        IPasswordManagementAbstractFactory passwordManagementAbstractFactory =
+                PasswordManagementInjector.getInstance().getPasswordManagementAbstractFactory();
 
         String username = Validation.sanitize(nameEditText.getText().toString());
         String email = Validation.sanitize(emailEditText.getText().toString());
         String password = Validation.sanitize(passwordEditText.getText().toString());
         String confirmPassword = Validation.sanitize(confirmPasswordEditText.getText().toString());
 
-//        IAESCrypt aes = passwordManagementAbstractFactory.getAesCryptInstance();
+        IAESCrypt aes = passwordManagementAbstractFactory.getAesCryptInstance();
 
 
         //Check if email is already used
@@ -111,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if (Validation.confirmPasswordValidation(password, confirmPassword)) {
             //Validate password
             if (Validation.passwordValidation(password)) {
-                user.setPassword(AESCrypt.encrypt(password));
+                user.setPassword(aes.encrypt(password));
             } else {
                 Toast.makeText(getApplicationContext(), "Password should have at least 1 number, 1 uppercase, 1 lowercase, 1 special character, and must be atleast 8 characters.", Toast.LENGTH_SHORT).show();
                 return null;

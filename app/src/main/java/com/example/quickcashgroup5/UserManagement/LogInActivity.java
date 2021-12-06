@@ -71,12 +71,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void authenticateUser(String email, String password) {
+        AESCrypt aesCrypt = new AESCrypt();
         User u = database.findUser(email);
         if (u == null) {
             Toast.makeText(getApplicationContext(), "Unsuccessful Login", Toast.LENGTH_SHORT).show();
         } else {
             try {
-                if (u.getPassword().equals(AESCrypt.encrypt(password))) {
+                if (u.getPassword().equals(aesCrypt.encrypt(password))) {
                     Intent i;
                     if (u.getIsEmployee().equals("yes")) {
                         sessionManagement.createSession(u.getName(), u.getEmail(), "Employee");
