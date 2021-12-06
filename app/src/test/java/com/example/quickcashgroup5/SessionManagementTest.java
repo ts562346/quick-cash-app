@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import com.example.quickcashgroup5.UserManagement.SessionManagement;
+import com.example.quickcashgroup5.usermanagement.SessionManagement;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

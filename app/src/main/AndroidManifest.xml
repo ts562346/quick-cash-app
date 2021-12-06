@@ -31,62 +31,62 @@
 
         </activity>
 
-        <activity android:name=".UserManagement.LogInActivity">
+        <activity android:name=".usermanagement.LogInActivity">
 
         </activity>
-        <activity android:name=".PasswordManagement.PasswordResetCodeActivity">
+        <activity android:name=".passwordmanagement.PasswordResetCodeActivity">
 
         </activity>
-        <activity android:name=".PasswordManagement.RecoveryAccountActivity">
+        <activity android:name=".passwordmanagement.RecoveryAccountActivity">
 
         </activity>
-        <activity android:name=".PasswordManagement.ResetPasswordActivity">
+        <activity android:name=".passwordmanagement.ResetPasswordActivity">
 
         </activity>
-        <activity android:name=".UserManagement.SignUpActivity">
+        <activity android:name=".usermanagement.SignUpActivity">
 
         </activity>
-        <activity android:name=".Home.EmployerHomeActivity">
+        <activity android:name=".home.EmployerHomeActivity">
 
         </activity>
-        <activity android:name=".Home.EmployeeHomeActivity">
+        <activity android:name=".home.EmployeeHomeActivity">
 
         </activity>
-        <activity android:name=".JobSearch.JobSearchActivity">
+        <activity android:name=".jobsearch.JobSearchActivity">
 
         </activity>
-        <activity android:name=".UserManagement.JobPreferenceActivity">
+        <activity android:name=".usermanagement.JobPreferenceActivity">
 
         </activity>
-        <activity android:name=".JobCreation.CreateJobActivity">
-
-        </activity>
-
-        <activity android:name=".JobDetails.JobDescriptionEmployeeActivity">
-
-        </activity>
-        <activity android:name=".JobDetails.JobDescriptionEmployerActivity">
+        <activity android:name=".jobcreation.CreateJobActivity">
 
         </activity>
 
-        <activity android:name=".EmployeeSelection.SelectEmployeeActivity">
+        <activity android:name=".jobdetails.JobDescriptionEmployeeActivity">
+
+        </activity>
+        <activity android:name=".jobdetails.JobDescriptionEmployerActivity">
 
         </activity>
 
-        <activity android:name=".JobDetails.JobStatusEmployeeActivity">
+        <activity android:name=".employeeselection.SelectEmployeeActivity">
 
         </activity>
 
-        <activity android:name=".PaymentManagement.PayEmployeeActivity">
+        <activity android:name=".jobdetails.JobStatusEmployeeActivity">
 
         </activity>
-        <activity android:name=".FeedbackManagement.SendFeedbackActivity">
+
+        <activity android:name=".paymentmanagement.PayEmployeeActivity">
 
         </activity>
-        <activity android:name=".FeedbackManagement.ViewFeedbacksActivity">
+        <activity android:name=".feedbackmanagement.SendFeedbackActivity">
 
         </activity>
-        <activity android:name=".PaymentManagement.Paypal">
+        <activity android:name=".feedbackmanagement.ViewFeedbacksActivity">
+
+        </activity>
+        <activity android:name=".paymentmanagement.Paypal">
 
         </activity>
 

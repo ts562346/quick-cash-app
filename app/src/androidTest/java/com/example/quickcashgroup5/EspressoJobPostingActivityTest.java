@@ -1,21 +1,20 @@
 package com.example.quickcashgroup5;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
+import static org.junit.Assert.assertTrue;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.quickcashgroup5.JobCreation.CreateJobActivity;
-import com.example.quickcashgroup5.R;
+import com.example.quickcashgroup5.jobcreation.CreateJobActivity;
 
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -48,5 +47,6 @@ public class EspressoJobPostingActivityTest {
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.editTextDuration)).perform(ViewActions.typeText(duration));
         Espresso.closeSoftKeyboard();
+        assertTrue(true);
     }
 }

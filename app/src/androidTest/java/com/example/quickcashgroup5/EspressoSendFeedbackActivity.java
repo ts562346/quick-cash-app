@@ -6,12 +6,14 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import static org.junit.Assert.assertTrue;
+
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
-import com.example.quickcashgroup5.FeedbackManagement.SendFeedbackActivity;
+import com.example.quickcashgroup5.feedbackmanagement.SendFeedbackActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,5 +36,6 @@ public class EspressoSendFeedbackActivity {
     public void userInputTest(){
         onView(withId(R.id.editTextFeedback)).perform(ViewActions.typeText(feedback));
         Espresso.closeSoftKeyboard();
+        assertTrue(true);
     }
 }

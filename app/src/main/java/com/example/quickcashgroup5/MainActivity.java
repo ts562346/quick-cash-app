@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.quickcashgroup5.UserManagement.LogInActivity;
-import com.example.quickcashgroup5.UserManagement.SessionManagement;
-import com.example.quickcashgroup5.UserManagement.SignUpActivity;
+import com.example.quickcashgroup5.usermanagement.LogInActivity;
+import com.example.quickcashgroup5.usermanagement.SessionManagement;
+import com.example.quickcashgroup5.usermanagement.SignUpActivity;
 
 /**
  * The starting page from where the user can select whether to login or sign up

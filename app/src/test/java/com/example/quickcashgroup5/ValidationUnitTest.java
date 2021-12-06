@@ -1,13 +1,11 @@
 package com.example.quickcashgroup5;
-import com.example.quickcashgroup5.DataValidation.Validation;
+import com.example.quickcashgroup5.datavalidation.Validation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import com.example.quickcashgroup5.DataValidation.Validation;
 
 import org.junit.Test;
 
