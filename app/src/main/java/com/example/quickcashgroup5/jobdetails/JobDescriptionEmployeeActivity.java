@@ -22,6 +22,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * JobDescriptionEmployeeActivity
+ */
 public class JobDescriptionEmployeeActivity extends AppCompatActivity {
 
     private JobPosting jobPosting;
@@ -30,14 +33,19 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
     String key;
     Database database;
 
+    /**
+     * OnCreate method
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        user= new SessionManagement(this);
+        user = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobdecriptionemployee);
         Bundle bundle = getIntent().getExtras();
         key = bundle.getString("Key");
-        jobPosting=new JobPosting();
+        jobPosting = new JobPosting();
         database = new Database();
 
         accept = findViewById(R.id.submit);
@@ -47,7 +55,7 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
         database.getFirebaseDatabase().getReference().child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.getValue(JobPosting.class);
+                jobPosting = dataSnapshot.getValue(JobPosting.class);
 
                 TextView title = findViewById(R.id.title);
                 title.setText(jobPosting.getTitle());
@@ -75,7 +83,10 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
         });
     }
 
-    private void notifyEmployer(){
+    /**
+     * Notify Employer about application
+     */
+    private void notifyEmployer() {
         database.getFirebaseDatabase().getReference().child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -84,17 +95,17 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
                     job.addAppliedApplicants(adSnapshot.getValue(String.class));
                 }
                 try {
-                    if(!job.getAppliedApplicants().contains(user.getEmail())) {
+                    if (!job.getAppliedApplicants().contains(user.getEmail())) {
                         job.addAppliedApplicants(user.getEmail());
                         dataSnapshot.getRef().child("appliedApplicants").setValue(job.getAppliedApplicants());
                         String subject = user.getName() + " has applied to your " + job.getCategory() + " job.";
                         String message = user.getName() + " has applied to your " + job.getCategory() + " job, "
                                 + job.getTitle() + ".";
                         new SendNotification(job.getCreatorEmail(), subject, message).execute();
-                        Toast toast=Toast. makeText(getApplicationContext(),"Applied Successfully",Toast. LENGTH_LONG);
+                        Toast toast = Toast.makeText(getApplicationContext(), "Applied Successfully", Toast.LENGTH_LONG);
                         toast.show();
-                    }else{
-                        Toast toast=Toast. makeText(getApplicationContext(),"Already applied to this job",Toast. LENGTH_LONG);
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Already applied to this job", Toast.LENGTH_LONG);
                         toast.show();
                     }
                     Intent intent = new Intent(JobDescriptionEmployeeActivity.this, JobSearchActivity.class);
@@ -103,6 +114,7 @@ public class JobDescriptionEmployeeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d(TAG, "Database Error: " + error);

@@ -1,6 +1,7 @@
 //https://git.cs.dal.ca/prof3130/paypal_demo/
 
 package com.example.quickcashgroup5.paymentmanagement;
+
 import static android.content.ContentValues.TAG;
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -38,6 +39,9 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class to pay employee
+ */
 public class Paypal extends AppCompatActivity {
 
     ActivityResultLauncher activityResultLauncher;
@@ -52,6 +56,11 @@ public class Paypal extends AppCompatActivity {
     String payee;
     String amount;
 
+    /**
+     * Runs when Activity is created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +95,9 @@ public class Paypal extends AppCompatActivity {
         jobs = database.getReference();
     }
 
+    /**
+     * Initializes the varialbes
+     */
     private void initialize() {
         // Initialize result launcher
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -100,7 +112,7 @@ public class Paypal extends AppCompatActivity {
                         String payID = payObj.getJSONObject("response").getString("id");
                         Log.d(TAG, payID);
                         String state = payObj.getJSONObject("response").getString("state");
-                        if(state.equals("approved")){
+                        if (state.equals("approved")) {
                             jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -108,6 +120,7 @@ public class Paypal extends AppCompatActivity {
                                     updates.put("status", "Paid");
                                     dataSnapshot.getRef().updateChildren(updates);
                                 }
+
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
                                     Log.d(TAG, "Database Error: " + error);
@@ -126,19 +139,22 @@ public class Paypal extends AppCompatActivity {
                     }
                 }
 
-            } else if (result.getResultCode() == PaymentActivity.RESULT_EXTRAS_INVALID){
-                Log.d(TAG,"Launcher Result Invalid");
+            } else if (result.getResultCode() == PaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.d(TAG, "Launcher Result Invalid");
             } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
                 Log.d(TAG, "Launcher Result Cancelled");
             }
         });
     }
 
+    /**
+     * Processes the payment
+     */
     private void processPayment() {
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)),"CAD","Purchase Goods",PayPalPayment.PAYMENT_INTENT_SALE);
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "CAD", "Purchase Goods", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
         activityResultLauncher.launch(intent);
     }
 }

@@ -16,15 +16,30 @@ import com.example.quickcashgroup5.jobcreation.JobPosting;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Fragment for job search
+ */
 public class FragmentJobSearch extends Fragment {
     ArrayList<DataModelDashboard> dataModelJobSearch;
     static HashMap<String, JobPosting> jobPostings;
 
+    /**
+     * Constructor for this fragment
+     *
+     * @param jobPostings
+     */
     public FragmentJobSearch(HashMap<String, JobPosting> jobPostings) {
         FragmentJobSearch.jobPostings = jobPostings;
     }
 
-
+    /**
+     * Runs when view is created
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,10 +50,10 @@ public class FragmentJobSearch extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         dataModelJobSearch = new ArrayList<>();
-        if(jobPostings!=null) {
-            for (String key: jobPostings.keySet()) {
+        if (jobPostings != null) {
+            for (String key : jobPostings.keySet()) {
                 JobPosting job = jobPostings.get(key);
-                if(job.getSelectedApplicantEmail().equals("")) {
+                if (job.getSelectedApplicantEmail().equals("")) {
                     DataModelDashboard ob1 = new DataModelDashboard(job, key);
                     dataModelJobSearch.add(ob1);
                 }

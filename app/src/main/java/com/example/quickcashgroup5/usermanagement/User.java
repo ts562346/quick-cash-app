@@ -34,7 +34,8 @@ public class User implements IUser {
     /**
      * Empty constructor
      */
-    public User() {}
+    public User() {
+    }
 
     /**
      * Gets the name from the class
@@ -108,35 +109,74 @@ public class User implements IUser {
         this.isEmployee = isEmployee;
     }
 
-
+    /**
+     * Gets the preferred location
+     *
+     * @return
+     */
     public String getPreferredLocation() {
         return preferredLocation;
     }
 
+    /**
+     * Sets the preferred location
+     *
+     * @param preferredLocation
+     */
     public void setPreferredLocation(String preferredLocation) {
         this.preferredLocation = preferredLocation;
     }
 
+    /**
+     * Gets the preferred category
+     *
+     * @return
+     */
     public String getPreferredCategory() {
         return preferredCategory;
     }
 
+    /**
+     * Sets the preferred category
+     *
+     * @param preferredCategory
+     */
     public void setPreferredCategory(String preferredCategory) {
         this.preferredCategory = preferredCategory;
     }
 
+    /**
+     * Gets the preferred payment
+     *
+     * @return
+     */
     public String getPreferredPayment() {
         return preferredPayment;
     }
 
+    /**
+     * Sets the preferred payment
+     *
+     * @param preferredPayment
+     */
     public void setPreferredPayment(String preferredPayment) {
         this.preferredPayment = preferredPayment;
     }
 
+    /**
+     * Gets the preferred hours
+     *
+     * @return
+     */
     public String getPreferredHours() {
         return preferredHours;
     }
 
+    /**
+     * Sets the preferred hours
+     *
+     * @param preferredHours
+     */
     public void setPreferredHours(String preferredHours) {
         this.preferredHours = preferredHours;
     }

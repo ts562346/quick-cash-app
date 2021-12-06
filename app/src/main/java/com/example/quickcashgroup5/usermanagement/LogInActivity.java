@@ -9,13 +9,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickcashgroup5.datavalidation.Validation;
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
+import com.example.quickcashgroup5.datavalidation.Validation;
 import com.example.quickcashgroup5.home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.passwordmanagement.AESCrypt;
 import com.example.quickcashgroup5.passwordmanagement.RecoveryAccountActivity;
-import com.example.quickcashgroup5.R;
 
 /**
  * Activity for logging in user
@@ -49,6 +49,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         initializeActivity(userManagementAbstractFactory);
     }
 
+    /**
+     * Initializes the activity
+     *
+     * @param userManagementAbstractFactory
+     */
     private void initializeActivity(IUserManagementAbstractFactory
                                             userManagementAbstractFactory) {
         getSupportActionBar().hide();
@@ -72,7 +77,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         loginButton.setOnClickListener(this);
     }
 
-
+    /**
+     * Authenticates user
+     *
+     * @param email
+     * @param password
+     */
     public void authenticateUser(String email, String password) {
         AESCrypt aesCrypt = new AESCrypt();
         User u = database.findUser(email);

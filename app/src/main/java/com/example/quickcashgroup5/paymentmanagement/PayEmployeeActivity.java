@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Class to pay employee
+ */
 public class PayEmployeeActivity extends AppCompatActivity {
 
     private JobPosting jobPosting;
@@ -29,6 +32,11 @@ public class PayEmployeeActivity extends AppCompatActivity {
     SessionManagement user;
     User employee;
 
+    /**
+     * Runs when activity is created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         user = new SessionManagement(this);
@@ -41,7 +49,7 @@ public class PayEmployeeActivity extends AppCompatActivity {
         submit = findViewById(R.id.apply);
 
         submit.setOnClickListener(view -> {
-            if(employee != null) {
+            if (employee != null) {
                 Intent intent = new Intent(PayEmployeeActivity.this, Paypal.class);
                 intent.putExtra("Key", key);
                 intent.putExtra("Name", employee.getName());
@@ -76,10 +84,10 @@ public class PayEmployeeActivity extends AppCompatActivity {
                 String employeeEmail = jobPosting.getSelectedApplicantEmail();
 
                 employee = null;
-                if(!employeeEmail.equals("")) {
+                if (!employeeEmail.equals("")) {
                     employee = database.findUser(employeeEmail);
                     status.setText(employee.getName());
-                }else{
+                } else {
                     status.setText("Pending");
                 }
             }

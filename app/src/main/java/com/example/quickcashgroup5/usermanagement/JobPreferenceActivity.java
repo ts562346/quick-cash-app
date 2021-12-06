@@ -30,7 +30,9 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * JobPreferenceActivity
+ */
 public class JobPreferenceActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SessionManagement sessionManagement;
     Spinner category;
@@ -43,6 +45,11 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
     NavigationView sidebar;
     Database database;
 
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -75,7 +82,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
                     Toast.makeText(getApplicationContext(), "Job preferences have been updated", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(JobPreferenceActivity.this, EmployeeHomeActivity.class));
                 }).addOnFailureListener(fal ->
-                    Toast.makeText(getApplicationContext(), "There was an error updating your preferences", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(getApplicationContext(), "There was an error updating your preferences", Toast.LENGTH_SHORT).show()
                 );
             } else {
 
@@ -86,26 +93,31 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
         database = new Database();
     }
 
+    /**
+     * Updates the preference
+     *
+     * @return
+     */
     public Task<Void> updatePreference() {
         String email = sessionManagement.getEmail();
         String selectedCategory = (String) category.getSelectedItem();
 
         String selectedLocation = Validation.sanitize(location.getText().toString());
-        if(!Validation.locationValidation(selectedLocation, this)){
+        if (!Validation.locationValidation(selectedLocation, this)) {
             Toast.makeText(this, "Location is not valid", Toast.LENGTH_LONG);
             return null;
         }
 
         String wage = Validation.sanitize(minPayment.getText().toString());
         String duration = Validation.sanitize(minHours.getText().toString());
-        if(!Validation.wageValidation(wage) || !Validation.wageValidation(duration)){
+        if (!Validation.wageValidation(wage) || !Validation.wageValidation(duration)) {
             Toast.makeText(this, "Wage or Hours not valid\n"
                     + "Please make sure you enter maximum of 2 decimal places", Toast.LENGTH_LONG);
             return null;
         }
 
         User u = database.findUser(sessionManagement.getEmail());
-        if(u != null) {
+        if (u != null) {
             Map<String, Object> updates = new HashMap<>();
             updates.put("email", email);
             updates.put("preferredCategory", selectedCategory);
@@ -114,13 +126,18 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
             updates.put("preferredHours", duration);
             return database.updateUser(updates);
         } else {
-                Log.d(TAG, "Signed in user is not in database");
+            Log.d(TAG, "Signed in user is not in database");
             Toast.makeText(this, "There was an error updating your preferences", Toast.LENGTH_LONG).show();
             return null;
         }
     }
 
-    // To open and close the navigation drawer when the icon is clicked
+    /**
+     * To open and close the navigation drawer when the icon is clicked
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -130,6 +147,13 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+
+    /**
+     * Navigation Bar
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -166,7 +190,7 @@ public class JobPreferenceActivity extends AppCompatActivity implements Navigati
             case R.id.nav_logout: {
                 sessionManagement.clearSession();
                 Intent intent = new Intent(this, LogInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
                 break;

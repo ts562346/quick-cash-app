@@ -8,18 +8,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.quickcashgroup5.datavalidation.Validation;
 import com.example.quickcashgroup5.R;
+import com.example.quickcashgroup5.datavalidation.Validation;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
 
-public class PasswordResetCodeActivity extends Activity implements View.OnClickListener{
+/**
+ * PasswordResetCodeActivity
+ */
+public class PasswordResetCodeActivity extends Activity implements View.OnClickListener {
     private EditText editTextCode;
     private Button buttonSend;
     private Button buttonBackToLogin;
     private Button buttonCodeNotReceived;
     SessionManagement sessionManagement;
 
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
@@ -41,10 +49,15 @@ public class PasswordResetCodeActivity extends Activity implements View.OnClickL
         buttonSend.setOnClickListener(this);
     }
 
+    /**
+     * OnClicked methods
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         String input = Validation.sanitize(editTextCode.getText().toString());
-        if(Validation.otpValidation(input)) {
+        if (Validation.otpValidation(input)) {
             int inputCode = Integer.parseInt(input);
             int resetCode = sessionManagement.getOTP();
             if (inputCode == resetCode) {

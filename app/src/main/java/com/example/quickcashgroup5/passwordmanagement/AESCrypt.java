@@ -10,7 +10,6 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Class for encrypting the password
  */
-
 public class AESCrypt implements IAESCrypt {
     private static final String ALGORITHM = "AES";
     private static final String KEY = "1Hbfh667adfDEJ78";

@@ -23,6 +23,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Status
+     *
      * @return
      */
     @Override
@@ -32,6 +33,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets Status
+     *
      * @param status
      */
     @Override
@@ -41,6 +43,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Applied Applicants
+     *
      * @return
      */
     @Override
@@ -51,12 +54,13 @@ public class JobPosting implements IJobPosting {
     /**
      * JobPosting Constructor
      */
-    public JobPosting(){
+    public JobPosting() {
         this.appliedApplicants = new ArrayList<>();
     }
 
     /**
      * Gets Title
+     *
      * @return
      */
     @Override
@@ -66,6 +70,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets title
+     *
      * @param title
      */
     @Override
@@ -75,6 +80,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Location
+     *
      * @return
      */
     @Override
@@ -84,6 +90,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets Location
+     *
      * @param location
      */
     @Override
@@ -93,6 +100,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Payment
+     *
      * @return
      */
     @Override
@@ -102,6 +110,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets Payments
+     *
      * @param payment
      */
     @Override
@@ -111,6 +120,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Duration
+     *
      * @return
      */
     @Override
@@ -120,6 +130,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets Duration
+     *
      * @param duration
      */
     public void setDuration(String duration) {
@@ -128,6 +139,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Category
+     *
      * @return
      */
     @Override
@@ -137,6 +149,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets Category
+     *
      * @param category
      */
     @Override
@@ -146,6 +159,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets date
+     *
      * @return
      */
     @Override
@@ -155,6 +169,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Sets date
+     *
      * @param date
      */
     @Override
@@ -164,22 +179,27 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Gets Creator Email
+     *
      * @return
      */
     @Override
-    public String getCreatorEmail(){
+    public String getCreatorEmail() {
         return creatorEmail;
     }
 
     /**
      * Set Creator Email
+     *
      * @param creatorEmail
      */
     @Override
-    public void setCreatorEmail(String creatorEmail){this.creatorEmail = creatorEmail;}
+    public void setCreatorEmail(String creatorEmail) {
+        this.creatorEmail = creatorEmail;
+    }
 
     /**
      * Gets Selected Applicant Email
+     *
      * @return
      */
     @Override
@@ -189,6 +209,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Set Selected Applicant Email
+     *
      * @param selectedApplicantEmail
      */
     @Override
@@ -198,6 +219,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Get Applied Applicant
+     *
      * @param key
      * @return
      */
@@ -208,6 +230,7 @@ public class JobPosting implements IJobPosting {
 
     /**
      * Adds Applied Applicants
+     *
      * @param value
      */
     @Override

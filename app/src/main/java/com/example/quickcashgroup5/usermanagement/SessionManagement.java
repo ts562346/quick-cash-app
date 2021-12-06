@@ -69,7 +69,7 @@ public class SessionManagement implements ISessionManagement {
      *
      * @param otp
      */
-    public void setOTP(int otp){
+    public void setOTP(int otp) {
         editor.putInt("OTP", otp);
         editor.apply();
     }
@@ -116,7 +116,7 @@ public class SessionManagement implements ISessionManagement {
      *
      * @return
      */
-    public int getOTP(){
+    public int getOTP() {
         return sharedPreferences.getInt("OTP", -1);
     }
 

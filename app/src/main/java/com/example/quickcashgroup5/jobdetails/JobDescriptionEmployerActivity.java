@@ -20,6 +20,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * JobDescriptionEmployerActivity
+ */
 public class JobDescriptionEmployerActivity extends AppCompatActivity {
 
     private JobPosting jobPosting;
@@ -27,14 +30,19 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
     Button submit;
     SessionManagement user;
 
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        user= new SessionManagement(this);
+        user = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobdescriptionemployer);
         Bundle bundle = getIntent().getExtras();
         String key = bundle.getString("Key");
-        jobPosting=new JobPosting();
+        jobPosting = new JobPosting();
 
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(view -> {
@@ -46,7 +54,7 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
         database.getFirebaseDatabase().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
+                jobPosting = dataSnapshot.child("JobPosting").child(key).getValue(JobPosting.class);
 
                 TextView title = findViewById(R.id.jobTitle);
                 title.setText(jobPosting.getTitle());
@@ -65,18 +73,18 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
 
 
                 TextView status = findViewById(R.id.employerName);
-                if(!jobPosting.getSelectedApplicantEmail().equals("")) {
+                if (!jobPosting.getSelectedApplicantEmail().equals("")) {
                     String employeeName = null;
-                    for (DataSnapshot ad: dataSnapshot.child("User").getChildren()) {
+                    for (DataSnapshot ad : dataSnapshot.child("User").getChildren()) {
                         User u = ad.getValue(User.class);
-                        if(u.getEmail().equals(jobPosting.getSelectedApplicantEmail())) {
+                        if (u.getEmail().equals(jobPosting.getSelectedApplicantEmail())) {
                             employeeName = u.getName();
                         }
                     }
-                    if(employeeName == null) {
+                    if (employeeName == null) {
                         status.setText("Invalid employee was selected");
                     }
-                }else{
+                } else {
                     status.setText("Pending");
                 }
 

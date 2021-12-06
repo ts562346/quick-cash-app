@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * JobStatusEmployeeActivity Class
+ */
 public class JobStatusEmployeeActivity extends AppCompatActivity {
     private JobPosting jobPosting;
     FirebaseDatabase database;
@@ -30,20 +33,25 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
     boolean isSelected = false;
     String key;
 
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        user= new SessionManagement(this);
+        user = new SessionManagement(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobstatusemployee);
         Bundle bundle = getIntent().getExtras();
         key = bundle.getString("Key");
         initializeDatabase();
-        jobPosting=new JobPosting();
+        jobPosting = new JobPosting();
 
         jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                jobPosting=dataSnapshot.getValue(JobPosting.class);
+                jobPosting = dataSnapshot.getValue(JobPosting.class);
 
                 TextView title = findViewById(R.id.jobTitle);
                 title.setText(jobPosting.getTitle());
@@ -66,21 +74,21 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
 
 
                 TextView status = findViewById(R.id.statusUpdate);
-                if(jobPosting.getSelectedApplicantEmail()==null) {
+                if (jobPosting.getSelectedApplicantEmail() == null) {
                     status.setText("Waiting");
-                    isSelected=false;
-                }else if(jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
+                    isSelected = false;
+                } else if (jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
                     status.setText("Ongoing");
-                    isSelected=true;
-                }else if(!jobPosting.getSelectedApplicantEmail().equals(user.getEmail())){
+                    isSelected = true;
+                } else if (!jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
                     status.setText("Rejected");
-                    isSelected=true;
-                }else if(jobPosting.getStatus().equals("Completed")){
+                    isSelected = true;
+                } else if (jobPosting.getStatus().equals("Completed")) {
                     status.setText("Completed");
-                    isSelected=false;
+                    isSelected = false;
 
-                }else{
-                    isSelected=false;
+                } else {
+                    isSelected = false;
                     status.setText("Paid");
                 }
                 isSelected(isSelected);
@@ -96,16 +104,21 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);
     }
 
-
+    /**
+     * Initializes the database
+     */
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         jobs = database.getReference();
     }
 
-
-
-    private void isSelected( boolean isSelected) {
+    /**
+     * Runs when employee is Selected
+     *
+     * @param isSelected
+     */
+    private void isSelected(boolean isSelected) {
         if (isSelected) {
             submit.setOnClickListener(view -> {
                 jobs.child("JobPosting").child(key).addListenerForSingleValueEvent(new ValueEventListener() {

@@ -11,12 +11,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickcashgroup5.datavalidation.Validation;
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.databasemanagement.Database;
+import com.example.quickcashgroup5.datavalidation.Validation;
 import com.example.quickcashgroup5.passwordmanagement.IAESCrypt;
 import com.example.quickcashgroup5.passwordmanagement.IPasswordManagementAbstractFactory;
 import com.example.quickcashgroup5.passwordmanagement.PasswordManagementInjector;
-import com.example.quickcashgroup5.R;
 import com.google.android.gms.tasks.Task;
 
 /**
@@ -154,7 +154,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                     TaskStackBuilder.create(this).addNextIntentWithParentStack(intent).startActivities();
                 }).addOnFailureListener(fal ->
-                    Toast.makeText(this, "Unsuccessful SignUp", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Unsuccessful SignUp", Toast.LENGTH_SHORT).show()
                 );
             }
         } catch (Exception e) {

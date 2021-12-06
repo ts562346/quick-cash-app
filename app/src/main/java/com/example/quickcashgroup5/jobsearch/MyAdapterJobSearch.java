@@ -11,24 +11,37 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.home.DataModelDashboard;
 import com.example.quickcashgroup5.jobdetails.JobDescriptionEmployeeActivity;
-import com.example.quickcashgroup5.R;
 
 import java.util.ArrayList;
 
-public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.MyViewHolderJobSearch>  {
+/**
+ * Adapter of JobSearch
+ */
+public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.MyViewHolderJobSearch> {
 
     ArrayList<DataModelDashboard> dataHolder;
     ArrayList<String> key = new ArrayList<>();
     String tag = "MyViewHolder";
 
-
-
+    /**
+     * Constructor of this class
+     *
+     * @param dataHolder
+     */
     public MyAdapterJobSearch(ArrayList<DataModelDashboard> dataHolder) {
         this.dataHolder = dataHolder;
     }
 
+    /**
+     * Runs when ViewHolder is created
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolderJobSearch onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +50,12 @@ public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.
 
     }
 
+    /**
+     * Binds ViewHolder
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderJobSearch holder, int position) {
         key.add(dataHolder.get(position).getKey());
@@ -44,18 +63,30 @@ public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.
         holder.title.setText(dataHolder.get(position).getJobTitle());
     }
 
+    /**
+     * Gets size of dataHolder
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return dataHolder.size();
     }
 
-    class MyViewHolderJobSearch extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+    /**
+     * JobSearch recyclerView
+     */
+    class MyViewHolderJobSearch extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView title;
         TextView payment;
         Context context;
 
+        /**
+         * Constructor of the class
+         *
+         * @param itemView
+         */
         public MyViewHolderJobSearch(@NonNull View itemView) {
 
             super(itemView);
@@ -65,16 +96,20 @@ public class MyAdapterJobSearch extends RecyclerView.Adapter<MyAdapterJobSearch.
             payment = itemView.findViewById(R.id.payment);
         }
 
+        /**
+         * When an element is clicked
+         *
+         * @param view
+         */
         @Override
         public void onClick(View view) {
-            Intent jobDescription =  new Intent(context, JobDescriptionEmployeeActivity.class);
+            Intent jobDescription = new Intent(context, JobDescriptionEmployeeActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("Key", key.get(getAdapterPosition()));
             jobDescription.putExtras(bundle);
             context.startActivity(jobDescription);
 
         }
-
 
 
     }
