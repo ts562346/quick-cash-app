@@ -126,9 +126,9 @@ public class Validation {
         if (!location.isEmpty()) {
             Geocoder geocoder = new Geocoder(context);
             List<Address> addressLists = new ArrayList<>();
-            addressLists.add(0, null);
             try {
                 addressLists = geocoder.getFromLocationName("location", 1);
+                addressLists.add(0, null);
             } catch (IOException ex) {
                 Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
             }
