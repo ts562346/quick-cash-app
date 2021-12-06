@@ -110,8 +110,6 @@ gapp/src/main/java/com/example/quickcashgroup5/passwordmanagement/PasswordManage
 Napp/src/main/java/com/example/quickcashgroup5/jobsearch/FragmentJobSearch.java,b\a\ba0eca07c470438035b555bd055435fcf63d25ff
 
 Oapp/src/main/java/com/example/quickcashgroup5/passwordmanagement/IAESCrypt.java,c\7\c75e392f624e8e894667db40a186806da8083388
-å
-\app/src/main/java/com/example/quickcashgroup5/jobdetails/JobDescriptionEmployerActivity.java,0\9\097d006afff5761f42c2fa26d826447767a118bd
 {
 Kapp/src/main/java/com/example/quickcashgroup5/paymentmanagement/Paypal.java,2\1\2118abb1c14543707d16eeac9e4ddf90ac09cce0
 à
@@ -134,8 +132,6 @@ Gapp/src/main/java/com/example/quickcashgroup5/usermanagement/IUser.java,5\b\5b
 Tapp/src/main/java/com/example/quickcashgroup5/usermanagement/ISessionManagement.java,d\3\d3daeac5234ec85463f206ea6e52c3d283605430
 ê
 `app/src/main/java/com/example/quickcashgroup5/usermanagement/IUserManagementAbstractFactory.java,9\7\97962b6e3427559a136cdb2bba12cb391efc19ce
-~
-Napp/src/main/java/com/example/quickcashgroup5/jobsearch/JobSearchActivity.java,4\9\49b9c54ac3c73d156d93bd0c272e63b4d0bc9bde
 
 Oapp/src/main/java/com/example/quickcashgroup5/jobsearch/MyAdapterJobSearch.java,0\d\0d6bf4928909dff041c73e8f3a497e6e7d842695
 å
