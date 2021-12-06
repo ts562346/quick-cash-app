@@ -6,6 +6,7 @@ import com.example.quickcashgroup5.UserManagement.IUser;
 import com.example.quickcashgroup5.UserManagement.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
@@ -20,5 +21,11 @@ public interface IDatabase {
 
     User findUser(String email);
 
+    JobPosting findJobPosting(String key);
+
     DataSnapshot getUserDataSnapshot(String email);
+
+    FirebaseDatabase getDatabase();
+
+    DataSnapshot getData(String reference);
 }

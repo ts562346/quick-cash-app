@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.quickcashgroup5.DatabaseManagement.Database;
 import com.example.quickcashgroup5.Home.EmployeeHomeActivity;
 import com.example.quickcashgroup5.JobCreation.JobPosting;
 import com.example.quickcashgroup5.R;
@@ -51,8 +51,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -79,18 +77,17 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     private SessionManagement sessionManagement;
     private HashMap<String, JobPosting> allJobs;
     private HashMap<String, JobPosting> filteredJobs;
-    FirebaseDatabase database;
-    DatabaseReference jobs, users;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView sidebar;
     Button search, searchByPreferences;
-    ScrollView scrollView;
     private String preferredLocation;
     private String preferredCategory;
     private String preferredPayment;
     private String preferredHours;
+
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +98,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         inputSearch = findViewById(R.id.input_search);
         allJobs = new HashMap<>();
         filteredJobs = new HashMap<>();
+        database = new Database();
 
         sidebar = findViewById(R.id.sidebar);
         drawerLayout = findViewById(R.id.my_drawer_layout);
@@ -110,9 +108,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sidebar.setNavigationItemSelectedListener(this);
 
-        database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
-        jobs = database.getReference();
-        users = database.getReference();
+
         setJobLocations();
         setJobPreferences();
 
@@ -154,7 +150,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void setJobPreferences(){
-        users.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
+        database.getDatabase().getReference().child("User").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
@@ -232,7 +228,7 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void setJobLocations(){
-        jobs.child("JobPosting").addValueEventListener(new ValueEventListener() {
+        database.getDatabase().getReference().child("JobPosting").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot adSnapshot : dataSnapshot.getChildren()) {
@@ -263,7 +259,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         Log.d(TAG, "onMapReady: starts");
         mMap = googleMap;
-//        Toast.makeText(this, "Google Map is ready", Toast.LENGTH_SHORT).show();
         if (mLocationPermissionGranted) {
             Log.d(TAG, "onMapReady: getting Device current location!!");
             getDeviceLocation();
@@ -288,7 +283,6 @@ public class JobSearchActivity extends AppCompatActivity implements OnMapReadyCa
             }
         }
         if(filteredJobs.size()==0){
-            System.out.println("LOL");
            Toast.makeText(getApplicationContext(),"No jobs available right now",Toast. LENGTH_LONG).show();
         }
         display();

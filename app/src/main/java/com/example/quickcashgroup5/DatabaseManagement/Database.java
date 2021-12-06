@@ -99,4 +99,8 @@ public class Database implements IDatabase {
     public FirebaseDatabase getDatabase() {
         return database;
     }
+
+    public DataSnapshot getData(String reference) {
+        return data.child(reference);
+    }
 }
