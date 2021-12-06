@@ -56,8 +56,6 @@ A
 Napp/src/main/java/com/example/quickcashgroup5/databasemanagement/Database.java,8\e\8ec5f8fc6feb9df7f75e426bfceef3974f7cf445
 
 Oapp/src/main/java/com/example/quickcashgroup5/databasemanagement/IDatabase.java,b\3\b3c1e3f52406f1ec5bcbbc4158daf5201a18a405
-|
-Lapp/src/main/java/com/example/quickcashgroup5/datavalidation/Validation.java,f\9\f9604339c38613ce20e50dd5782de2962f0c4f79
 
 Oapp/src/main/java/com/example/quickcashgroup5/designelements/MyRadioButton.java,b\3\b374e133ea542eef021f4f17b1bb3308b2a5f7ba
 ƒ
@@ -160,8 +158,6 @@ Papp/src/main/java/com/example/quickcashgroup5/usermanagement/SignUpActivity.jav
 ]app/src/main/java/com/example/quickcashgroup5/passwordmanagement/RecoveryAccountActivity.java,8\c\8cf01276e0ebc27ad94f636e54df9a0f2f3a1e37
 
 Oapp/src/main/java/com/example/quickcashgroup5/usermanagement/LogInActivity.java,3\a\3affdbc35e9c6880ff4196999bd7a4777c3ed210
-‡
-Wapp/src/main/java/com/example/quickcashgroup5/usermanagement/JobPreferenceActivity.java,2\b\2b4f9496bed569c9df5b57ffd64dd5d1e6e5eade
 ‹
 [app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/ViewFeedbacksActivity.java,c\3\c3d08dccd7994bead37cf5e010191e76dccac45d
 Š

@@ -132,7 +132,7 @@ public class Validation {
             } catch (IOException ex) {
                 Log.d(TAG, "GeoLocate: exception " + ex.getMessage());
             }
-            return !addressLists.isEmpty();
+            return true;
         } else {
             return false;
         }
