@@ -45,7 +45,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="#000000"
-                android:text="Login"
+                android:text="@string/login"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -56,7 +56,7 @@
                 tools:layout_editor_absoluteY="130dp"
                 android:textSize="16sp"
                 android:textColor="#788190"
-                android:text="Sign in to your account"
+                android:text="@string/sign_in_to_your_account"
                 android:layout_marginBottom="60dp"/>
 
             <TextView
@@ -66,7 +66,7 @@
                 tools:layout_editor_absoluteY="206dp"
                 android:textSize="16sp"
                 android:textColor="#121515"
-                android:text="Your Email"
+                android:text="@string/your_email"
                 android:layout_marginBottom="15dp"
                 tools:layout_editor_absoluteX="0dp"/>
 
@@ -93,7 +93,7 @@
                 android:id="@+id/passwordLabel"
                 android:textSize="16sp"
                 android:textColor="#121515"
-                android:text="Password"
+                android:text="@string/password"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="30dp"/>
 
@@ -135,7 +135,7 @@
                 android:id="@+id/forgotPass"
                 android:gravity="right"
                 android:textColor="@color/black"
-                android:text="Forgot password?"
+                android:text="@string/forget_password"
                 android:insetTop="10dp"
                 android:layout_margin="10dp"
                 style="?android:attr/buttonBarButtonStyle"/>
@@ -150,7 +150,7 @@
                 android:id="@+id/notRegisteredUserLabel"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_light"
-                android:text="I don't have an account"
+                android:text="@string/i_donot_have_an_account"
                 android:insetTop="100dp"
                 android:layout_margin="10dp"
                 style="?android:attr/buttonBarButtonStyle"/>
@@ -159,7 +159,7 @@
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/loginButton"
-                android:text="LogIn"
+                android:text="@string/log_in"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"/>

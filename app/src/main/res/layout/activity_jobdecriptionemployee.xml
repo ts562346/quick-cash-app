@@ -49,7 +49,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="#000000"
-                android:text="Job Description"
+                android:text="@string/job_description"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
@@ -59,7 +59,7 @@
                 tools:layout_editor_absoluteY="130dp"
                 android:textSize="16sp"
                 android:textColor="#788190"
-                android:text="View job details"
+                android:text="@string/view_job_details"
                 android:layout_marginBottom="60dp"/>
 
 
@@ -73,7 +73,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="#000000"
-                android:text="Job Title"
+                android:text="@string/job_title"
                 android:layout_marginBottom="10dp"/>
 
 
@@ -85,7 +85,7 @@
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/location"
                 android:drawablePadding="10dp"
-                android:text="Location"
+                android:text="@string/locationStr"
                 android:textSize="20sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -98,7 +98,7 @@
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/dollar"
                 android:drawablePadding="10dp"
-                android:text="Minimum Payment"
+                android:text="@string/minimum_payment"
                 android:textSize="20sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -111,7 +111,7 @@
                 android:drawableStart="@drawable/clock"
                 android:textColor="@color/black"
                 android:drawablePadding="10dp"
-                android:text="Minimum Hours"
+                android:text="@string/minimum_hours"
                 android:textSize="20sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -124,7 +124,7 @@
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/category"
                 android:drawablePadding="10dp"
-                android:text="Job category"
+                android:text="@string/job_category"
                 android:textSize="20sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="206dp" />
@@ -138,7 +138,7 @@
                 android:textStyle="bold"
                 android:textSize="30sp"
                 android:textColor="#000000"
-                android:text="Employer"
+                android:text="@string/employer"
                 android:layout_marginTop="50dp" />
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"
-                android:text="Employer Name"
+                android:text="@string/employer_name"
                 android:textSize="20sp"
                 tools:layout_editor_absoluteX="0dp"
                 android:layout_marginBottom="150dp"/>

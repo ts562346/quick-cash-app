@@ -52,7 +52,7 @@
                     android:textStyle="bold"
                     android:textSize="30sp"
                     android:textColor="#000000"
-                    android:text="Send Feedback"
+                    android:text="@string/send_feedback"
                     android:layout_marginBottom="10dp"/>
 
                 <TextView
@@ -63,7 +63,7 @@
                     tools:layout_editor_absoluteY="130dp"
                     android:textSize="16sp"
                     android:textColor="#788190"
-                    android:text="Enter feedback"
+                    android:text="@string/enter_feedback"
                     android:layout_marginBottom="30dp"/>
 
 
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:textColor="@color/black"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textSize="16sp"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="206dp" />
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="Feedback"
+                    android:text="@string/feedback"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -152,11 +152,11 @@
                     app:layout_constraintVertical_bias="0.5" />
 
                 <TextView
-                    android:id="@+id/rateus"
+                    android:id="@+id/rate_us"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="Rate Us"
+                    android:text="@string/rate_us"
                     android:textSize="16sp" />
 
                 <RatingBar
@@ -173,7 +173,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:radius="30dp"
-                    android:text="Submit" />
+                    android:text="@string/submit" />
 
 
             </LinearLayout>

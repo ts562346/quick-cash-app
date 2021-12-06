@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="0.5"
-                    android:text="Applicants"
+                    android:text="@string/applicants"
                     android:textColor="#000000"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -113,13 +113,13 @@
                         android:layout_column="1"
                         android:gravity="left"
                         android:padding="10dp"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         android:background="@drawable/rectangle_background"/>
 
                     <TextView
-                        android:text="Accept"
+                        android:text="@string/accept"
                         android:textSize="16dp"
                         android:textStyle="bold"
                         android:padding="10dp"
@@ -148,7 +148,7 @@
                 android:id="@+id/logout"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_light"
-                android:text="logout"
+                android:text="@string/logout"
                 android:insetTop="100dp"
                 android:layout_margin="10dp"
                 style="?android:attr/buttonBarButtonStyle"/>
@@ -157,7 +157,7 @@
                 android:layout_height="60dp"
                 android:layout_width="match_parent"
                 android:id="@+id/loginButton"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:layout_margin="5dp"
                 android:radius="30dp"
                 android:layout_weight="1"/>

@@ -57,13 +57,7 @@ public class EmployeeHomeActivity extends AppCompatActivity implements Navigatio
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportFragmentManager().beginTransaction().replace(R.id.mainContainerEmployee, new FragmentDashboard()).commit();
 
-        refresh = findViewById(R.id.refresh_button);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
     }
 
     // To open and close the navigation drawer when the icon is clicked
