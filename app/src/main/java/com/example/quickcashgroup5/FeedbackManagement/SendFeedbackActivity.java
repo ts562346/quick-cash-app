@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.quickcashgroup5.Home.EmployerHomeActivity;
 import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.JobCreation.CreateJobActivity;
+import com.example.quickcashgroup5.UserManagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.UserManagement.LogInActivity;
 import com.example.quickcashgroup5.UserManagement.SessionManagement;
 import com.google.android.gms.tasks.Task;
@@ -146,10 +147,9 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
                 break;
             }
             case R.id.nav_preferences: {
-                Toast.makeText(this, "Preferences page coming soon", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(this, PreferenceActivity.class);
-//                startActivity(intent);
-//                ((Activity) this).finish();
+                Intent intent = new Intent(this, JobPreferenceActivity.class);
+                startActivity(intent);
+                this.finish();
                 break;
             }
             case R.id.nav_feedback: {

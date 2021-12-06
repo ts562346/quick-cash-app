@@ -82,6 +82,8 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                 popupMenu.getMenu().removeItem(R.id.pay);
             } else if (statusFetch.equals("Pay") || statusFetch.equals("Ongoing")) {
                 popupMenu.getMenu().removeItem(R.id.select);
+            }else if (statusFetch.equals("Complete")){
+                popupMenu.getMenu().removeItem(R.id.select);
             } else {
                 popupMenu.getMenu().removeItem(R.id.pay);
                 popupMenu.getMenu().removeItem(R.id.select);
