@@ -41,7 +41,7 @@ public class SelectEmployeeActivity extends AppCompatActivity {
         initializeDatabase();
         jobPosting = new JobPosting();
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportFragmentManager().beginTransaction().replace(R.id.selectEmployeeRecycle, new FragmentSelectEmployee(user, key)).commit();
 
         refresh = findViewById(R.id.refresh_button);

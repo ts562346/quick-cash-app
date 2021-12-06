@@ -51,6 +51,8 @@ public class JobDescriptionEmployerActivity extends AppCompatActivity {
         });
 
 
+
+
         database.getFirebaseDatabase().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

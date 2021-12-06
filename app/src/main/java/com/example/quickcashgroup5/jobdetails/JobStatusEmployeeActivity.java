@@ -74,13 +74,13 @@ public class JobStatusEmployeeActivity extends AppCompatActivity {
 
 
                 TextView status = findViewById(R.id.statusUpdate);
-                if (jobPosting.getSelectedApplicantEmail() == null) {
+                if (jobPosting.getSelectedApplicantEmail().equals("") && jobPosting.getAppliedApplicants().contains(user.getEmail())) {
                     status.setText("Waiting");
                     isSelected = false;
                 } else if (jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
                     status.setText("Ongoing");
                     isSelected = true;
-                } else if (!jobPosting.getSelectedApplicantEmail().equals(user.getEmail())) {
+                } else if (!jobPosting.getSelectedApplicantEmail().equals(user.getEmail()) && jobPosting.getAppliedApplicants().contains(user.getEmail())) {
                     status.setText("Rejected");
                     isSelected = true;
                 } else if (jobPosting.getStatus().equals("Completed")) {
