@@ -43,6 +43,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
 
     /**
      * Runs when the class is created
+     *
      * @param savedInstanceState
      */
     @Override
@@ -74,7 +75,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     /**
      * Finds the feedbacks and adds to the layout
      */
-    protected void find(){
+    protected void find() {
         feedbacks.child("Feedback").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -93,11 +94,13 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     }
 
     //https://www.c-sharpcorner.com/UploadFile/1e5156/dynamically-add-fragment-in-android-studio/
+
     /**
      * Adds the feedback fragments to the feedback
+     *
      * @param feedback
      */
-    protected void addToLayout(Feedback feedback){
+    protected void addToLayout(Feedback feedback) {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         FeedbackFragment fm2 = new FeedbackFragment();
@@ -119,8 +122,10 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+
     /**
      * The onclick of the Sidebar
+     *
      * @param item
      * @return
      */
@@ -154,7 +159,7 @@ public class ViewFeedbacksActivity extends AppCompatActivity implements Navigati
             case R.id.nav_logout: {
                 sessionManagement.clearSession();
                 Intent intent = new Intent(this, LogInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
                 break;

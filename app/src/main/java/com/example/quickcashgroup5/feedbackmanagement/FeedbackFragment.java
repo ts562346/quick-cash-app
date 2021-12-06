@@ -24,6 +24,7 @@ public class FeedbackFragment extends Fragment {
 
     /**
      * Sets the feedback
+     *
      * @param feedback
      */
     public void setFeedback(Feedback feedback) {
@@ -32,6 +33,7 @@ public class FeedbackFragment extends Fragment {
 
     /**
      * Runs when the view is created
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState

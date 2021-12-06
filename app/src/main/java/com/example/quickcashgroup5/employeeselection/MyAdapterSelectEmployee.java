@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quickcashgroup5.home.EmployerHomeActivity;
-import com.example.quickcashgroup5.emailmanagement.SendNotification;
 import com.example.quickcashgroup5.R;
+import com.example.quickcashgroup5.emailmanagement.SendNotification;
+import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.jobcreation.JobPosting;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

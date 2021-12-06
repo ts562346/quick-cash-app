@@ -26,7 +26,6 @@ import com.google.android.material.navigation.NavigationView;
 /**
  * Home page for Employer
  */
-
 public class EmployerHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SessionManagement sessionManagement;
     DrawerLayout drawerLayout;
@@ -36,6 +35,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
 
     /**
      * Mehtod that runs when activity is created
+     *
      * @param savedInstanceState
      */
     @Override
@@ -56,14 +56,19 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         FragmentDashboard f = new FragmentDashboard();
-        FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainContainer, f, "employer dashboard");
         ft.commit();
 
 
     }
 
-    // To open and close the navigation drawer when the icon is clicked
+    /**
+     * To open and close the navigation drawer when the icon is clicked
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -73,6 +78,13 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+
+    /**
+     * Navigation bar
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -103,7 +115,7 @@ public class EmployerHomeActivity extends AppCompatActivity implements Navigatio
             case R.id.nav_logout: {
                 sessionManagement.clearSession();
                 Intent intent = new Intent(this, LogInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
                 break;

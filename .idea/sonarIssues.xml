@@ -313,11 +313,6 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/databasemanagement/Database.java">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/datavalidation/Validation.java">
           <value>
             <set />
@@ -353,12 +348,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/FeedbackFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/SendFeedbackActivity.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/feedbackmanagement/ViewFeedbacksActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/home/DataModelDashboard.java">
           <value>
             <set />
           </value>
@@ -389,6 +394,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/jobcreation/CreateJobActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/quickcashgroup5/jobcreation/IJobPosting.java">
           <value>
             <set />
           </value>

@@ -47,6 +47,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
 
     /**
      * Runs when the activity is created
+     *
      * @param savedInstanceState
      */
     @Override
@@ -78,10 +79,11 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
 
     /**
      * Creates Feedback
+     *
      * @param feedback
      * @return
      */
-    private boolean createFeedback(Feedback feedback){
+    private boolean createFeedback(Feedback feedback) {
         String name = editTextName.getText().toString().trim();
         String userType = editTextUserType.getText().toString().trim();
         String userFeedback = editTextFeedback.getText().toString().trim();
@@ -108,7 +110,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
     /**
      * Sends the feedback
      */
-    protected void sendFeedback(){
+    protected void sendFeedback() {
         Feedback feedback = new Feedback();
         try {
             createFeedback(feedback);
@@ -117,7 +119,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
                 Intent intent = new Intent(this, ViewFeedbacksActivity.class);
                 startActivity(intent);
             }).addOnFailureListener(fal ->
-                Toast.makeText(this, "Unsuccessfully sent the feedback", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Unsuccessfully sent the feedback", Toast.LENGTH_SHORT).show()
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,7 +135,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
     }
 
     /**
-        To open and close the navigation drawer when the icon is clicked
+     * To open and close the navigation drawer when the icon is clicked
      **/
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -145,8 +147,10 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+
     /**
      * The onclick of the Sidebar
+     *
      * @param item
      * @return
      */
@@ -180,7 +184,7 @@ public class SendFeedbackActivity extends AppCompatActivity implements Navigatio
             case R.id.nav_logout: {
                 sessionManagement.clearSession();
                 Intent intent = new Intent(this, LogInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
                 break;

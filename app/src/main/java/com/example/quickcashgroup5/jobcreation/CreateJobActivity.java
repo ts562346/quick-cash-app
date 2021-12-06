@@ -17,11 +17,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.feedbackmanagement.ViewFeedbacksActivity;
 import com.example.quickcashgroup5.home.EmployerHomeActivity;
 import com.example.quickcashgroup5.notificationmanagement.Applicant;
 import com.example.quickcashgroup5.notificationmanagement.EmailNotificationManager;
-import com.example.quickcashgroup5.R;
 import com.example.quickcashgroup5.usermanagement.JobPreferenceActivity;
 import com.example.quickcashgroup5.usermanagement.LogInActivity;
 import com.example.quickcashgroup5.usermanagement.SessionManagement;
@@ -34,6 +34,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Activity to create jobs
+ */
 public class CreateJobActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected DrawerLayout drawerLayout;
@@ -53,6 +56,11 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
 
     EmailNotificationManager manager;
 
+    /**
+     * Runs when Activity is created
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManagement = new SessionManagement(this);
@@ -82,7 +90,13 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
         initializeDatabase();
     }
 
-    private boolean createJob(JobPosting job){
+    /**
+     * Creates the JobPosting
+     *
+     * @param job
+     * @return
+     */
+    private boolean createJob(JobPosting job) {
         String title = editTextTitle.getText().toString().trim();
         String location = editTextLocation.getText().toString().trim();
         String payment = editTextPayment.getText().toString().trim();
@@ -112,7 +126,10 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
         return jobPostings.push().setValue(job);
     }
 
-    protected void insertJob(){
+    /**
+     * Inserts the JobPosting if it is valid
+     */
+    protected void insertJob() {
         JobPosting job = new JobPosting();
         try {
             createJob(job);
@@ -120,9 +137,9 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
                 database.getReference("User").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot data: snapshot.getChildren()) {
+                        for (DataSnapshot data : snapshot.getChildren()) {
                             User u = data.getValue(User.class);
-                            if(u.getIsEmployee().equals("yes")) {
+                            if (u.getIsEmployee().equals("yes")) {
                                 new Applicant(u.getEmail(), manager);
                             }
                         }
@@ -134,6 +151,7 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
                         message += job.getDuration() + ". \nThe job will be taking place at " + job.getLocation() + ".";
                         manager.setNotification(subject, message);
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Log.d(TAG, "Asyncronous method canceled");
@@ -143,7 +161,7 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
                 Intent intent = new Intent(this, LogInActivity.class);
                 startActivity(intent);
             }).addOnFailureListener(fal ->
-                Toast.makeText(this, "Unsuccessful Job Creation", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Unsuccessful Job Creation", Toast.LENGTH_SHORT).show()
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -158,7 +176,12 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
         jobPostings = database.getReference(JobPosting.class.getSimpleName());
     }
 
-    // To open and close the navigation drawer when the icon is clicked
+    /**
+     * To open and close the navigation drawer when the icon is clicked
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -168,6 +191,13 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
     }
 
     //https://stackoverflow.com/questions/42297381/onclick-event-in-navigation-drawer
+
+    /**
+     * Side Bar
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -198,7 +228,7 @@ public class CreateJobActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_logout: {
                 sessionManagement.clearSession();
                 Intent intent = new Intent(this, LogInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 this.finish();
                 break;

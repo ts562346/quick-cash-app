@@ -24,31 +24,51 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
+/**
+ * Fragment for dashboard
+ */
 public class FragmentDashboard extends Fragment {
     ArrayList<DataModelDashboard> dataModelDashboard;
     FirebaseDatabase database;
     DatabaseReference jobs;
 
+    /**
+     * Empty Constructor
+     */
     public FragmentDashboard() {
         /*
             This is an empty constructor
          */
     }
 
+    /**
+     * Initializes the database
+     */
     protected void initializeDatabase() {
         //initialize the database and the two references related to banner ID and email address.
         database = FirebaseDatabase.getInstance("https://quickcashgroupproject-default-rtdb.firebaseio.com/");
         jobs = database.getReference();
     }
 
-
+    /**
+     * Runs when created
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeDatabase();
     }
 
+    /**
+     * Runs when created view
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

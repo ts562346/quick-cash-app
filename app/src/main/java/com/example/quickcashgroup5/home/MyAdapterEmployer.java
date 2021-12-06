@@ -22,17 +22,31 @@ import com.example.quickcashgroup5.R;
 
 import java.util.ArrayList;
 
-public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.MyViewHolderEmployer>  {
+/**
+ * AdapterEmployer RecyclerView
+ */
+public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.MyViewHolderEmployer> {
 
     ArrayList<DataModelDashboard> dataHolder;
     String tag = "MyViewHolder";
     ArrayList<String> key = new ArrayList<>();
 
-
+    /**
+     * Constructor of this class
+     *
+     * @param dataHolder
+     */
     public MyAdapterEmployer(ArrayList<DataModelDashboard> dataHolder) {
         this.dataHolder = dataHolder;
     }
 
+    /**
+     * Runs when ViewHolder is created
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public MyViewHolderEmployer onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,6 +55,12 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
 
     }
 
+    /**
+     * Binds ViewHolder
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderEmployer holder, int position) {
         key.add(dataHolder.get(position).getKey());
@@ -48,16 +68,30 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
         holder.title.setText(dataHolder.get(position).getJobTitle());
     }
 
+    /**
+     * Gets the size of dataHolder
+     *
+     * @return
+     */
     @Override
     public int getItemCount() {
         return dataHolder.size();
     }
 
+    /**
+     * MyViewHolderEmployer RecyclerView
+     */
     class MyViewHolderEmployer extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
         TextView title;
         TextView payment;
         ImageButton imageButton;
         Context context;
+
+        /**
+         * Constructor of this class
+         *
+         * @param itemView
+         */
         public MyViewHolderEmployer(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
@@ -68,13 +102,23 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
             imageButton.setOnClickListener(this);
         }
 
+        /**
+         * OnClick Method
+         *
+         * @param view
+         */
         @Override
         public void onClick(View view) {
             showPopupMenu(view);
         }
 
-        public void showPopupMenu (View view){
-            PopupMenu popupMenu = new PopupMenu(view.getContext(),view);
+        /**
+         * Popup Menu options selections
+         *
+         * @param view
+         */
+        public void showPopupMenu(View view) {
+            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
             TextView status = itemView.findViewById(R.id.locationLabel);
             String statusFetch = status.getText().toString();
             popupMenu.inflate((R.menu.mymenu_employerdashboard));
@@ -84,9 +128,9 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
             } else if (statusFetch.equals("Ongoing")) {
                 popupMenu.getMenu().removeItem(R.id.pay);
                 popupMenu.getMenu().removeItem(R.id.select);
-            }else if (statusFetch.equals("Completed")){
+            } else if (statusFetch.equals("Completed")) {
                 popupMenu.getMenu().removeItem(R.id.select);
-            }else if (statusFetch.equals("Complete")){
+            } else if (statusFetch.equals("Complete")) {
                 popupMenu.getMenu().removeItem(R.id.select);
             } else {
                 popupMenu.getMenu().removeItem(R.id.pay);
@@ -96,12 +140,18 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
             popupMenu.show();
         }
 
+        /**
+         * Menu Items On Click
+         *
+         * @param menuItem
+         * @return
+         */
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.details:
                     Log.d(tag, "onMenuItemClick: details" + getAdapterPosition());
-                    Intent intent =  new Intent(context, JobDescriptionEmployerActivity.class);
+                    Intent intent = new Intent(context, JobDescriptionEmployerActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("Key", key.get(getAdapterPosition()));
                     intent.putExtras(bundle);
@@ -109,7 +159,7 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     return true;
                 case R.id.select:
                     Log.d(tag, "onMenuItemClick: select" + getAdapterPosition());
-                    intent =  new Intent(context, SelectEmployeeActivity.class);
+                    intent = new Intent(context, SelectEmployeeActivity.class);
                     bundle = new Bundle();
                     bundle.putString("Key", key.get(getAdapterPosition()));
                     intent.putExtras(bundle);
@@ -117,7 +167,7 @@ public class MyAdapterEmployer extends RecyclerView.Adapter<MyAdapterEmployer.My
                     return true;
                 case R.id.pay:
                     Log.d(tag, "onMenuItemClick: pay" + getAdapterPosition());
-                    intent =  new Intent(context, PayEmployeeActivity.class);
+                    intent = new Intent(context, PayEmployeeActivity.class);
                     bundle = new Bundle();
                     bundle.putString("Key", key.get(getAdapterPosition()));
                     intent.putExtras(bundle);

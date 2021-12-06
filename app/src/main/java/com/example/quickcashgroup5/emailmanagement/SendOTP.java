@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.example.quickcashgroup5.secret.Config;
 import com.example.quickcashgroup5.passwordmanagement.PasswordResetCodeActivity;
+import com.example.quickcashgroup5.secret.Config;
 
 import java.util.Properties;
 
@@ -25,7 +25,6 @@ import javax.mail.internet.MimeMessage;
 /**
  * Class to send OTP to the user
  */
-@Deprecated
 public class SendOTP extends AsyncTask<Void, Void, Void> {
     private final Context context;
     private Session session;
